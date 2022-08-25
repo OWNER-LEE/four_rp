@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+	<!-- resources -->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script type="text/javascript" async="" src="https://cdn.channel.io/plugin/ch-plugin-web.js" charset="UTF-8"></script>
+	<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+	<script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MT4TVMM"></script>
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-72831870-1"></script>
+	
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-72831870-1');
+	</script>
 
-</body>
-</html>
+	<!-- Google Tag Manager -->
+	<script>
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-MT4TVMM');
+	</script>
+	
+	<!-- 네이버 웹 마스터 -->
+	<meta name="naver-site-verification" content="604eacc916720929827b4ab79c816f5956ae87d3">
+
+	<script>
+	    const API_SERVER_URL = 'https://api.sangsanguniv.com/api/v1';
+	    const API_FILE_URL = 'https://sjs888056-sjs888056.ktcdn.co.kr/';
+	
+	    /* 공통 API 호출. */
+		function apiCall(type, url, param, localhostCallYN) {
+			var contentType = "text/plain;charset=UTF-8";
+			
+			if(type == "POST"){
+				contentType = "application/json;charset=UTF-8";
+				param = JSON.stringify (param);
+			}
+			
+			if(localhostCallYN != 'Y'){
+				url = 'https://api.sangsanguniv.com/api/v1' + url;
+			}
+			
+		    return new Promise((resolve, reject) => {
+				$.ajax({
+			        url: url,
+			        beforeSend: function (xhr) {
+			            xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("UNIV_ACCESS_TOKEN"));
+			        },
+			    	type: type,
+		        	data: param,
+					contentType: contentType,
+					fail: function (fail) {
+			      		var strData = JSON.stringify(fail);
+			      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+			      		fail = JSON.parse(strData);
+						reject(fail);
+					},
+			      	success: function (data) {
+			      		var strData = JSON.stringify(data);
+			      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+			      		data = JSON.parse(strData);
+			      		resolve(data);
+			      	},
+			      	error: function (error) {
+			      		var strData = JSON.stringify(error);
+			      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+			      		error = JSON.parse(strData);
+			        	reject(error);
+					}
+			    });
+			});
+		}
