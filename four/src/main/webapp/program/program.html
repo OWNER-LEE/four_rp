@@ -1,10 +1,1979 @@
+<!-- <img alt="찾기" src="/four/program/resources/images/icon-search-pk-e104828ea256760906e992f1ada3639e.png"> -->
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+
+html {
+	font-size: 22px;
+}
+
+html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td, dl, dt,
+	dd, a, img, input, button, select, textarea {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+body, p, a, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th,
+	td, form, fieldset, legend, input, textarea, button, select, pre {
+	letter-spacing: -0.03em;
+	line-height: 1.5;
+	font-weight: 400;
+	color: #000;
+	font-family: "Spoqa Han Sans Neo", arial, sans-serif, Arial, dotum, "돋움";
+}
+
+header, hgroup, article, nav, footer, figure, figcaption, canvas,
+	section, menu, main {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+body, div, p, ul, li, input, h1, h2, h3, h4, h5, h6, dl, dt, dd, a, select, textarea {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    word-break: keep-all;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ddd;
+}
+
+.float-btn-top {
+	position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    width: 3.18182rem;
+    height: 3.18182rem;
+    text-indent: -9999px;
+    background: url(/four/program/resources/images/icon-btn-top-345bd462a615df6b64e7482ffac90620.png) no-repeat 0 0;
+    background-size: cover;
+}
+
+header {
+	border-color: #f5f5f7;
+	background-color: #fff;
+	transition: background 0.2s;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid transparent;
+}
+
+.header-inner {
+	display: flex;
+	justify-content: space-between; 
+	position : relative;
+	align-items: center;
+	position: relative;
+	width: 1600px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.header-all-menu {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.btn-all-menu {
+	display: block;
+	width: 1.9rem;
+	height: 100%;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 1.9rem 1.5rem;
+	background-color: transparent;
+	background-image:
+		url(/four/program/resources/images/icon-allmenu-btn-bk-6b09023839cf00f8f36f9612702ce321.png);
+	border: 0;
+}
+
+.header-all-menu .btn-all-menu {
+	display: block;
+}
+
+.header-logo {
+	margin-left: 1.7rem;
+}
+
+.header-logo a {
+	display: block;
+}
+
+.logo-color {
+	width: 8.3rem;
+}
+
+.header-nav ul {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+}
+
+.header-nav .nav-item+.nav-item {
+	margin-left: 3.81818rem;
+}
+
+.header-nav .nav-item a {
+	transition: 0.3s;
+	display: block;
+	font-weight: 700;
+	font-size: 0.72727rem;
+}
+
+.header-nav .nav-item a:hover {
+	color: #ff257c;
+}
+
+.all-menu-container {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 240px;
+	background-color: #ddd;
+	border-top: 1px solid #f5f5f7;
+	transition: width 0.25s;
+}
+
+.all-menu-container .all-menu-inner {
+	width: 240px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background-color: #fff;
+	border-right: 1px solid #ddd;
+}
+
+.all-menu-container .all-menu-link {
+	display: block;
+	padding: 1.81818rem 1.81818rem 1.09091rem;
+	font-size: 0.72727rem;
+}
+
+.all-menu-container .all-menu-item+.all-menu-item {
+	border-top: 1px solid #dedede;
+}
+
+.all-menu-container .sub-menu-wrap {
+	transition: 0.25;
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 240px;
+	width: 240px;
+	height: 100%;
+	overflow: auto;
+}
+
+.all-menu-container .sub-menu {
+	padding: 40px;
+}
+
+.all-menu-container .sub-menu-link {
+	display: inline-block;
+	font-size: 0.68182rem;
+}
+
+.all-menu-container .sub-menu-item+.sub-menu-item {
+	margin-top: 1.09091rem;
+}
+
+.all-menu-dim {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.step-list-section {
+	padding: 4.09091rem 0;
+	background-color: #f5f5f7;
+	display: block;
+	margin: 0;
+	font-family: "Spoqa Han Sans Neo", arial, sans-serif, Arial, dotum, "돋움";
+}
+
+.step-list-section .section-title {
+	font-weight: 700;
+	font-size: 2.09091rem;
+}
+
+.step-list-section .section-title .point {
+	color: #6e6e73;
+}
+
+.step-list-section .section-title {
+	font-weight: 700;
+	font-size: 2.09091rem;
+}
+
+.step-list-section .section-title .line {
+	border-bottom: 1px solid #000;
+}
+
+.slick-slider {
+	position: relative;
+	display: block;
+	user-select: none;
+	touch-action: pan-y;
+}
+
+.stpe-list-container .list-item:hover .item-box {
+    transform: translateY(-8px);
+    background-color: #fff;
+    box-shadow: 4px 4px 30px 0px #0000001a;
+}
+
+.stpe-list-container .list-item:hover .view { 
+	display: flex; 
+}
+
+.stpe-list-container .list-item:hover .step { 
+	display: none; 
+}
+
+.stpe-list-container .view {
+	display: none;
+	-webkit-box-align: center;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+.stpe-list-container .view .text {
+	font-size: 0.54545rem;
+	font-weight: 700;
+	color: #ff237a;
+}
+
+.stpe-list-container .view .icon {
+	width: 36px;
+	height: 8px;
+	margin-left: 0.54545rem;
+	background:
+		url(/four/program/resources/images//icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png)
+		no-repeat 0 0;
+	background-size: cover;
+}
+
+.stpe-list-container .slick-slide > div {
+    padding-right: 1.09091rem;
+}
+
+.stpe-list-container {
+	margin-top: 1.36364rem;
+}
+
+.stpe-list-container .slick-list {
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+
+.stpe-list-container .sub-text {
+	font-size: 0.63636rem;
+	color: #6e6e73;
+	font-weight: 700;
+}
+
+.slick-list {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.slick-track {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.slick-track:before, .slick-track:after {
+	display: table;
+	content: '';
+}
+
+.slick-track:after {
+	clear: both;
+}
+
+.slick-initialized .slick-slide {
+	display: block;
+}
+
+.slick-slide {
+	display: none;
+	float: left;
+	height: 100%;
+	min-height: 1px;
+}
+
+.stpe-list-container .slick-slide>div {
+	padding-right: 1.09091rem;
+}
+
+.stpe-list-container .item-box {
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	min-height: 9.77273rem;
+	border-radius: 40px;
+}
+
+.stpe-list-container .item-box>a {
+	display: block;
+	padding: 1.18182rem 1.09091rem;
+}
+
+.stpe-list-container .step {
+	margin-bottom: 0.68182rem;
+	font-size: 0.90909rem;
+	color: rgba(153, 153, 153, 0.2);
+}
+
+.stpe-list-container .subject {
+	display: block;
+	font-weight: 700;
+	margin-top: 0.68182rem;
+	font-size: 1rem;
+}
+
+.stpe-list-container .comming {
+	padding-left: 1.09091rem;
+	margin-top: 0.68182rem;
+	font-weight: 300;
+	font-size: 0.54545rem;
+	color: #a0afc1;
+}
+
+.filter-view-section {
+	padding-top: 3.63636rem;
+}
+
+.section-inner {
+    width: 1600px;
+    margin: 0 auto;
+}
+
+.filter-view-section .search-box {
+    display: flex;
+    align-items: center;
+    width: 30.90909rem;
+    height: 3.63636rem;
+    margin: 0 auto 2.72727rem;
+    padding: 0 1.81818rem;
+    border: 1px solid #b5b5b5;
+    border-radius: 18px;
+    background-color: #fff;
+}
+
+.filter-view-section .search-box .btn-search {
+    display: block;
+    width: 1.59091rem;
+    height: 1.45455rem;
+    text-indent: -9999px;
+    background: url(/four/program/resources/images/icon-search-pk-e104828ea256760906e992f1ada3639e.png) no-repeat 0 0;
+    background-size: cover;
+}
+
+.filter-view-section .search-box input {
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    margin-left: 1.27273rem;
+    border: 0;
+    font-size: 1rem;
+    color: #000;
+    font-weight: 700;
+}
+
+.filter-view-contents .controller-area {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.filter-view-contents .sort-area {
+    display: flex;
+    margin-bottom: 0.90909rem;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+}
+
+.switch-container .switch-icon {
+    width: 1.45455rem;
+    height: 0.81818rem;
+    position: relative;
+}
+
+.switch-container .switch-input {
+    position: absolute !important;
+    display: block;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.switch-container .switch-label {
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background: #999;
+    border-radius: 50px;
+}
+
+.switch-container .btn-on-off {
+    transition: 0.2s;
+    position: absolute;
+    top: 50%;
+    left: 0.13636rem;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 0.54545rem;
+    height: 0.54545rem;
+    border-radius: 50%;
+    background: #fff;
+    text-indent: -9999px;
+}
+
+.switch-container .switch-label {
+    transition: 0.2s;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background: #999;
+    border-radius: 50px;
+}
+
+.switch-container .switch-text {
+    margin-left: 0.36364rem;
+    font-size: 0.68182rem;
+}
+
+.filter-view-wrapper {
+    display: flex;
+    border-top: 2px solid #000;
+}
+
+.filter-menu-container {
+    width: 23.5%;
+    min-height: 100%;
+    padding-bottom: 2.27273rem;
+    border-right: 1px solid #d6d6d6;
+    box-sizing: border-box;
+}
+
+.filter-menu-container .back-header {
+    display: none;
+    height: 2.54545rem;
+    padding: 0 16px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.filter-menu-container .back-header .btn-filter {
+    color: #ff237a;
+}
+
+.filter-menu-list {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.accordion-list .accordion-header {
+    cursor: pointer;
+}
+
+/* --------------------------------------- */
+/* 필터 메뉴 헤더 */
+.filter-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.36364rem 1.13636rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.filter-menu-header .type {
+    font-size: 0.81818rem;
+    letter-spacing: -0.00909rem;
+}
+
+.filter-menu-header .icon-arrow {
+    display: block;
+    width: 0.72727rem;
+    height: 0.45455rem;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 0.72727rem 0.5rem;
+    background-image: url(/four/program/resources/images/icon-arrow-down-16x10-77bddf9fed77b5052cf6054b603420c8.png);
+}
+/* --------------------------------------- */
+
+.filter-menu-body {
+    display: none;
+    padding: 0 1.13636rem 1.59091rem 1.13636rem;
+}
+
+.filter-menu-body .selector-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-menu-body .selector-wrapper .selector-cover {
+/*     width: 50%; */
+    padding-right: 0.45455rem;
+}
+
+.filter-menu-body .selector-wrapper .selector-cover + .selector-cover {
+	margin-top: 0; 
+}
+
+.filter-menu-body .selector-wrapper .selector-cover:nth-child(n + 3) { 
+	margin-top: 0.90909rem; 
+}
+
+.selector-cover {
+    line-height: 1;
+}
+
+.selector-cover input {
+    cursor: pointer;
+    position: absolute !important;
+    display: block;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.selector-cover.checkbox.square label, .selector-cover.radio.square label {
+    min-height: 18px;
+    line-height: 18px;
+    padding-left: 25px;
+    background-image: url(/four/program/resources/images/icon-checkbox-square-bk-off-af0e39d7148805d326a9790832bf721e.png);
+    background-size: 18px 18px;
+}
+
+.selector-cover input + label {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.selector-cover label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.68182rem;
+    cursor: pointer;
+}
+
+.filter-menu-body .btn-toggle {
+    margin-top: 1.18182rem;
+    font-weight: 700;
+    font-size: 0.63636rem;
+    color: #a0afc1;
+}
+
+.filter-menu-container .filter-reset {
+    margin-top: 1.45455rem;
+    margin-right: 1.40909rem;
+    text-align: right;
+}
+
+.filter-menu-container .filter-reset a {
+    display: inline-block;
+    border-bottom: 1px solid #ff237a;
+    font-size: 0.68182rem;
+    color: #ff237a;
+}
+
+.filter-menu-container .btn-search {
+    display: none;
+    padding: 0 16px 20px;
+}
+
+.filter-menu-container .btn-search .btn {
+    width: 100%;
+}
+
+.btn.primary {
+    color: #fff;
+    background-color: #ff237a;
+    border-color: #ff237a;
+}
+
+.btn.large {
+    height: 2.95455rem;
+    line-height: 2.86364rem;
+    padding: 0 0.90909rem;
+    font-weight: 700;
+    font-size: 0.90909rem;
+    border-radius: 4px;
+    letter-spacing: -0.02045rem;
+}
+.btn {
+    display: inline-block;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.filter-list-container {
+    width: 76.5%;
+    padding: 3.18182rem 0 7.72727rem 3.63636rem;
+    box-sizing: border-box;
+}
+
+.photo-list-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photo-list-container.column-3.w-340 .photo-list-item {
+    width: calc(31.333% - 40px);
+    margin-right: 62px;
+}
+
+.photo-list-container.column-3.w-340 .photo-list-item:nth-child(n + 4) {
+    margin-top: 3.63636rem;
+}
+
+.photo-list-item {
+    transition: transform 0.3s;
+}
+
+.photo-list-item:hover { 
+	transform: translateY(-0.45455rem); 
+}
+
+.photo-list-item .thumbnail-area {
+    position: relative;
+}
+
+.photo-list-item .thumbnail-area a {
+    display: block;
+}
+
+.photo-list-item .thumbnail {
+    position: relative;
+    padding-bottom: 121.279%;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.photo-list-item .thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.photo-list-item .description {
+    padding-top: 1.36364rem;
+}
+
+.photo-list-item .description .type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 0.59091rem;
+    color: #999;
+}
+
+.icon-bookmark {
+    width: 15px;
+    height: 16px;
+    background-image: url(/four/program/resources/images/icon-bookmark-23be7071fa5f47b085d5c4c6da124d41.png);
+}
+
+.icon-bookmark, .icon-share {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    text-indent: -9999px;
+    color: transparent;
+}
+
+.photo-list-item .description .type + .subject {
+    margin-top: 0.90909rem;
+}
+
+.photo-list-item:hover .description .subject > span {
+    color: #ff237a;
+}
+
+.photo-list-item .description .subject {
+    display: block;
+}
+
+.photo-list-item .description .subject > span {
+    transition: 0.3s;
+    word-break: break-all;
+    font-size: 0.90909rem;
+    display: block;
+    height: 3em;
+    max-height: 3em;
+    text-overflow: ellipsis;
+    line-height: 1.5em;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.photo-list-item .icon-round-badge {
+    position: absolute;
+    bottom: -1.36364rem;
+    right: 1.45455rem;
+    z-index: 1;
+}
+
+.icon-round-badge.ing {
+    background-color: #ff237a;
+}
+
+.icon-round-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.72727rem;
+    height: 2.72727rem;
+    line-height: 1.2;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.68182rem;
+    color: #fff;
+}
+
+.icon-round-badge.end {
+    background-color: #333;
+}
+
+.filter-list-container .last-content-box {
+    margin-top: 3.63636rem;
+    padding-top: 3.63636rem;
+    text-align: center;
+    border-top: 1px solid #d6d6d6;
+}
+
+.filter-list-container .last-content-box .text {
+    font-weight: 300;
+    font-size: 0.81818rem;
+}
+
+.filter-list-container .last-content-box .btn {
+    width: 12.95455rem;
+    margin: 0.72727rem auto 0;
+    font-size: 0.72727rem;
+}
+
+.btn.primary {
+    color: #fff;
+    background-color: #ff237a;
+    border-color: #ff237a;
+}
+
+.btn.large {
+    height: 2.95455rem;
+    line-height: 2.86364rem;
+    padding: 0 0.90909rem;
+    font-weight: 700;
+    font-size: 0.90909rem;
+    border-radius: 4px;
+    letter-spacing: -0.02045rem;
+}
+
+.btn.btn-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.btn.btn-arrow .icon {
+    transition: 0.3s;
+    display: block;
+    width: 49px;
+    height: 9px;
+    margin-left: 0.72727rem;
+    background-image: url(/four/program/resources/images/icon-arrow-w-42x7-1a0e05bcb6fd1e34bd0221d0e9c6921d.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+    text-indent: -9999px;
+}
+
+.filter-list-container .photo-list-container + .join-banner {
+    margin-top: 4.09091rem;
+}
+
+.filter-list-container .join-banner .sub-text {
+    font-size: 0.81818rem;
+    color: #fff;
+}
+
+.filter-list-container .join-banner {
+    border-radius: 16px;
+    background: linear-gradient(90.9deg, #a0afc1 0%, #7d93b1 100%);
+}
+
+.filter-list-container .join-banner a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.22727rem 3.63636rem;
+}
+
+.filter-list-container .join-banner .subject {
+    display: block;
+    font-weight: 400;
+    font-size: 1.09091rem;
+    color: #fff;
+}
+
+.filter-list-container .join-banner .btn-join {
+    width: 6.45455rem;
+    height: 2.59091rem;
+    line-height: 2.59091rem;
+    margin-left: 0.90909rem;
+    border-radius: 50px;
+    background-color: #6a7e96;
+    text-align: center;
+    font-size: 0.77273rem;
+    color: #fff;
+}
+
+
+#footer {
+    background-color: #efefef;
+}
+
+.footer-menu-wrapper {
+    padding: 4.18182rem 0;
+}
+
+.footer-menu-wrapper .section-inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-menu-list {
+	justify-content: space-around;
+    display: flex;
+    margin-top: 30px;
+}
+
+.footer-menu-item .name {
+    display: block;
+    margin-bottom: 0.63636rem;
+    font-weight: 700;
+    font-size: 0.72727rem;
+}
+
+.footer-menu-item .list-item a {
+    display: block;
+    font-size: 0.68182rem;
+    color: #888;
+    font-weight: 700;
+}
+
+.footer-menu-item > ul {
+	padding-inline-start: 0px;
+	padding-right: 40px;
+	margin: 15px 0;
+	line-height: 2;
+}
+
+.footer-menu-item > ul > li {
+	margin: 5px 0;
+}
+
+.footer-menu-item .list-item a:hover {
+    color: #000;
+}
+
+.footer-sns {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-sns a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+}
+
+.footer-sns li {
+    width: 1.81818rem;
+    height: 1.81818rem;
+}
+
+.footer-sns li.youtube a {
+    background-image: url(/four/program/resources/images/icon-youtube-round-bk-f59186fc9a1c1124b053d0d7a751e335.png);
+}
+
+.footer-sns li + li {
+    margin-left: 1.45455rem;
+}
+
+.footer-sns li.instagram a {
+    background-image: url(/four/program/resources/images/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png);
+}
+
+.footer-sns li.facebook a {
+    background-image: url(/four/program/resources/images/icon-facebook-round-bk-6c0bb43daa3795aa5b453b7b04d194fb.png);
+}
+
+.footer-primary {
+    padding: 3.63636rem 0;
+    border-top: 1px solid #dedede;
+}
+
+.footer-primary .section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-info-area .copyright {
+    font-size: 0.68182rem;
+    color: #999;
+    font-weight: 700;
+}
+
+.footer-info-area address {
+    margin-top: 1.31818rem;
+    font-size: 0.68182rem;
+    line-height: 1.36364rem;
+    color: #b2b2b2;
+    font-weight: 700;
+}
+
+.footer-mark-area .terms-list {
+    display: flex;
+}
+
+.footer-mark-area .terms-list a {
+    display: block;
+    font-size: 0.68182rem;
+    color: #b2b2b2;
+}
+
+.footer-mark-area .terms-list li + li {
+    margin-left: 0.68182rem;
+    padding-left: 0.68182rem;
+    position: relative;
+}
+
+.footer-mark-area .terms-list li + li a {
+    color: #989898;
+}
+
+
+/* 전체 적용 */
+
+div {
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+ul {
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+p {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+}
+
+aside {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    border: 0px;
+    vertical-align: top;
+}
+
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+
+address {
+    display: block;
+}
+
+/* CSS영역 */
+
+</style>
+
 </head>
 <body>
+
+<!-- 헤더 -->
+	<div id="globalHeader">
+		<header id="header" class="fix" style="top: 0px;">
+			<div class=header-inner>
+				<div class="header-all-menu">
+					<button type="button" class="btn-all-menu">전체메뉴</button>
+					<h1 class="header-logo">
+						<a href="https://www.sangsanguniv.com/univ/main/main"> <img
+							src="/four/program/resources/images/logo-header-color.png"
+							alt="KT&amp;G 상상유니브" class="logo-color">
+						</a>
+					</h1>
+					<div class="all-menu-container">
+						<ul class="all-menu-inner" style="height: 829px;">
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/playroun/index"
+								class="all-menu-link">플레이로운</a></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/program/allList"
+								class="all-menu-link">프로그램</a>
+								<div class="sub-menu-wrap">
+									<ul class="sub-menu">
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/programClass/list"
+											class="sub-menu-link">클래스</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/programActivity/list"
+											class="sub-menu-link">액티비티</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/programFriend/gate"
+											class="sub-menu-link">상상프렌즈</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/programJiphyeonjeon/gate"
+											class="sub-menu-link">집현전</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/programMarketingSchool/gate"
+											class="sub-menu-link">마케팅스쿨</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);" onclick="alert('오픈준비중');"
+											class="sub-menu-link">로컬프로젝트</a></li>
+									</ul>
+								</div></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/space/list"
+								class="all-menu-link">공간</a>
+								<div class="sub-menu-wrap">
+									<ul class="sub-menu">
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce"
+											class="sub-menu-link">아틀리에</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce"
+											class="sub-menu-link">스튜디오</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce"
+											class="sub-menu-link">상상옷장</a></li>
+									</ul>
+								</div></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/local/list"
+								class="all-menu-link">로컬</a>
+								<div class="sub-menu-wrap">
+									<ul class="sub-menu">
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/local/view?orgId=SEOUL_S"
+											class="sub-menu-link">서울</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">부산</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">대구</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">인천</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">경기</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											;" class="sub-menu-link">전남</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">충남</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">경남</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">강원</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">충북</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">전북</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">경북</a></li>
+										<li class="sub-menu-item"><a href="javascript:void(0);"
+											class="sub-menu-link">제주</a></li>
+									</ul>
+								</div></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/event/list"
+								class="all-menu-link">이벤트</a></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/introduce/univ"
+								class="all-menu-link">상상유니브</a>
+								<div class="sub-menu-wrap">
+									<ul class="sub-menu">
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/introduce/univ"
+											class="sub-menu-link">상상유니브 소개</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/museum/gate"
+											class="sub-menu-link">뮤지엄</a></li>
+									</ul>
+								</div></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/notice/list"
+								class="all-menu-link">알려드립니다</a>
+								<div class="sub-menu-wrap">
+									<ul class="sub-menu">
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/notice/list"
+											class="sub-menu-link">공지사항</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/faq/list"
+											class="sub-menu-link">자주하는 질문</a></li>
+										<li class="sub-menu-item"><a href="https://www.sangsanguniv.com/univ/inquiry/write"
+											class="sub-menu-link">문의하기</a></li>
+									</ul>
+								</div></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/login/login"
+								class="all-menu-link">로그인</a></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/signup/gate"
+								class="all-menu-link">회원가입</a></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/policy/terms"
+								class="all-menu-link">이용약관</a></li>
+							<li class="all-menu-item"><a href="https://www.sangsanguniv.com/univ/policy/policy"
+								class="all-menu-link">개인정보처리방침</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="header-menu">
+					<nav class="header-nav">
+						<ul>
+							<li class="nav-item"><a
+								href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
+							</li>
+							<li class="nav-item"><a
+								href="/four/play/play.html">플레이로운</a>
+							</li>
+							<li class="nav-item"><a
+								href="/four/program/program.html">프로그램</a>
+							</li>
+							<li class="nav-item"><a
+								href="/four/space/space.html">공간</a></li>
+							<li class="nav-item"><a
+								href="/four/local/local.html">로컬</a></li>
+							<li class="nav-item login"><a
+								href="https://www.sangsanguniv.com/univ/login/login">로그인</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<div class="all-menu-dim" style="display: none;"></div>
+	</div>
+
+<!-- 콘텐츠 -->
+	<main id="content" class="sub-contents space"
+		style="padding-top: 100px;">
+		<div id="programAllList" class="program-all-content">
+			<section class="step-list-section">
+				<div class="section-inner">
+					<h2 class="section-title">
+						<span class="point">상상유니브</span> + <span class="line">프로그램</span>
+					</h2>
+					<div
+						class="stpe-list-container program-step-slider slick-initialized slick-slider">
+						<div class="slick-list draggable">
+							<div class="slick-track"
+								style="opacity: 1; width: 1602px; transform: translate3d(0px, 0px, 0px);">
+								<div class="list-item slick-slide slick-current slick-active"
+									data-slick-index="0" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="https://www.sangsanguniv.com/univ/programClass/list" tabindex="0">
+											<div class="step">01</div>
+											<p class="sub-text">
+												우리 지역에서 배우는<br> 유니크한 취미생활
+											</p> <strong class="subject">클래스</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="list-item slick-slide slick-active"
+									data-slick-index="1" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="https://www.sangsanguniv.com/univ/programActivity/list;" tabindex="0">
+											<div class="step">02</div>
+											<p class="sub-text">
+												특별한 하루를 만드는<br> 1일 프로젝트
+											</p> <strong class="subject">액티비티</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="list-item slick-slide slick-active"
+									data-slick-index="2" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="https://www.sangsanguniv.com/univ/programFriend/gate;" tabindex="0">
+											<div class="step">03</div>
+											<p class="sub-text">
+												상상유니브 프로그램을<br> 기획·운영하는<br> 대학생 서포터즈
+											</p> <strong class="subject">상상프렌즈</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="list-item slick-slide slick-active"
+									data-slick-index="3" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="https://www.sangsanguniv.com/univ/programJiphyeonjeon/gate;" tabindex="0">
+											<div class="step">04</div>
+											<p class="sub-text">
+												문화와 예술을 재해석 하는<br> 젊은 아티스트<br> 발굴 프로젝트
+											</p> <strong class="subject">집현전</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="list-item slick-slide slick-active"
+									data-slick-index="4" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="https://www.sangsanguniv.com/univ/programMarketingSchool/gate;" tabindex="0">
+											<div class="step">05</div>
+											<p class="sub-text">
+												사회적 가치를 생각하는<br> 마케팅 실전 경험
+											</p> <strong class="subject">마케팅스쿨</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<div class="list-item slick-slide slick-active"
+									data-slick-index="5" aria-hidden="false" tabindex="0"
+									style="width: 267px;">
+									<div class="item-box">
+										<a href="javascript:alert('오픈준비중')" tabindex="0">
+											<div class="step">07</div>
+											<p class="sub-text">
+												청년들이 주도하는<br> 지역 상생프로젝트
+											</p> <strong class="subject">로컬프로젝트</strong>
+											<div class="view">
+												<span class="text">VIEW</span> <span class="icon"></span>
+											</div>
+										</a>
+									</div>
+									<div class="comming">
+										COMING SOON<br> <strong>22년 상반기 모집 시작</strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="filter-view-section">
+				<div class="section-inner">
+					<div class="search-box">
+						<button type="button" class="btn-search">검색</button>
+						<input type="text" placeholder="원하는 프로그램을 한번에 찾아보세요.">
+					</div>
+					<div class="filter-view-contents infinite-scroll-el">
+						<div class="controller-area">
+							<div class="sort-area">
+								<div class="switch-container">
+									<div class="switch-icon">
+										<input type="checkbox" id="switch02" class="switch-input"
+											value="true"> <label for="switch02"
+											class="switch-label"> <span class="btn-on-off">on/off
+												버튼</span>
+										</label>
+									</div>
+									<div class="switch-text">온라인만 보기</div>
+								</div>
+							</div>
+						</div>
+						<div class="filter-view-wrapper">
+							<aside id="filterMenuContainer" class="filter-menu-container">
+								<div class="back-header">
+									<div class="btn-back-area">
+										<button type="button" class="btn-back">팝업닫기</button>
+									</div>
+									<button type="button" class="btn-filter">필터 초기화</button>
+								</div>
+								<div class="filter-menu-inner">
+									<div class="filter-menu-list accordion-list">
+										<div class="filter-menu-header accordion-header solo">
+											<div class="type">프로그램</div>
+											<span class="icon-arrow"></span>
+										</div>
+										<div class="filter-menu-body accordion-body">
+											<div class="selector-wrapper">
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="sfriends" value="sfriends">
+													<label for="sfriends">상상프렌즈</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="d92308d9" value="d92308d9">
+													<label for="d92308d9">클래스</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="97f7d61d" value="97f7d61d">
+													<label for="97f7d61d">로컬프로젝트</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="69decbd4" value="69decbd4">
+													<label for="69decbd4">마케팅스쿨</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="62c6f91f" value="62c6f91f">
+													<label for="62c6f91f">집현전</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="29cd4214" value="29cd4214">
+													<label for="29cd4214">커리어다이닝</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="17f5396f" value="17f5396f">
+													<label for="17f5396f">액티비티</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="filter-menu-list accordion-list">
+										<div class="filter-menu-header accordion-header solo">
+											<div class="type">관심분야</div>
+											<span class="icon-arrow"></span>
+										</div>
+										<div class="filter-menu-body accordion-body">
+											<div class="selector-wrapper">
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="f4d68e0f" value="f4d68e0f">
+													<label for="f4d68e0f">아웃도어/여행</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="eaa6ef8c" value="eaa6ef8c">
+													<label for="eaa6ef8c">이색취미</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="e0f77ad3" value="e0f77ad3">
+													<label for="e0f77ad3">베이킹/디저트</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="d846bdf1" value="d846bdf1">
+													<label for="d846bdf1">문화/공연/축제</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="d5a37029" value="d5a37029">
+													<label for="d5a37029">사진/영상</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="a5eea3c0" value="a5eea3c0">
+													<label for="a5eea3c0">라이프/마인드</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="a36f50d6" value="a36f50d6">
+													<label for="a36f50d6">금융/재테크</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="9437485f" value="9437485f">
+													<label for="9437485f">댄스/무용</label>
+												</div>
+											</div>
+											<button type="button" class="btn-toggle">더보기 +</button>
+											<!---->
+										</div>
+									</div>
+									<div class="filter-menu-list accordion-list">
+										<div class="filter-menu-header accordion-header solo">
+											<div class="type">지역</div>
+											<span class="icon-arrow"></span>
+										</div>
+										<div class="filter-menu-body accordion-body">
+											<div class="selector-wrapper">
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="SEOUL_S" value="SEOUL_S">
+													<label for="SEOUL_S">서울</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="BUSAN" value="BUSAN"> <label
+														for="BUSAN">부산</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="DAEGU" value="DAEGU"> <label
+														for="DAEGU">대구</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="INCHEON" value="INCHEON">
+													<label for="INCHEON">인천</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="GYEONGGI" value="GYEONGGI">
+													<label for="GYEONGGI">경기</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="JEONNAM" value="JEONNAM">
+													<label for="JEONNAM">전남</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="CHUNGNAM" value="CHUNGNAM">
+													<label for="CHUNGNAM">충남</label>
+												</div>
+												<div class="selector-cover checkbox square">
+													<input type="checkbox" id="GYEONGNAM" value="GYEONGNAM">
+													<label for="GYEONGNAM">경남</label>
+												</div>
+											</div>
+											<button type="button" class="btn-toggle">더보기 +</button>
+										</div>
+									</div>
+									<div class="filter-reset">
+										<a href="javascript:void(0);">필터 초기화</a>
+									</div>
+								</div>
+								<div class="btn-search">
+									<button type="button"
+										class="btn large primary">검색</button>
+								</div>
+							</aside>
+							<div class="filter-list-container">
+								<div class="photo-list-container w-340 column-3">
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25r50240969f17262ebbcf82d2003">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25r502401ba63088f412c2902898a/blob"
+														alt="'Feel the Sensation' 전남대 의류학과 졸업작품전">
+												</div>
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(전남)</div>
+												<button type="button"
+													data-program-id="a2i25r50240969f17262ebbcf82d2003"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25r50240969f17262ebbcf82d2003" class="subject"><span>'Feel
+													the Sensation' 전남대 의류학과 졸업작품전</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25r252875a489d49a44aa9dc3b5a0">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25r25286633a513c0ccb229d0ffbc/blob"
+														alt="[은반지 제작 클래스]이니셜 나만의 은반지 제작 클래스">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(대구)</div>
+												<button type="button"
+													data-program-id="a2i25r252875a489d49a44aa9dc3b5a0"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25r252875a489d49a44aa9dc3b5a0" class="subject"><span>[은반지
+													제작 클래스]이니셜 나만의 은반지 제작 클래스</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25p41326179f492714c3ab57d32e0">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25r0434235646b51e95941dba87ae/blob"
+														alt="[인센스 스틱 클래스]유칼립투스 스머지/인센스 스틱 만들기 원데이 클래스">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(대구)</div>
+												<button type="button"
+													data-program-id="a2i25p41326179f492714c3ab57d32e0"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25p41326179f492714c3ab57d32e0" class="subject"><span>[인센스
+													스틱 클래스]유칼립투스 스머지/인센스 스틱 만들기 원데이 클래스</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25p041037ecb37ae652897d6d1c41">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25p041025d5af876b9407b49e00a9/blob"
+														alt="늘 궁금했던 요가, 나도 한번 해볼까">
+												</div> <!----> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(경기)</div>
+												<button type="button"
+													data-program-id="a2i25p041037ecb37ae652897d6d1c41"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25p041037ecb37ae652897d6d1c41" class="subject"><span>늘
+													궁금했던 요가, 나도 한번 해볼까</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25k481466942b1b46f9ba0cdf4922">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25k481458be97400a4f38021ca26e/blob"
+														alt="가을에 울려퍼지는 마법의 성우클래스">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(서울)</div>
+												<button type="button"
+													data-program-id="a2i25k481466942b1b46f9ba0cdf4922"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25k481466942b1b46f9ba0cdf4922" class="subject"><span>가을에
+													울려퍼지는 마법의 성우클래스</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25k363759363af0ba8a004f5bfcab">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i25k36374786ae57cca7cac0724efb/blob"
+														alt="[퍼스널컬러 클래스] 하루만에 끝내는 퍼스널컬러 이미지 진단">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(서울)</div>
+												<button type="button"
+													data-program-id="a2i25k363759363af0ba8a004f5bfcab"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i25k363759363af0ba8a004f5bfcab" class="subject"><span>[퍼스널컬러
+													클래스] 하루만에 끝내는 퍼스널컬러 이미지 진단</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i24r2730524b8fca84ca079f9a0702">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i24r27304587204050afe56c4dd6c6/blob"
+														alt="[보컬 클래스]나만의 목소리를 찾기">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(인천)</div>
+												<button type="button"
+													data-program-id="a2i24r2730524b8fca84ca079f9a0702"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i24r2730524b8fca84ca079f9a0702" class="subject"><span>[보컬
+													클래스]나만의 목소리를 찾기</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i24l2345829017d33c9fa3d02cf0d0">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i24l234575e08b11d93e5b5ca4c0c5/blob"
+														alt="[화문석 드림캐쳐 클래스] 알라딘의 양탄자가 있다면, 우리에겐 강화 화문석이 있다!">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(인천)</div>
+												<button type="button"
+													data-program-id="a2i24l2345829017d33c9fa3d02cf0d0"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i24l2345829017d33c9fa3d02cf0d0" class="subject"><span>[화문석
+													드림캐쳐 클래스] 알라딘의 양탄자가 있다면, 우리에겐 강화 화문석이 있다!</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i23r0206568de6205732638259c464">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i23r0206490c8641802b0fcad90971/blob"
+														alt="'유니브가 떴다' 단국대 공과대학편">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(경기)</div>
+												<button type="button"
+													data-program-id="a2i23r0206568de6205732638259c464"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i23r0206568de6205732638259c464" class="subject"><span>'유니브가
+													떴다' 단국대 공과대학편</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i23q365866a7b31a3a8ed7b9ffd80d">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i23q36585826204063e57bdfd39bd3/blob"
+														alt="[가죽공예 클래스] 일상의 작은 즐거움, 세상에 단 하나뿐인 가죽소품 만들기!">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">클래스(서울)</div>
+												<button type="button"
+													data-program-id="a2i23q365866a7b31a3a8ed7b9ffd80d"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i23q365866a7b31a3a8ed7b9ffd80d" class="subject"><span>[가죽공예
+													클래스] 일상의 작은 즐거움, 세상에 단 하나뿐인 가죽소품 만들기!</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i22p0401372cd43056f3c0dbda2465">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i22p0401268ece3982b9c84ab13864/blob"
+														alt="2022 캠퍼스어택, 이리온의 소원을 맞춰라!">
+												</div> <!----> <span class="icon-round-badge end">종료</span>
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(서울)</div>
+												<button type="button"
+													data-program-id="a2i22p0401372cd43056f3c0dbda2465"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i22p0401372cd43056f3c0dbda2465" class="subject"><span>2022
+													캠퍼스어택, 이리온의 소원을 맞춰라!</span></a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i22k3738444af7b633c962f9099a15">
+												<!---->
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i24n263836328a3ac7193c92a8e89c/blob"
+														alt="상상유니브 MZ페스티벌">
+												</div> <span class="icon-round-badge ing">모집</span> <!---->
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(대구)</div>
+												<button type="button"
+													data-program-id="a2i22k3738444af7b633c962f9099a15"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i22k3738444af7b633c962f9099a15" class="subject"> <span>상상유니브
+													MZ페스티벌</span>
+											</a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i19q32330329905ae4d5bd6ee2ad7c">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i22n4713927a5e11730e754437bef2/blob"
+														alt="상상패션런웨이 모델 인큐베이팅">
+												</div> <span class="icon-round-badge ing">모집</span>
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">로컬프로젝트(서울)</div>
+												<button type="button"
+													data-program-id="a2i19q32330329905ae4d5bd6ee2ad7c"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i19q32330329905ae4d5bd6ee2ad7c" class="subject"> <span>상상패션런웨이
+													모델 인큐베이팅</span>
+											</a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i19j14125621f088f8626db01f307d">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i19j141242001d3da2e97e783a3b1e/blob"
+														alt="[기타운영] 2022 인천 공기업 및 우수기업 설명회">
+												</div> <span class="icon-round-badge ing">모집</span>
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(인천)</div>
+												<button type="button"
+													data-program-id="a2i19j14125621f088f8626db01f307d"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i19j14125621f088f8626db01f307d" class="subject"> <span>[기타운영]
+													2022 인천 공기업 및 우수기업 설명회</span>
+											</a>
+										</div>
+									</div>
+									<div class="photo-list-item">
+										<div class="thumbnail-area">
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i18r3856619b5decd6238b670604e0">
+												<div class="thumbnail">
+													<img
+														src="https://sjs888056-sjs888056.ktcdn.co.kr/a2i18s200913c5e85815c13502de7931/blob"
+														alt="다시 만난 우리, 상상 기부 콘서트">
+												</div> <span class="icon-round-badge ing">모집</span>
+											</a>
+										</div>
+										<div class="description">
+											<div class="type">
+												<div class="text">액티비티(충남)</div>
+												<button type="button"
+													data-program-id="a2i18r3856619b5decd6238b670604e0"
+													class="icon-bookmark">즐겨찾기</button>
+											</div>
+											<a href="https://www.sangsanguniv.com/univ/program/view?programId=a2i18r3856619b5decd6238b670604e0" class="subject"> <span>다시
+													만난 우리, 상상 기부 콘서트</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="join-banner">
+									<a href="javascript:alert('새로운 기능으로 준비 중 입니다.');">
+										<div class="text-area">
+											<div class="sub-text">상상에 그쳤던 강의, 행사, 세미나를 현실로 만들어드립니다.
+											</div>
+											<strong class="subject">경험하고 싶은 모든 것들을 실현해 보는 열린
+												실험실에 들어오세요.</strong>
+										</div>
+										<div class="btn-join">입장하기</div>
+									</a>
+								</div>
+								<div class="last-content-box">
+									<p class="text">
+										마지막입니다.<br> 상상유니브의 다른 콘텐츠들을 구경해볼까요?
+									</p>
+									<a href="https://www.sangsanguniv.com/univ/museum/gate"
+										onclick="contentsChange('/museum/gate')" title="상상뮤지엄 보러가기"
+										class="btn large primary btn-arrow">상상뮤지엄 구경하기<i
+										class="icon">바로가기아이콘</i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+<!-- 푸터 -->
+<footer id="footer">
+  <div class="footer-menu-wrapper">
+    <div class="section-inner">
+      <div class="footer-menu-list">
+        <div class="footer-menu-item">
+          <strong class="name">KT&amp;G</strong>
+          <ul>
+            <li class="list-item"><a href="https://www.ktng.com/" target="_blank" title="새창">KT&amp;G</a></li>
+            <li class="list-item">
+              <a href="http://www.ktngwelfare.org/main" target="_blank" title="새창">KT&amp;G 복지재단</a>
+            </li>
+            <li class="list-item">
+              <a href="https://scholarship.ktngtogether.com" target="_blank" title="새창">KT&amp;G 장학재단</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">KT&amp;G의 상상</strong>
+          <ul>
+            <li class="list-item">
+              <a href="https://www.sangsangmadang.com/" target="_blank" title="새창">상상마당</a>
+            </li>
+            <li class="list-item">
+              <a href="https://www.sangsangplanet.com/" target="_blank" title="새창">상상플래닛</a>
+            </li>
+            <li class="list-item">
+              <a href="https://sangsangstartupcamp.com/" target="_blank" title="새창">상상스타트업캠프</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">상상유니브</strong>
+          <ul>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/introduce/univ');">소개합니다</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/museum/gate');">상상뮤지엄</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/event/list');">이벤트</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">도전</strong>
+          <ul>
+            <li class="list-item">
+              <!--<a href="javascript:contentsChange('/science/gate');">상상 실험실</a>-->
+              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">상상 실험실</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">동아리를 위한 Winiv</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">공지/문의</strong>
+          <ul>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/notice/list');">공지사항</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/faq/list');">자주하는 질문</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/inquiry/write');">문의</a>
+            </li>
+
+
+
+          </ul>
+        </div>
+      </div>
+      <ul class="footer-sns">
+        <li class="list-item youtube">
+          <a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창">유투브</a>
+        </li>
+        <li class="list-item instagram">
+          <a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창">인스타그램</a>
+        </li>
+        <li class="list-item facebook">
+          <a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창">카카오채널</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-primary">
+    <div class="section-inner">
+      <div class="footer-info-area">
+        <div class="copyright">
+          COPYRIGHT© KT&amp;G 상상유니브. ALL RIGHTS RESERVED.
+        </div>
+        <address>
+            법인명 : (주)대학내일 ㅣ 사업자등록번호: 101-86-28789<br>
+            통신판매업신고 : 2019-서울마포-0655 ㅣ주소: 서울특별시 마포구 독막로 331ㅣ 대표자명: 김영훈
+        </address>
+      </div>
+      <div class="footer-mark-area">
+        <ul class="terms-list">
+          <li><a href="/univ/policy/terms">이용약관</a></li>
+          <li><a href="/univ/policy/policy">개인정보처리방침</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 최상단 버튼 -->
+	<a href="#globalHeader"><button type="button" class="float-btn-top">최상단으로 가기</button></a>
 
 </body>
 </html>
