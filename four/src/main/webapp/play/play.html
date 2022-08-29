@@ -3,10 +3,587 @@
 <head>
 <meta charset="UTF-8">
 <title>상상유니브</title>
+
+<style type="text/css">
+
+body {
+	margin: 0px;
+}
+
+header {
+	background-color: white;
+	height: 100px;
+	position: fixed;
+	top: 0;
+  	left: 0;
+  	right: 0;
+}
+
+.topmenu {
+	height: 100px;
+	width: 230px;
+	background-color: white;
+	text-align : center;
+	display: block;
+	margin: 0px;
+	float: left;
+}
+
+[alt="topmenu"] {
+	float: right;
+	padding: 31px 0px;
+}
+
+[alt="toplogo"] {
+	float: right;
+	margin: 20px 0px;
+}
+
+[alt="topmenu"]:hover + ul, ul.navigation:hover {
+	display: block;
+}
+
+.topmenu > ul {
+	position: relative;
+	top: 84px;
+	left: 100px;
+	list-style-type: none;
+	display: none;
+}
+
+.topmenu > ul > li {
+	background-color: white;
+	border: solid 1px gray;
+	line-height: 70px;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.topmenu > ul > li > a {
+	color: black;
+	text-decoration: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.topmenu > ul > li:hover > a {
+	color: red;
+}
+
+.topmenu > ul > li > ul > li:hover > a {
+	color: red;
+}
+
+.topmenu > ul > li > ul {
+	list-style-type: none;
+}
+
+.topmenu > ul > li > ul > li {
+	background-color: rgb(128, 128, 128, 0.5);
+	padding-left: 20px;
+}
+
+.topmenu > ul > li > ul > li > a {
+	color: black;
+	text-decoration: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+li.menu1:hover > ul.menu1, li.menu1:hover > .sidemenu1 {
+	display: block;
+}
+
+ul.menu1 {
+	position: absolute;
+	width: 200px;
+	right: -200px;
+	top: 0px;
+	display: none;
+}
+
+li.menu2:hover > ul.menu2, li.menu2:hover > .sidemenu2 {
+	display: block;
+}
+
+ul.menu2 {
+	position: absolute;
+	width: 200px;
+	right: -200px;
+	top: 0px;
+	display: none;
+}
+
+li.menu3:hover > ul.menu3 {
+	display: block;
+}
+
+ul.menu3 {
+	position: absolute;
+	width: 200px;
+	right: -200px;
+	top: 0px;
+	display: none;
+}
+
+
+li.menu4:hover > ul.menu4, li.menu4:hover > .sidemenu4 {
+	display: block;
+}
+
+ul.menu4 {
+	position: absolute;
+	width: 200px;
+	right: -200px;
+	top: 0px;
+	display: none;
+}
+
+
+li.menu5:hover > ul.menu5, li.menu5:hover > .sidemenu5 {
+	display: block;
+}
+
+ul.menu5 {
+	position: absolute;
+	width: 200px;
+	right: -200px;
+	top: 0px;
+	display: none;
+}
+
+.sidemenu1 {
+	background-color: rgb(128, 128, 128, 0.5);
+	width: 200px;
+	height: 411px;
+	margin-top: 426px;
+	position: fixed;
+	top: 100px;
+  	left: 330px;
+  	display: none;
+}
+
+.sidemenu2 {
+	background-color: rgb(128, 128, 128, 0.5);
+	width: 200px;
+	height: 624px;
+	margin-top: 213px;
+	position: fixed;
+	top: 100px;
+  	left: 330px;
+  	display: none;
+}
+
+.sidemenu4 {
+	background-color: rgb(128, 128, 128, 0.5);
+	width: 200px;
+	height: 695px;
+	margin-top: 142px;
+	position: fixed;
+	top: 100px;
+  	left: 330px;
+  	display: none;
+}
+
+.sidemenu5 {
+	background-color: rgb(128, 128, 128, 0.5);
+	width: 200px;
+	height: 624px;
+	margin-top: 213px;
+	position: fixed;
+	top: 100px;
+  	left: 330px;
+  	display: none;
+}
+
+.topmenu2 {
+	height: 100px;
+	width: 140px;
+	background-color: white;
+	text-align : center;
+	display: block;
+	margin: 0px;
+	float: right;
+	text-align: left;
+}
+
+.topmenu2 > a {
+	color: black;
+	text-decoration: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
+	line-height : 100px;
+}
+
+.toplogin {
+	height: 100px;
+	width: 240px;
+	background-color: white;
+	text-align : center;
+	display: block;
+	margin: 0px;
+	float: right;
+	text-align: left;
+}
+
+.toplogin > a {
+	color: black;
+	text-decoration: none;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
+	line-height : 100px;
+	border: 1px solid black;
+	border-radius: 70px / 60px;
+	padding: 3px 15px;
+}
+
+.header {
+	background-color: white;
+	height: 99px;
+}
+
+[alt="background1"], [alt="background2"] {
+	display: block;
+	width:100%;
+}
+
+.toplogin > a:hover, .topmenu2 > a:hover {
+	color: red;
+}
+
+.mainsection {
+	width: 100%;
+	display: table;
+	height: 1920px;
+}
+
+.mainsection1, .mainsection3 {
+	display: table-cell;
+	background-color: white;
+	width: 160px;
+}
+
+.mainsection2 {
+	display: table-cell;
+	background-color: white;
+	width: auto;
+}
+
+.table1, .table2, .table3, .table4 {
+	width: 22%;
+	float: left;
+	margin: 20px 20px;
+	transition-property:margin;
+	transition-duration:0.2s;
+	transition-delay:0;
+	transition-timing-function:linear;
+}
+
+.table1:hover, .table2:hover, .table3:hover, .table4:hover {
+	margin: 10px 20px;
+}
+
+[alt="table1"], [alt="table2"], [alt="table3"], [alt="table4"] {
+	width: 105%;
+}
+
+.table1 > div, .table2 > div, .table3 > div, .table4 > div {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.table1 > a, .table2 > a, .table3 > a, .table4 > a {
+	text-decoration: none;
+}
+
+.hr1 {
+	color: gray;
+	font-weight: bold;
+	
+}
+
+.hr2 {
+	color: black;
+	font-size: 1.2em;
+}
+
+.table1 > a > img:hover + span ~ span, .hr2:hover {
+	color: red;
+}
+
+.table2 > a > img:hover + span ~ span, .hr2:hover {
+	color: red;
+}
+
+.table3 > a > img:hover + span ~ span, .hr2:hover {
+	color: red;
+}
+
+.table4 > a > img:hover + span ~ span, .hr2:hover {
+	color: red;
+}
+
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-<img alt="topmenu" src="/play/topmemu.PNG" width="300" height="200">
+<header>
+	<div class="topmenu">
+		<img alt="topmenu" src="/four/play/image/topmenu.PNG">
+		<ul class="navigation">
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/playroun/index">플레이로운</a>
+			</li>
+			<li class="menu1">
+				<div class="sidemenu1">
+				</div>
+				<a href="https://www.sangsanguniv.com/univ/program/allList">프로그램</a>
+				<ul class="menu1">
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/programClass/list">클래스</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/programActivity/list">액티비티</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/programFriend/gate">상상프렌즈</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/programJiphyeonjeon/gate">집현전</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/programMarketingSchool/gate">마케팅스쿨</a>
+					</li>
+					<li>
+					<a href="">로컬프로젝트</a>
+					</li>
+				</ul>
+			</li>
+			<li class="menu2">
+				<div class="sidemenu2">
+				</div>
+				<a href="https://www.sangsanguniv.com/univ/space/list">공간</a>
+				<ul class="menu2">
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">아틀리에</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">스튜디오</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">상상옷장</a>
+					</li>
+				</ul>
+			</li>
+			<li class="menu3">
+				<a href="https://www.sangsanguniv.com/univ/local/list">로컬</a>
+				<ul class="menu3">
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=SEOUL_S">서울</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=BUSAN">부산</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=DAEGU">대구</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=INCHEON">인천</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGGI">경기</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONNAM">전남</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGNAM">충남</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGNAM">경남</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GANGWON">강원</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGBUK">충북</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONBUK">전북</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGBUK">경북</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEJU">제주</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/event/list">이벤트</a>
+			</li>
+			<li class="menu4">
+				<div class="sidemenu4">
+				</div>
+				<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
+				<ul class="menu4">
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브 소개</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/museum/gate">뮤지엄</a>
+					</li>
+				</ul>
+			</li>
+			<li class="menu5">
+				<div class="sidemenu5">
+				</div>
+				<a href="https://www.sangsanguniv.com/univ/notice/list">알려드립니다</a>
+				<ul class="menu5">
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/faq/list">자주하는 질문</a>
+					</li>
+					<li>
+					<a href="https://www.sangsanguniv.com/univ/inquiry/write">문의하기</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/login/login">로그인</a>
+			</li>
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/signup/gate">회원가입</a>
+			</li>
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/policy/terms">이용약관</a>
+			</li>
+			<li>
+				<a href="https://www.sangsanguniv.com/univ/policy/policy">개인정보처리방침</a>
+			</li>
+		</ul>
+	</div>
+	<div class="topmenu">
+		<a href="https://www.sangsanguniv.com/univ/main/main">
+			<img alt="toplogo" src="/four/play/image/toplogo.PNG">
+		</a>
+	</div>
+	<div class="toplogin">
+		<a href="https://www.sangsanguniv.com/univ/login/login">
+		로그인
+		</a>
+	</div>
+	<div class="topmenu2">
+		<a href="https://www.sangsanguniv.com/univ/local/list">
+		로컬
+		</a>
+	</div>
+	<div class="topmenu2">
+		<a href="https://www.sangsanguniv.com/univ/space/list">
+		공간
+		</a>
+	</div>
+	<div class="topmenu2">
+		<a href="https://www.sangsanguniv.com/univ/program/allList">
+		프로그램
+		</a>
+	</div>
+	<div class="topmenu2">
+		<a href="https://www.sangsanguniv.com/univ/playroun/index">
+		플레이로운
+		</a>
+	</div>
+	<div class="topmenu2">
+		<a href="https://www.sangsanguniv.com/univ/introduce/univ">
+		상상유니브
+		</a>
+	</div>
+</header>
+
+<section>
+	<div class="header">
+	</div>
+	<div>
+		<img alt="background1" src="/four/play/image/background1.PNG">
+	</div>
+	<div>
+		<img alt="background2" src="/four/play/image/background2.PNG">
+	</div>
+	
+	<div class="mainsection">
+		<div class="mainsection1">
+		</div>
+		<div class="mainsection2">
+			<br><br><br>
+			<h1 style="font-size: 40px; margin: 15px 0px;">&nbsp;&nbsp;추천 종목</h1>
+			<div class="table1">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i04b1436952553cfdb6f9cd065e701">
+					<img alt="table1" src="/four/play/image/table1.PNG">
+					<span class="hr1">22.08.04-22.08.31</span><br><br>
+					<span class="hr2">이런 클래스 생기면 좋겠어!</span>
+				</a>
+			</div>
+			<div class="table2">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i01r330602d36e168d51af1417b7ab">
+					<img alt="table2" src="/four/play/image/table2.PNG">
+					<span class="hr1">22.08.01-22.08.30</span><br><br>
+					<span class="hr2">내가 만든 플레이로운 "로고"</span>
+				</a>
+			</div>
+			<div class="table3">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i05q200658cddcb5bd989751caf60d">
+					<img alt="table3" src="/four/play/image/table3.PNG">
+					<span class="hr1">22.08.05-22.08.31</span><br><br>
+					<span class="hr2">감사일기</span>
+				</a>
+			</div>
+			<div class="table4">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i01r370633969ff646e2ddd26ef05f">
+					<img alt="table4" src="/four/play/image/table4.PNG">
+					<span class="hr1">22.08.01-22.08.30</span><br><br>
+					<span class="hr2">캡틴Ma가 쏜다!! "천만에요?!?!?!" 챌린지</span>
+				</a>
+			</div>
+			<br style="clear: both;"><br><br><br><hr>
+			<br><br><br>
+			<h1 style="font-size: 40px; margin: 15px 0px;">&nbsp;&nbsp;최근 업데이트 된 종목</h1>
+			<div class="table1">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i23m0948908df72c6d0c65e4a1c058">
+					<img alt="table1" src="/four/play/image/table5.PNG">
+					<span class="hr1">22.08.23-22.08.31</span><br><br>
+					<span class="hr2">지금 갖고 싶은 소소한 물건은?</span>
+				</a>
+			</div>
+			<div class="table2">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i23m065476d59590be75ac4f2d2ab2">
+					<img alt="table2" src="/four/play/image/table6.PNG">
+					<span class="hr1">22.08.23-22.08.31</span><br><br>
+					<span class="hr2">도심뷰를 공유해보자</span>
+				</a>
+			</div>
+			<div class="table3">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i23m05001242e212018b6673f5060c">
+					<img alt="table3" src="/four/play/image/table7.PNG">
+					<span class="hr1">22.08.23-22.08.31</span><br><br>
+					<span class="hr2">최근에 가장 맛있게 먹은 음식은??</span>
+				</a>
+			</div>
+			<div class="table4">
+				<a href="https://www.sangsanguniv.com/univ/playroun/detail?a2i23m051634fee4303a3d0cbfe9b615">
+					<img alt="table4" src="/four/play/image/table8.PNG">
+					<span class="hr1">22.08.23-22.08.31</span><br><br>
+					<span class="hr2">이번 가을에 내가 입을 옷은?</span>
+				</a>
+			</div>
+		</div>
+		test
+		<div class="mainsection3">
+		</div>
+	</div>
+	
+</section>
 
 </body>
 </html>
