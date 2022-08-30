@@ -320,6 +320,157 @@ ul.menu5 {
 	color: red;
 }
 
+.centerbox1 {
+	text-decoration: none;
+	display: block;
+	width: 250px;
+	margin: 0px auto;
+}
+
+.centerbox2 {
+	text-decoration: none;
+	display: block;
+	width: 350px;
+	margin: 0px auto;
+}
+
+.centerbox1 > span {
+	display: block;
+	border: 1px solid black;
+	width: 250px;
+	height: 50px;
+	line-height: 50px;
+	margin: 0px auto;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 20px;
+	color: black;
+	font-weight: bold;
+}
+
+.centerbox2 > span {
+	display: block;
+	border: 1px solid rgb(246, 30, 120);
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	margin: 0px auto;
+	text-align: left;
+	padding-left: 80px;
+	font-size: 20px;
+	color: white;
+	background-color: rgb(246, 30, 120);
+	font-weight: bold;
+}
+
+[alt="centerbox1"] {
+	float: right;
+	margin-top: 12px;
+	margin-right: 16px;
+	transition-property:margin;
+	transition-duration:0.2s;
+	transition-delay:0;
+	transition-timing-function:linear;
+}
+
+[alt="centerbox2"] {
+	float: right;
+	margin-top: 36px;
+	margin-right: 50px;
+	transition-property:margin;
+	transition-duration:0.2s;
+	transition-delay:0;
+	transition-timing-function:linear;
+}
+
+.centerbox1:hover > span > img {
+	margin-right: 6px;
+}
+
+.centerbox2:hover > span > img {
+	margin-right: 38px;
+}
+
+.thinkbox {
+	background-color: rgb(251, 252, 255);
+	height: 700px;
+}
+
+.precautions {
+	background-color: white;
+	height: 700px;
+}
+
+.lastbox1, .lastbox2 {
+	background-color: rgb(239, 239, 239);
+	height: 300px;
+	border: 1px solid rgb(220, 220, 220, 0.5);
+}
+
+.precautions {
+	display: flex;
+}
+
+.precautions1 {
+	width: 500px;
+	height: 700px;
+	background-color : white;
+	text-align: right;
+	line-height: 350px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.precautions2 {
+	width: 850px;
+	height: 700px;
+	background-color : white;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: gray;
+	padding-left: 170px;
+	line-height: 28px;
+}
+
+.lastbox1 {
+	display: flex;
+	justify-content: center;
+    /* align-items: center; 수직 가운데정렬 */ 
+}
+
+.lastbox1 > div {
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 200px;
+	margin: 0px 20px;
+	line-height: 17px;
+	padding-top: 80px;
+}
+
+.lastbox1 > div > a {
+	text-decoration: none;
+	color: gray;
+}
+
+.lastbox1 > div > a:hover {
+	color: black;
+}
+
+.lastbox2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.lastbox2 > div {
+	width: 550px;
+}
+
+.lastbox2 > div, .lastbox2 > div > a {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-decoration: none;
+	color: gray;
+}
+
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -577,13 +728,104 @@ ul.menu5 {
 					<span class="hr2">이번 가을에 내가 입을 옷은?</span>
 				</a>
 			</div>
+			<br style="clear: both;"><br><br><br>
+			<a href="https://www.sangsanguniv.com/univ/playroun/list" class="centerbox1">
+				<span>
+				전체 종목 둘러보기
+					<img alt="centerbox1" src="/four/play/image/centerbox1.PNG">
+				</span>
+			</a>
+			<br><br><hr><br><br>
+			<a href="https://www.sangsanguniv.com/univ/login/login" class="centerbox2">
+				<span>
+				종목 직접 개최하기
+					<img alt="centerbox2" src="/four/play/image/centerbox2.PNG">
+				</span>
+			</a>			
 		</div>
-		test
 		<div class="mainsection3">
 		</div>
 	</div>
-	
+	<div class="thinkbox">
+	</div>
+	<div class="precautions">
+		<div class="precautions1">
+			유의사항
+		</div>
+		<div class="precautions2">
+			<ul style="padding-top: 140px;">
+				<li>상상박스는 합산포인트(개최포인트+참여포인트) 1,000포인트 이상 획득 시 수여 대상이 됩니다.</li>
+				<li>본 프로그램에서 제공하는 리워드(상상박스)는 대학 재/휴학생만을 대상으로 제공됩니다.</li>
+				<li>리워드(상상박스) 대상자 선정 시 대학생임을 증명하는 재/휴학증명서를 요청할 수 있으며, 증명이 어려울 시 모든 리워드가 취소 될 수 있습니다.</li>
+				<li>상품 지급을 위해 개인정보가 수집되며, 정확하지 않은 개인정보로 인한 불이익은 당사에서 책임지지 않습니다.</li>
+				<li>월별 상품 및 수량은 상이하며, 준비된 수량에 따라 대상자를 선정하여 지급합니다.</li>
+				<li>공동 순위일 경우 해당 포인트를 먼저 달성한 사람에게 상품을 지급합니다.</li>
+				<li>경품 금액에 따라 제세공과금이 발생될 수 있으며, 제세공과금은 당첨자 부담입니다.(미부담 시 당첨이 취소될 수 있습니다)</li>
+				<li>당첨 자격은 타인에게 양수/양도할 수 없으며 타 상품으로 교환 및 환불이 불가합니다.</li>
+				<li>상품 이미지는 실제와 다를 수 있으며 당사 사정에 따라 이벤트 내용 및 경품이 변경될 수 있습니다.</li>
+				<li>상품은 사용 기한 내에 사용하셔야 하며 사용기한 연장은 불가합니다.</li>
+				<li>부적절한 방법을 통해 참여 및 당첨 시, 당첨 취소 또는 법적인 처벌을 받을 수 있습니다.</li>
+			</ul>
+		</div>
+	</div>
 </section>
+
+<footer>
+	<div class="lastbox1">
+		<div style="color:gray;">
+			<div style="color:black; font-weight: bold;">KT&G</div><br>
+			<a href="https://www.ktng.com/">KT&G</a><br><br>
+			<a href="https://www.ktngwelfare.org/main">KT&G 복지재단</a><br><br>
+			<a href="https://scholarship.ktngtogether.com/">KT&G 장학재단</a>
+		</div>
+		<div style="color:gray;">
+			<div style="color:black; font-weight: bold;">KT&G의 상상</div><br>
+			<a href="https://www.sangsangmadang.com/">상상마당</a><br><br>
+			<a href="https://www.sangsangplanet.com/">상상플래닛</a><br><br>
+			<a href="https://sangsangstartupcamp.com/">상상스타트업캠프</a>
+		</div>
+		<div style="color:gray;">
+			<div style="color:black; font-weight: bold;">상상유니브</div><br>
+			<a href="https://www.sangsanguniv.com/univ/introduce/univ">소개합니다</a><br><br>
+			<a href="https://www.sangsanguniv.com/univ/museum/gate">상상뮤지엄</a><br><br>
+			<a href="https://www.sangsanguniv.com/univ/event/list">이벤트</a>
+		</div>
+		<div style="color:gray;">
+			<div style="color:black; font-weight: bold;">도전</div><br>
+			<a href="">상상 실험실</a><br><br>
+			<a href="">동아리를 위한 Winiv</a>
+		</div>
+		<div style="color:gray;">
+			<div style="color:black; font-weight: bold;">공지/문의</div><br>
+			<a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a><br><br>
+			<a href="https://www.sangsanguniv.com/univ/faq/list">자주하는 질문</a><br><br>
+			<a href="https://www.sangsanguniv.com/univ/inquiry/write">문의</a>
+		</div>
+		<div>
+		</div>
+		<div>
+			<a href="https://www.youtube.com/user/sangsanguniv0">
+				<img alt="lastbutton1" src="/four/play/image/lastbutton1.PNG" style="margin: 6px;"></a>
+			<a href="https://www.instagram.com/sangsanguniv/">
+				<img alt="lastbutton2" src="/four/play/image/lastbutton2.PNG" style="margin: 6px;"></a>
+			<a href="https://pf.kakao.com/_HcxjKC">
+				<img alt="lastbutton3" src="/four/play/image/lastbutton3.PNG" style="margin: 6px;"></a>
+		</div>
+	</div>
+	<div class="lastbox2">
+		<div>
+			COPYRIGHT© KT&G 상상유니브. ALL RIGHTS RESERVED.<br><br>
+			법인명 : (주)대학내일 ㅣ 사업자등록번호: 101-86-28789<br>
+			통신판매업신고 : 2019-서울마포-0655 ㅣ주소: 서울특별시 마포구 독막로 331ㅣ 대표자명: 김영훈
+		</div>
+		<div>
+		</div>
+		<div style ="text-align: right;">
+			<a href="https://www.sangsanguniv.com/univ/policy/terms">이용약관</a>
+			<a href="https://www.sangsanguniv.com/univ/policy/policy">개인정보처리방침</a>
+		</div>
+	</div>
+</footer>
 
 </body>
 </html>
