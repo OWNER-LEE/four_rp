@@ -1,0 +1,2049 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+ 
+
+<head>
+	<!----------------------- resources // ----------------------->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-72831870-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-72831870-1');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MT4TVMM');</script>
+<!-- End Google Tag Manager -->
+
+<!-- 네이버 웹 마스터 -->
+<meta name="naver-site-verification" content="604eacc916720929827b4ab79c816f5956ae87d3" />
+
+
+<script>
+    const API_SERVER_URL = 'https://api.sangsanguniv.com/api/v1';
+    const API_FILE_URL   = 'https://sjs888056-sjs888056.ktcdn.co.kr/';
+
+    /***************************
+	* 공통 API 호출.
+	****************************/
+	function apiCall(type, url, param, localhostCallYN) {
+		var contentType = "text/plain;charset=UTF-8";
+		
+		if(type == "POST"){
+			contentType = "application/json;charset=UTF-8";
+			param = JSON.stringify (param);
+		}
+		
+		if(localhostCallYN != 'Y'){
+			url = 'https://api.sangsanguniv.com/api/v1' + url;
+		}
+		
+	    return new Promise((resolve, reject) => {
+			$.ajax({
+		        url: url,
+		        beforeSend: function (xhr) {
+		            xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("UNIV_ACCESS_TOKEN"));
+		        },
+		    	type: type,
+	        	data: param,
+				contentType: contentType,
+				fail: function (fail) {
+		      		var strData = JSON.stringify(fail);
+		      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+		      		fail = JSON.parse(strData);
+					reject(fail);
+				},
+		      	success: function (data) {
+		      		var strData = JSON.stringify(data);
+		      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+		      		data = JSON.parse(strData);
+		      		resolve(data);
+		      	},
+		      	error: function (error) {
+		      		var strData = JSON.stringify(error);
+		      		strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+		      		error = JSON.parse(strData);
+		        	reject(error);
+				}
+		    });
+		});
+	}
+
+	/***************************
+    * 공통 API 호출.
+    ****************************/
+    function apiCallForSync(type, url, param, localhostCallYN) {
+        var contentType = "text/plain;charset=UTF-8";
+
+        if(type == "POST"){
+            contentType = "application/json;charset=UTF-8";
+            param = JSON.stringify (param);
+        }
+
+        if(localhostCallYN != 'Y'){
+            url = 'https://api.sangsanguniv.com/api/v1' + url;
+        }
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("UNIV_ACCESS_TOKEN"));
+                },
+                type: type,
+                data: param,
+                async: false,
+                contentType: contentType,
+                fail: function (fail) {
+                    var strData = JSON.stringify(fail);
+                    strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+                    fail = JSON.parse(strData);
+                    reject(fail);
+                },
+                success: function (data) {
+                    var strData = JSON.stringify(data);
+                    strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+                    data = JSON.parse(strData);
+                    resolve(data);
+                },
+                error: function (error) {
+                    var strData = JSON.stringify(error);
+                    strData = strData.replaceAll("\\r\\n","<br/>").replaceAll("\\n","<br/>").replaceAll("\\r","<br/>");
+                    error = JSON.parse(strData);
+                    reject(error);
+                }
+            });
+        });
+    }
+	
+	/***************************
+	* 파일 다운로드.
+	****************************/	
+	function getFileDown(fileId, fileName){
+	    global.getLogin();
+
+	    var fileUrl = "https://api.sangsanguniv.com/api/v1/files/" + fileId;
+
+	    if (window.ReactNativeWebView) {
+	        // 웹뷰일 경우.
+            window.ReactNativeWebView.postMessage(
+                JSON.stringify({ type: "download",  accessToken: sessionStorage.getItem("UNIV_ACCESS_TOKEN"), fileUrl: fileUrl})
+            );
+            return;
+        }else{
+            // 브라우저 일 경우.
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if (this.readyState == 4){
+                    if(this.status == 200){
+                        var _data = this.response;
+                        var _blob = new Blob([_data], {type:' application/octet-stream '});
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(_blob);
+                        link.download = fileName;
+                        link.click();
+                    } else {
+                        openSystemPopup("존재하지 않는 파일입니다.<br/>사이트 문의를 통해 관리자에게 문의하여주세요.");
+                    }
+                }
+            }
+            xhr.open('GET', fileUrl);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem("UNIV_ACCESS_TOKEN"));
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+	}
+	
+	/***************************
+	* 뒤로가기 이벤트시. 새로고침처리.
+	****************************/	
+	window.onpopstate = function(event) { 
+		 window.location.reload();
+	};
+</script>
+
+<meta charset="UTF-8" />
+
+
+    
+    
+        <meta name="viewport" content_old="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no" content="width=device-width, initial-scale=1.0, user-scalable=no, height=device-height, maximum-scale=1.0" />
+    
+
+
+
+
+
+
+
+    <meta name="title" content="상상유니브"/>
+    <meta name="keywords" content="상상유니브, 상상univ, 사회공헌, KT&G, 청년, 대외활동, 마케팅스쿨, 지역, 로컬, 상상, 상상마당, 문화, 예술, 문화예술, 집현전, 소모임, 대학생, 유니브, 커뮤니티, 원데이클래스, 페스티벌"/>
+    <meta name="description" content="청년의 상상력으로 사회적 가치를 만드는 우리는 상상유니브입니다." />
+    <meta property="og:title" content="상상유니브" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR"/>
+    <meta property="og:url" content="https://www.sangsanguniv.com/univ/program/allList" />
+    <meta property="og:image" content="https://www.sangsanguniv.com/resources/images/og.png" />
+    <meta property="fb:app_id" content="1045897716269024"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" content="https://www.sangsanguniv.com/univ/program/allList"/>
+    <meta name="twitter:title" content="상상유니브"/>
+    <meta name="twitter:description" content="청년의 상상력으로 사회적 가치를 만드는 우리는 상상유니브입니다."/>
+    <meta name="twitter:image" content="https://www.sangsanguniv.com/resources/images/og.png"/>
+
+
+<link rel="icon" href="/resources/images/favicon.ico" />
+<link rel="shortcut icon" href="/resources/images/favicon.ico">
+<link rel="stylesheet" href="/resources/css/style-7f889652d01ee0b3ac8a9692cc91e796.css" />
+<link rel="stylesheet" href="/resources/plugins/slick.css" />
+<link rel="stylesheet" href="/resources/plugins/dropzone.min.css" />
+<link rel="stylesheet" href="/resources/plugins/selectric.css" />
+<link rel="stylesheet" href="/resources/plugins/jquery-ui.css" />
+<link href="/resources/plugins/cropper.css" rel="stylesheet" />
+<script src="/resources/plugins/jquery-2.2.4.min.js"></script>
+<script src="/resources/plugins/slick.min.js"></script>
+<script src="/resources/plugins/dropzone.min.js"></script>
+<script src="/resources/plugins/iscroll.js"></script>
+<script src="/resources/plugins/masonry.pkgd.min.js"></script>
+<script src="/resources/plugins/jquery.selectric.js"></script>
+<script src="/resources/plugins/jquery-ui.js"></script>
+<script src="/resources/plugins/jquery-ui-ko.js"></script>
+<script src="/resources/plugins/jquery.ui.monthpicker.js"></script>
+<script src="/resources/plugins/jquery.paging.js"></script>
+<script src="/resources/plugins/cropper.js"></script>
+<script src="/resources/js/common-b5a982aab4d875d041471a3d82ec5ab7.js"></script>
+<!-- 다음 주소 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<!-- custom resources -->
+<link rel="stylesheet" href="/resources/css/custom-style-22adf1353868cdf0e429603f5e73c539.css" />
+<script src="/resources/js/common-dev-2e9472df7cd3e79436f658ca5b74f7f4.js"></script>
+<script src="/resources/js/common-message-491eaf22725999ccbb262f4f2d7dde92.js"></script>
+<script src="/resources/js/moment.min.js"></script>
+<script src="/resources/js/moment-with-locales.js"></script>
+<script src="/resources/js/moment-timezone-with-data.min.js"></script>
+<script src="/resources/js/vue.min.js"></script>
+<script src="/resources/js/axios.min.js"></script>
+<script src="/resources/js/jsrender-1.0.11.min.js"></script>
+<script src="/resources/js/lodash.min.js"></script>
+<script src="/resources/js/check-login-5d190b6030a760a243bbe3d6e1e937d2.js"></script>
+<title>상상유니브</title>
+
+	<!------------------------------------------------------------>
+
+
+	<!----------------------- ieAccessCheck // ------------------->
+    
+
+
+
+
+<style>
+  .ie_title {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    line-height: 2.2;
+    font-family: 'NanumSquareRound', 'NanumSquare', 'Noto Sans KR', '맑은 고딕', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Dotum', '돋움', 'Gulim', '굴림', '굴림체', Sans-Serif;
+  }
+
+  .ie_link {
+    display: block;
+    width: 300px;
+    padding: 10px 0;
+    margin: 3rem auto 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: -1.3px;
+    text-align: center;
+    color: #fff;
+    background-color: #ff237a;
+    text-decoration: none;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    var viewModel = {
+      templateIE: function (browser, version) {
+        var template = '';
+        template += '<div style="text-align: center; margin-top: 60px;">';
+        template += '<img src="./logo.png" style="width:230px;height:auto;" />';
+        template += '<h2 class="ie_title">해당 사이트는 IE브라우저에 최적화 되어 있지 않습니다.<br>';
+        template += '최신 웹브라우저로 자동 연결 합니다.<br>';
+        template += '열리지 않을 경우 아래 링크에서 다운로드 해주세요.</h2>';
+        template += '<h2 class="ie_title"><a href="https://www.microsoft.com/ko-kr/edge" class="ie_link">엣지 브라우저 다운로드</a></h2>';
+        template += '</div>';
+        document.querySelector('body').innerHTML = template;
+        window.location = 'microsoft-edge:' + window.location.href;
+      }
+    };
+
+    var detectIE = function () {
+      var ua = window.navigator.userAgent;
+      var msie = ua.indexOf('MSIE');
+      if (msie > 0) {
+        // IE 10 이상 버전 채크
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+      }
+      var trident = ua.indexOf('Trident/');
+      if (trident > 0) {
+        // IE 11 버전 체크
+        var rv = ua.indexOf('rv:');
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+      }
+      // 다른 브라우저 리턴
+      return false;
+    };
+
+    // IE 또는 Edge 브라우저 버전 가져오기
+    var version = detectIE();
+    if (version) {
+      return viewModel.templateIE('IE', version);
+    }
+  });
+</script>
+    <!------------------------------------------------------------>
+
+	<script>
+	$(window).on('popstate', function (event) { 
+		const data = event.originalEvent.state; 
+		if(!isNull(data) && !isNull(data.url)){
+			$('#content').load(data.url);	
+		}
+	});
+	</script>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MT4TVMM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="layer-popup system-popup" id="customEventAlertPopup">
+    <div class="popup-container medium">
+        <div class="popup-content">
+            <button type="button" class="btn-close popup-close">닫기</button>
+            <div class="popup-inner">
+                <div class="popup-title">
+                    <strong>상상유니브에서 알려드립니다.</strong>
+                </div>
+                <div class="popup-info-text" id="alertMessage"></div>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area">
+                <button type="button" class="btn btn-close popup-close">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup system-popup" id="beforeEventPeriodPopup">
+    <div class="popup-container medium">
+        <div class="popup-content">
+            <button type="button" class="btn-close popup-close">닫기</button>
+            <div class="popup-inner">
+                <div class="popup-title">
+                    <strong>상상유니브에서 알려드립니다.</strong>
+                </div>
+                <div class="popup-info-text">준비 중입니다.</div>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area">
+                <button type="button" class="btn btn-close popup-close">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup system-popup" id="afterEventPeriodPopup">
+    <div class="popup-container medium">
+        <div class="popup-content">
+            <button type="button" class="btn-close popup-close">닫기</button>
+            <div class="popup-inner">
+                <div class="popup-title">
+                    <strong>상상유니브에서 알려드립니다.</strong>
+                </div>
+                <div class="popup-info-text">이벤트가 종료 되었습니다.</div>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area">
+                <button type="button" class="btn btn-close popup-close">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup system-popup" id="notEventLoginPopup">
+    <div class="popup-container medium">
+        <div class="popup-content">
+            <button type="button" class="btn-close popup-close">닫기</button>
+            <div class="popup-inner">
+                <div class="popup-title">
+                    <strong>상상유니브에서 알려드립니다.</strong>
+                </div>
+                <div class="popup-info-text">로그인이 필요해요!<br/>로그인 페이지로 이동 합니다.</div>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area half">
+                <button type="button" class="btn btn-close popup-close">취소</button>
+                <a href="javascript:void(0);" class="btn btn-ok" id="btnMoveToEventLogin">확인</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup system-popup" id="alreadyCaughtCharacterPopup">
+    <div class="popup-container medium">
+        <div class="popup-content">
+            <button type="button" class="btn-close popup-close">닫기</button>
+            <div class="popup-inner">
+                <div class="popup-title">
+                    <strong>상상유니브에서 알려드립니다.</strong>
+                </div>
+                <div class="popup-info-text">이미 그 캐릭터는 캐치를 완료했습니다.</div>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area">
+                <button type="button" class="btn btn-close popup-close">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup event-catch-popup event-catch-guide-popup" id="eventCatchGuidePopup">
+    <div class="popup-container medium">
+        <div class="popup-header"><strong>홈페이지 오픈 기념 이벤트 - 숨은 상상 캐치</strong></div>
+        <div class="popup-content">
+            <div class="guide-image"><img src="/resources/images/event/img-catch-guide-popup-content.jpg" alt="" /></div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area">
+                <a href="/event/sangsangCatch" class="btn btn-ok">이벤트 자세히 보기</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer-popup event-catch-popup event-catch-complete-popup" id="eventCatchCompletePopup">
+    <div class="popup-container medium">
+        <div class="popup-header"><strong>홈페이지 오픈 기념 이벤트 - 숨은 상상 캐치</strong></div>
+        <div class="popup-content">
+            <div class="complete-image" id="catchCompleteImage">
+                <img src="/resources/images/event/img-catch-complete-codename-s.jpg" alt="CODE NAME:S" data-character="S" style="display:none"/>
+                <img src="/resources/images/event/img-catch-complete-codename-a.jpg" alt="CODE NAME:A" data-character="A" style="display:none"/>
+                <img src="/resources/images/event/img-catch-complete-codename-n.jpg" alt="CODE NAME:N" data-character="N" style="display:none"/>
+                <img src="/resources/images/event/img-catch-complete-codename-g.jpg" alt="CODE NAME:G" data-character="G" style="display:none"/>
+                <img src="/resources/images/event/img-catch-complete-codename-2.jpg" alt="CODE NAME:2" data-character="2" style="display:none"/>
+            </div>
+        </div>
+        <div class="popup-footer">
+            <div class="btn-area half">
+                <button type="button" class="btn btn-close popup-close">이어서 캐치하기</button>
+                <a href="/event/sangsangCatch" class="btn btn-ok">나의 수배현황 보기</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="event-catch-fixed-character" id="eventCatchFixedCharacter" style="display:none" data-character="">
+    <!-- 로그인 후 캐치 완료 했을경우 - eventCatchClickAnimation함수 실행-->
+    <a href="javascript:void(0)" onclick="eventCatchClickAnimation(this)">
+        <span class="image" data-character="S" style="display:none">
+            <img src="/resources/images/event/icon-catch-fixed-codename-s-on.svg" class="img-on" alt="">
+            <img src="/resources/images/event/icon-catch-fixed-codename-s-w.svg" class="img-bg" alt="">
+        </span>
+        <span class="image" data-character="A" style="display:none">
+            <img src="/resources/images/event/icon-catch-fixed-codename-a-on.svg" class="img-on" alt=""/>
+            <img src="/resources/images/event/icon-catch-fixed-codename-a-w.svg" class="img-bg" alt=""/>
+        </span>
+        <span class="image" data-character="N" style="display:none">
+            <img src="/resources/images/event/icon-catch-fixed-codename-n-on.svg" class="img-on" alt=""/>
+            <img src="/resources/images/event/icon-catch-fixed-codename-n-w.svg" class="img-bg" alt=""/>
+        </span>
+        <span class="image" data-character="G" style="display:none">
+            <img src="/resources/images/event/icon-catch-fixed-codename-g-on.svg" class="img-on" alt=""/>
+            <img src="/resources/images/event/icon-catch-fixed-codename-g-w.svg" class="img-bg" alt=""/>
+        </span>
+        <span class="image" data-character="2" style="display:none">
+            <img src="/resources/images/event/icon-catch-fixed-codename-2-on.svg" class="img-on" alt=""/>
+            <img src="/resources/images/event/icon-catch-fixed-codename-2-w.svg" class="img-bg" alt=""/>
+        </span>
+    </a>
+</div>
+<script type="text/javascript">
+
+    // 상상메이트
+    var SANGSANG_MATE_EVENT_START_DATE = moment('2022-03-03 00:00:00');
+    var SANGSANG_MATE_EVENT_END_DATE = moment('2022-03-31 23:59:59');
+
+    // 출석체크
+    var ATTENDANCE_CHECK_EVENT_START_DATE = moment('2022-03-03 00:00:00');
+    var ATTENDANCE_CHECK_EVENT_END_DATE = moment('2022-03-31 23:59:59');
+
+    // 상상 캠퍼스 포춘/타로 주제 투표
+    var FORTUNE_EVENT_START_DATE = moment('2022-03-03 00:00:00');
+    var FORTUNE_EVENT_END_DATE = moment('2022-03-31 23:59:59');
+
+    // 상상캐치
+    var SANGSANG_CATCH_EVENT_START_DATE = moment('2022-03-10 13:00:00');
+    var SANGSANG_CATCH_EVENT_END_DATE = moment('2022-04-10 23:59:59');
+
+    function isBeforeEvent(date) {
+        return moment().isBefore(date);
+    }
+
+    function isAfterEvent(date) {
+        return moment().isAfter(date);
+    }
+
+    var catchEventCharacterArr = ['S', 'A', 'N', 'G', '2'];
+    $(document).ready(function () {
+        initCatchEvent();
+    });
+
+    function getMyCatchList() {
+        return apiCall('GET', '/event/getCatchList', {});
+    }
+
+    function initCatchEvent() {
+        if (isBeforeEvent(SANGSANG_CATCH_EVENT_START_DATE)) {
+            return false;
+        }
+
+        if (isAfterEvent(SANGSANG_CATCH_EVENT_END_DATE)) {
+            return false;
+        }
+
+        catchEventCharacterArr = ['S', 'A', 'N', 'G', '2'];
+        $('#catchCompleteImage').find('img').hide();
+
+        var $container = $('#eventCatchFixedCharacter')
+        $container.hide();
+        $container.attr('data-character', '');
+        $container.find('.image').hide();
+        $container.find('.image>.img-on').css('opacity', 1);
+        var url = window.location.pathname;
+        if (!(url.indexOf('/univ/login/login') > -1 ||
+            url.indexOf('/univ/signup/gate') > -1 ||
+            url.indexOf('/univ/signup/process') > -1 ||
+            url.indexOf('/univ/login/searchId') > -1 ||
+            url.indexOf('/univ/login/searchPassword') > -1 ||
+            url.indexOf('/univ/editInfo/login') > -1 ||
+            url.indexOf('/univ/editInfo/edit') > -1 ||
+            url.indexOf('/univ/editInfo/password') > -1
+        )) {
+            if (global.getLogin()) {
+                getMyCatchList()
+                    .then((res) => {
+                        var myCatchArr = res.data;
+                        for (var i = 0; i < myCatchArr.length; i++) {
+                            var item = myCatchArr[i];
+                            var index = catchEventCharacterArr.indexOf(item.catchCharacter);
+                            if (index !== -1) {
+                                catchEventCharacterArr.splice(index, 1);
+                            }
+                        }
+                        showCatchEventCharacter();
+
+                        if (url.indexOf('/event/sangsangCatch') > -1) {
+                            try {
+                                initMyCatchList()
+                            } catch (e) {
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        openSystemPopup(MESSAGE.E900);
+                    });
+            } else {
+                showCatchEventCharacter();
+            }
+        }
+    }
+
+    function showCatchEventCharacter() {
+        if (catchEventCharacterArr.length > 0) {
+            var url = window.location.pathname;
+            var character = '';
+            if (url === '/univ/spaceAtelier/introduce' || url === '/univ/spaceAtelier/reservation') {
+                character = 'S';
+            } else if (url === '/univ/program/allList') {
+                character = 'A';
+            } else if (url === '/univ/local/list' || url === '/univ/local/view') {
+                character = 'N';
+            } else if (url === '/univ/programClass/list') {
+                character = 'G';
+            } else if (url === '/univ/programActivity/list') {
+                character = '2';
+            } else if (url === '/univ/program/view') {
+                if (Math.random() < 0.5) {
+                    character = 'G';
+                } else {
+                    character = '2';
+                }
+            }
+            if (catchEventCharacterArr.indexOf(character) > -1) {
+                var image = $('#eventCatchFixedCharacter .image[data-character="' + character + '"]');
+                image.show();
+
+                var container = $('#eventCatchFixedCharacter');
+                var browserWidth = $(window).outerWidth();
+                var browserHeight = $(window).outerHeight();
+                var headerHeight = $('header#header').outerHeight();
+                var bannerHeight = $('div#lineBanner').outerHeight();
+                var fixedMobileBottomMenu = $('.fixed-mobile-bottom-menu').outerHeight();
+                container.css('left', getRandom(0, browserWidth - image.outerWidth()));
+                container.css('top', getRandom(headerHeight, browserHeight - (headerHeight + bannerHeight + fixedMobileBottomMenu)));
+                container.show();
+                container.data('character', character);
+            }
+        }
+
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+    }
+
+    var submitCatchProcessing = false;
+
+    function eventCatchClickAnimation(target) {
+        if (submitCatchProcessing) {
+            return false;
+        }
+        var $this = $(target);
+        var $character = $('#eventCatchFixedCharacter');
+        var catchCharacter = $character.data('character');
+        submitCatchProcessing = true;
+        if (global.getLogin()) {
+            apiCall('POST', '/event/submitCatch', {catchCharacter: catchCharacter})
+                .then((res) => {
+                    if (res.success) {
+                        $this.find('.img-on').animate({
+                            opacity: 0.15
+                        }, 1200, function () {
+                            $('#catchCompleteImage').find('img[data-character="' + catchCharacter + '"]').show();
+                            openLayerPopup('eventCatchCompletePopup');
+                            $character.fadeOut(300);
+                        });
+
+                        if (window.location.pathname.indexOf('/event/sangsangCatch') > -1) {
+                            try {
+                                setTimeout(function () {
+                                    initMyCatchList()
+                                }, 1500)
+                            } catch (e) {
+                            }
+                        }
+                    } else {
+                        if (isNull(res.data)) {
+                            $('#alertMessage').html(res.message);
+                            openLayerPopup('customEventAlertPopup');
+                        } else {
+                            switch (res.data) {
+                                case 'BEFORE_PERIOD':
+                                    openLayerPopup('beforeEventPeriodPopup');
+                                    break;
+                                case 'AFTER_PERIOD':
+                                    openLayerPopup('afterEventPeriodPopup');
+                                    break;
+                                case 'NOT_LOGIN':
+                                    openLayerPopup('notEventLoginPopup');
+                                    break;
+                                case 'ALREADY_CAUGHT_CHARACTER':
+                                    openLayerPopup('alreadyCaughtCharacterPopup');
+                                    break;
+                                default :
+                                    break;
+                            }
+                        }
+                        $this.find('.img-on').animate({
+                            opacity: 0.15
+                        }, 1200, function () {
+                            $character.fadeOut(300);
+                        });
+                    }
+                    submitCatchProcessing = false;
+                })
+                .catch((err) => {
+                    openSystemPopup(MESSAGE.E900);
+                    submitCatchProcessing = false;
+                });
+        } else {
+            openLayerPopup('eventCatchGuidePopup');
+            submitCatchProcessing = false;
+        }
+    }
+
+    $('#btnMoveToEventLogin').click(function () {
+        var url = window.location.pathname;
+        var queryParam = window.location.search;
+        gotoLogin(url + queryParam);
+    })
+
+</script>
+	<!-- 시스템팝업 - large -->
+	<div class="layer-popup system-popup" id="systemPopup">
+		<div class="popup-container medium">
+			<div class="popup-content">
+				<button type="button" class="btn-close popup-close">닫기</button>
+				<div class="popup-inner">
+					<div class="popup-title">
+						<strong>안내</strong>
+					</div>
+					<div class="popup-info-text">안내문구가 들어갑니다.</div>
+				</div>
+			</div>
+			<div class="popup-footer">
+				<div class="btn-area">
+					<button type="button" class="btn btn-close popup-close">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //시스템 공통 팝업 -->
+	<!-- 시스템 공통 팝업 - medium -->
+	<div class="layer-popup system-popup medium" id="systemPopupMedium">
+		<div class="popup-container medium">
+			<div class="popup-content">
+				<button type="button" class="btn-close popup-close">닫기</button>
+				<div class="popup-inner">
+					<div class="popup-title">
+						<strong>안내</strong>
+					</div>
+					<div class="popup-info-text"></div>
+				</div>
+			</div>
+			<div class="popup-footer">
+				<div class="btn-area">
+					<button type="button" class="btn btn-close popup-close">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //시스템 공통 팝업 - medium -->
+	<!-- //시스템 공통 컨펌 -->
+	<div class="layer-popup system-popup medium" id="confirmPopup01">
+		<div class="popup-container medium">
+			<div class="popup-content">
+				<button type="button" class="btn-close popup-close">닫기</button>
+				<div class="popup-inner">
+					<div class="popup-title">
+						<strong>제목</strong>
+					</div>
+					<div class="popup-info-text">내용</div>
+				</div>
+			</div>
+			<div class="popup-footer">
+				<div class="btn-area half">
+					<button type="button" class="btn btn-close popup-close">취소</button>
+					<a href="javascript:void(0);" class="btn btn-ok">확인</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //시스템 공통 컨펌 -->
+	<!-- 휴면회원해제 팝업 -->
+    <div class="layer-popup system-popup medium" id="dormantMemberClearPopup">
+        <div class="popup-container medium">
+            <div class="popup-content">
+                <button type="button" class="btn-close popup-close">닫기</button>
+                <div class="popup-inner">
+                    <div class="popup-title">
+                        <strong>휴면회원 해제 알림</strong>
+                    </div>
+                    <div class="popup-info-text" id="inactiveRecoveryText">
+                        <strong>#USER_NAME#</strong> 고객님<br /><br />
+          상상유니브는 정보통신망 이용 촉진 및 정보보호 등에 관한 법률 제 29조 제2항의 개인정보 유효기간제에 따라 장기간 상상유니브 사용 이력이 없는 회원을 대상으로 휴면 정책이 적용되고 있습니다.<br /><br />
+          1년 이상(최종접속일. #INACTIVE_LAST_LOGIN_TIME#) 접속하지 않으셨기 때문에 휴면정책이 적용되어 별도로 보관되었던 정보가 로그인을 통해 정상화 처리됨을 알려드립니다.<br /><br />
+          감사합니다.
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer">
+                <div class="btn-area">
+                    <button type="button" class="btn btn-close popup-close">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //휴면회원해제 팝업 -->
+	<div id="container">
+		<!----------------------- container // ----------------------->
+
+		<!------------------------------------------------------------>
+	
+		<!----------------------- container // ----------------------->
+		
+
+
+
+
+
+<div id="globalHeader">
+<header id="header" class="fix">
+	<!-- pc / mobile 구분 -->
+	<div class="header-inner pc">
+		<div class="header-aside header-all-menu-pc">
+			<button type="button" class="btn-all-menu">전체메뉴</button>
+			<h1 class="header-logo">
+				<a href="/univ/main/main">
+					<img src="/resources/images/logo/logo-header-w.png" alt="KT&G 상상유니브" class="logo-white" />
+					<img src="/resources/images/logo/logo-header-color.png" alt="KT&G 상상유니브" class="logo-color" />
+				</a>
+			</h1>
+			<div class="all-menu-container">
+				<ul class="all-menu-inner">
+				    <li class="all-menu-item">
+                        <a href="javascript:void(0);" onClick="contentsChange('/playroun/index');" class="all-menu-link">플레이로운</a>
+                    </li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/program/allList');" class="all-menu-link">프로그램</a>
+						<div class="sub-menu-wrap">
+							<ul class="sub-menu">
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programClass/list');" class="sub-menu-link">클래스</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programActivity/list');" class="sub-menu-link">액티비티</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programFriend/gate');" class="sub-menu-link">상상프렌즈</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programJiphyeonjeon/gate');" class="sub-menu-link">집현전</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programMarketingSchool/gate');" class="sub-menu-link">마케팅스쿨</a>
+                                </li>
+                                <!--
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="contentsChange('/programCareerDining/gate');" class="sub-menu-link">커리어다이닝</a>
+                                </li>
+                                -->
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onclick="alert('오픈준비중');" class="sub-menu-link">로컬프로젝트</a>
+                                </li>
+							</ul>
+						</div>
+					</li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/space/list');" class="all-menu-link">공간</a>
+						<div class="sub-menu-wrap">
+							<ul class="sub-menu">
+								<li class="sub-menu-item">
+									<a href="javascript:void(0);" onClick="contentsChange('/spaceAtelier/introduce');" class="sub-menu-link">아틀리에</a>
+								</li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onClick="contentsChange('/spaceStudio/introduce');" class="sub-menu-link">스튜디오</a>
+                                </li>
+								<li class="sub-menu-item">
+									<a href="javascript:void(0);" onClick="contentsChange('/spaceRoom/introduce');" class="sub-menu-link">상상옷장</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/local/list');" class="all-menu-link">로컬</a>
+						<div class="sub-menu-wrap">
+							<ul class="sub-menu">
+								<li class="sub-menu-item">
+									<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=SEOUL_S');">서울</a>
+								</li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=BUSAN');">부산</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=DAEGU');">대구</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=INCHEON');">인천</a>
+                                </li>
+								<li class="sub-menu-item">
+									<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGGI');">경기</a>
+								</li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEONNAM');">전남</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=CHUNGNAM');">충남</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGNAM');">경남</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GANGWON');">강원</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=CHUNGBUK');">충북</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEONBUK');">전북</a>
+                                </li>
+								<li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGBUK');">경북</a>
+                                </li>
+								<li class="sub-menu-item">
+									<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEJU');">제주</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/event/list');" class="all-menu-link">이벤트</a>
+					</li>
+					<li class="all-menu-item">
+                        <a href="javascript:void(0);" onClick="contentsChange('/introduce/univ');" class="all-menu-link">상상유니브</a>
+                        <div class="sub-menu-wrap">
+                            <ul class="sub-menu">
+                                <li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/introduce/univ')">상상유니브 소개</a></li>
+                                <!--<li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link">뉴스레터</a></li>-->
+                                <li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/museum/gate')">뮤지엄</a></li>
+							</ul>
+						</div>
+                    </li>
+                    <li class="all-menu-item">
+                        <a href="javascript:void(0);" onClick="contentsChange('/notice/list');" class="all-menu-link">알려드립니다</a>
+                        <div class="sub-menu-wrap">
+                            <ul class="sub-menu">
+                                <li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/notice/list')">공지사항</a></li>
+                                <li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/faq/list')">자주하는 질문</a></li>
+                                <li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/inquiry/write')">문의하기</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li v-if="isLogin" class="all-menu-item">
+                        <a href="javascript:void(0);" class="all-menu-link" onClick="contentsChange('/mypage/collect')">마이페이지</a>
+                        <div class="sub-menu-wrap">
+                            <ul class="sub-menu">
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/collect')">모아보기</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/playroun')">나의 플레이로운</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/program')">나의 프로그램</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/local')">나의 로컬</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/point')">쿠폰/포인트</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onClick="contentsChange('/editInfo/login')" class="sub-menu-link">개인정보수정</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" onClick="contentsChange('/mypage/space')" class="sub-menu-link">나의 공간</a>
+                                </li>
+                                <li class="sub-menu-item">
+                                    <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/favorite')">즐겨찾기</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li v-if="!isLogin" class="all-menu-item">
+                        <a href="javascript:void(0);" onClick="contentsChange('/login/login');" class="all-menu-link">로그인</a>
+                    </li>
+                    <li v-if="!isLogin" class="all-menu-item">
+                        <a href="javascript:void(0);" onClick="contentsChange('/signup/gate');" class="all-menu-link">회원가입</a>
+                    </li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/policy/terms');" class="all-menu-link">이용약관</a>
+					</li>
+					<li class="all-menu-item">
+						<a href="javascript:void(0);" onClick="contentsChange('/policy/policy');" class="all-menu-link">개인정보처리방침</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="header-menu">
+			<nav class="header-nav">
+				<ul>
+					<li class="nav-item">
+						<a href="javascript:void(0);" onClick="javascript:contentsChange('/introduce/univ');">상상유니브</a>
+					</li>
+					<li class="nav-item">
+                        <a href="javascript:void(0);" onClick="javascript:contentsChange('/playroun/index');">플레이로운</a>
+                    </li>
+					<li class="nav-item">
+						<a href="javascript:void(0);" onClick="javascript:contentsChange('/program/allList');">프로그램</a>
+					</li>
+					<li class="nav-item">
+						<a href="javascript:void(0);" onClick="javascript:contentsChange('/space/list');">공간</a>
+					</li>
+					<li class="nav-item">
+						<a href="javascript:void(0);" onClick="javascript:contentsChange('/local/list');">로컬</a>
+					</li>
+                    <li v-if="!isLogin" class="nav-item login">
+                        <a href="javascript:void(0);" onClick="javascript:contentsChange('/login/login');" title="로그인">로그인</a>
+                    </li>
+				</ul>
+			</nav>
+            <div v-if="isLogin" class="header-user-info">
+                <div class="position">
+                    <i class="icon">위치</i>
+                    <div class="text" v-if="user.orgName != null" v-text="user.orgName"></div>
+                </div>
+                <div class="line"></div>
+                <div class="info-area">
+					<div class="mypage-user-image small">
+						<img v-if="user.photoFileId != null && user.photoFileId != ''" :src="fileBasePath + user.photoFileSrc" :alt="user.displayName + ' 이미지'" class="user" />
+						<img v-else src="/resources/images/icon/icon-user-default.png" alt="사용자 기본 이미지" class="user" />
+						<i v-if="user.emblemId != null && user.emblemId != ''" class="icon-embler"><img :src="fileBasePath + user.emblemFileSrc" alt="" /></i>
+					</div>
+                    <div class="user-name" v-html="(user.emblemName == '' ? '' : user.emblemName) + ' <strong>' + user.displayName + '</strong>님'"></div>
+                    <button type="button" class="btn-open-popup">팝업열기</button>
+                </div>
+                <div class="user-info-modal-popup" id="userInfoModalPopup">
+                    <div class="top-info">
+                        <div class="user-controller">
+                            <a href="javascript:void(0);" onClick="contentsChange('/mypage/collect')">
+								<div class="mypage-user-image xsmall">
+									<img v-if="user.photoFileId != null && user.photoFileId != ''" :src="fileBasePath + user.photoFileSrc" :alt="user.displayName + ' 이미지'" class="user" />
+                                    <img v-else src="/resources/images/icon/icon-user-default.png" alt="사용자 기본 이미지" class="user" />
+									<i v-if="user.emblemId != null && user.emblemId != ''" class="icon-embler"><img :src="fileBasePath + user.emblemFileSrc" alt="" /></i>
+								</div>
+                                <strong class="text">마이페이지</strong>
+                                <span class="icon-arrow"></span>
+                            </a>
+                        </div>
+                        <div class="etc-controller">
+                            <a href="javascript:void(0);" class="btn-modify" onClick="contentsChange('/editInfo/login')">개인정보수정</a>
+                            <a href="javascript:void(0);" class="logout" onClick="javascript:doLogout();">로그아웃</a>
+                        </div>
+                    </div>
+                    <div class="util-menu">
+                        <a href="javascript:void(0);" onClick="contentsChange('/mypage/collect')">모아보기</a>
+                        <a href="javascript:void(0);" onClick="contentsChange('/mypage/favorite')">즐겨찾기</a>
+                        <a href="javascript:void(0);" onClick="contentsChange('/mypage/point')">쿠폰 / 포인트</a>
+                    </div>
+                    <div class="my-menu-box">
+						<!-- 0502 퍼블수정 - 메뉴 추가 -->
+						<div class="menu-item">
+							<a href="javascript:void(0);" onClick="contentsChange('/mypage/playroun')">
+								<i class="icon playloun">플레이로운 아이콘</i>
+								<strong class="text">나의 플레이로운</strong>
+							</a>
+						</div>
+                        <div class="menu-item">
+                            <a href="javascript:void(0);" onClick="contentsChange('/mypage/program')">
+                                <i class="icon program">프로그램 아이콘</i>
+                                <strong class="text">나의 프로그램</strong>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="javascript:void(0);" onClick="contentsChange('/mypage/space')">
+                                <i class="icon space">공간 아이콘</i>
+                                <strong class="text">나의 공간</strong>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="javascript:void(0);" onClick="contentsChange('/mypage/local')">
+                                <i class="icon local">로컬 아이콘</i>
+                                <strong class="text">나의 로컬</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<!-- pc / mobile 구분 -->
+	<div class="header-inner mobile">
+		<div class="header-aside">
+			<button type="button" class="btn-all-menu btn-mobile-all-menu">
+				전체메뉴
+			</button>
+			<h1 class="header-logo">
+				<a href="/univ/main/main">
+					<img src="/resources/images/logo/logo-header-w.png" alt="KT&G 상상유니브" class="logo-white" />
+					<img src="/resources/images/logo/logo-header-color.png" alt="KT&G 상상유니브" class="logo-color" />
+				</a>
+			</h1>
+		</div>
+		<div class="header-menu">
+			<div class="header-top-icon">
+				<!-- <a href="javascript:void(0);" class="icon search">검색</a> -->
+				<a href="javascript:void(0);" class="icon map">지도</a>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="all-menu-dim"></div>
+<div class="mobile-all-menu-container">
+	<div class="mobile-all-menu-inner">
+		<div class="mobile-all-menu-header">
+			<button type="button" class="btn-popup-close">팝업닫기</button>
+			<span class="text">전체보기</span>
+		</div>
+		<div class="mobile-all-menu-body">
+			<div v-if="!isLogin" class="login-before-container">
+				<a href="/univ/login/login"><i class="icon"></i> <span class="text">로그인하세요</span></a>
+			</div>
+			<div v-if="isLogin" class="user-info-container">
+				<div class="user-box">
+					<div class="user-common-profile">
+						<div class="mypage-user-image medium">
+							<img v-if="user.photoFileId != null && user.photoFileId != ''" :src="fileBasePath + user.photoFileSrc" :alt="user.displayName + ' 이미지'" class="user" />
+							<img v-else src="/resources/images/icon/icon-user-default.png" alt="사용자 기본 이미지" class="user" />
+							<i v-if="user.emblemId != null && user.emblemId != ''" class="icon-embler"><img :src="fileBasePath + user.emblemFileSrc" alt="" /></i>
+						</div>
+						<div class="name-area">
+							<div v-if="user.emblemId != null && user.emblemId != ''" class="nick-name" v-text="user.emblemName"></div>
+							<strong class="name" v-text="user.displayName"></strong>
+						</div>
+					</div>
+					<div class="position-common-container">
+						<i class="icon">위치</i>
+						<div class="text" v-text="user.orgName"></div>
+					</div>
+				</div>
+				<div class="util-menu-box">
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/collect')">모아보기</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/playroun')">나의 플레이로운</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/program')">나의 프로그램</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/space')">나의 공간</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/local')">나의 로컬</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/favorite')">즐겨찾기</a>
+					<a href="javascript:void(0);" class="menu-item" onClick="contentsChange('/mypage/point')">쿠폰/포인트</a>
+					<a href="javascript:void(0);" class="menu-item"></a>
+				</div>
+				<div class="controller">
+					<a href="javascript:void(0);" class="btn-move" onClick="contentsChange('/editInfo/login')">개인정보 수정</a>
+					<a href="javascript:void(0);" class="btn-move btn-logout" onClick="javascript:doLogout();">로그아웃<i class="icon"></i></a>
+				</div>
+			</div>
+			<div class="mobile-gnb-container">
+				<ul class="mobile-gnb">
+				    <li class="menu-item">
+				        <li class="menu-item">
+                            <div class="menu-inner">
+                                <a href="/univ/playroun/index" class="btn-mobile-menu">
+                                    <span class="menu-text">플레이로운</span>
+                                </a>
+                            </div>
+                        </li>
+                    </li>
+					<li class="menu-item">
+						<div class="menu-inner">
+							<button type="button" class="btn-mobile-menu">
+								<span class="menu-text">프로그램</span>
+								<i class="icon-arrow"></i>
+							</button>
+						</div>
+						<ul class="sub-menu">
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" onClick="contentsChange('/program/allList');" class="sub-menu-link">전체</a>
+							</li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" onclick="contentsChange('/programClass/list');" class="sub-menu-link">클래스</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" onclick="contentsChange('/programActivity/list');" class="sub-menu-link">액티비티</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" onclick="contentsChange('/programFriend/gate');" class="sub-menu-link">상상프렌즈</a>
+                            </li>
+                            <li class="sub-menu-item">
+								<a href="javascript:void(0);" onclick="contentsChange('/programJiphyeonjeon/gate');" class="sub-menu-link">집현전</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" onclick="contentsChange('/programMarketingSchool/gate');" class="sub-menu-link">마케팅스쿨</a>
+							</li>
+							<!--
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" onclick="contentsChange('/programCareerDining/gate');" class="sub-menu-link">커리어다이닝</a>
+							</li>
+							-->
+							<li class="sub-menu-item">
+                                <a href="javascript:void(0);" onclick="alert('오픈준비중');" class="sub-menu-link">로컬프로젝트</a>
+                            </li>
+						</ul>
+					</li>
+					<li class="menu-item">
+						<div class="menu-inner">
+							<button type="button" class="btn-mobile-menu">
+								<span class="menu-text">공간</span>
+								<i class="icon-arrow"></i>
+							</button>
+						</div>
+						<ul class="sub-menu">
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/space/list')">전체</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/spaceAtelier/introduce')">아틀리에</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/spaceRoom/introduce')">상상옷장</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/spaceStudio/introduce')">스튜디오</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu-item">
+						<div class="menu-inner">
+							<button type="button" class="btn-mobile-menu">
+								<span class="menu-text">로컬</span>
+								<i class="icon-arrow"></i>
+							</button>
+						</div>
+						<ul class="sub-menu">
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/list')">전체</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=SEOUL_S')">서울</a>
+							</li>
+							<li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=BUSAN')">부산</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=DAEGU')">대구</a>
+                            </li>
+							<li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=INCHEON')">인천</a>
+                            </li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGGI')">경기</a>
+							</li>
+							<li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEONNAM')">전남</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=CHUNGNAM')">충남</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGNAM')">경남</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GANGWON')">강원</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=CHUNGBUK')">충북</a>
+                            </li>
+
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEONBUK')">전북</a>
+                            </li>
+
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=GYEONGBUK')">경북</a>
+                            </li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/local/view?orgId=JEJU')">제주</a>
+							</li>
+						</ul>
+					</li>
+					<li class="menu-item">
+						<div class="menu-inner">
+							<a href="/univ/event/list" class="btn-mobile-menu">
+								<span class="menu-text">이벤트</span>
+							</a>
+						</div>
+					</li>
+					<li class="menu-item">
+                        <div class="menu-inner">
+                            <button type="button" class="btn-mobile-menu">
+                                <span class="menu-text">상상유니브</span>
+                                <i class="icon-arrow"></i>
+                            </button>
+                        </div>
+                        <ul class="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/introduce/univ')">상상유니브 소개</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/museum/gate')">뮤지엄</a>
+                            </li>
+                        </ul>
+                    </li>
+					<li v-if="isLogin" class="menu-item">
+						<div class="menu-inner">
+							<button type="button" class="btn-mobile-menu">
+								<span class="menu-text">마이페이지</span>
+								<i class="icon-arrow"></i>
+							</button>
+						</div>
+						<ul class="sub-menu">
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/collect')">모아보기</a>
+							</li>
+							<li class="sub-menu-item">
+                                <a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/playroun')">나의 플레이로운</a>
+                            </li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/program')">나의 프로그램</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/local')">나의 로컬</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/point')">쿠폰/포인트</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" onClick="contentsChange('/editInfo/login')" class="sub-menu-link">개인정보수정</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" onClick="contentsChange('/mypage/space')" class="sub-menu-link">나의 공간</a>
+							</li>
+							<li class="sub-menu-item">
+								<a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/mypage/favorite')">즐겨찾기</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="menu-item">
+						<div class="menu-inner">
+							<button type="button" class="btn-mobile-menu">
+								<span class="menu-text">알려드립니다</span>
+								<i class="icon-arrow"></i>
+							</button>
+						</div>
+						<ul class="sub-menu">
+							<li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/notice/list')">공지사항</a></li>
+							<li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/faq/list')">자주하는 질문</a></li>
+							<li class="sub-menu-item"><a href="javascript:void(0);" class="sub-menu-link" onClick="contentsChange('/inquiry/write')">문의하기</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fixed-mobile-bottom-menu">
+	<div class="menu-item">
+		<a href="/univ/main/main"><i class="icon home"></i><span class="text">홈</span></a>
+	</div>
+	<div class="menu-item">
+    		<a href="javascript:void(0);" onClick="contentsChange('/playroun/index')"><i class="icon playloun"></i><span class="text">플레이로운</span></a>
+    	</div>
+	<div class="menu-item">
+		<a href="javascript:void(0);" onClick="contentsChange('/program/allList')"><i class="icon program"></i><span class="text">프로그램</span></a>
+	</div>
+	<div class="menu-item">
+		<a href="javascript:void(0);" onClick="contentsChange('/local/list')"><i class="icon local"></i><span class="text">로컬</span></a>
+	</div>
+	<div class="menu-item">
+		<a href="javascript:void(0);" onClick="contentsChange('/space/list')"><i class="icon space"></i><span class="text">공간</span></a>
+	</div>
+	<div v-if="isLogin" class="menu-item">
+		<a href="javascript:void(0);" onClick="contentsChange('/mypage/collect')"><i class="icon mypage"></i><span class="text">마이페이지</span></a>
+	</div>
+</div>
+</div>
+
+<script>
+    let globalHeader = new Vue({
+        el: '#globalHeader',
+        data: {
+            isLogin: false,                 // 로그인 여부
+            user: {},                       // 로그인 사용자 정보
+            fileBasePath: API_FILE_URL,     // 파일 prefix
+        },
+        created() {
+        },
+        mounted() {
+            this.init();
+        },
+        methods: {
+            init: function(){
+                this.isLogin = global.getLogin();
+                if(this.isLogin){
+                    this.user = global.getLoginUser();
+                }
+            },
+        },
+    })
+</script>
+		<!------------------------------------------------------------>
+
+		<!----------------------- container // ----------------------->
+		<main id="content" data-path="/univ/program/allList" class="sub-contents space">
+			
+
+
+
+
+
+<div class="program-all-content" id="programAllList">
+	<section class="step-list-section">
+        <div class="section-inner">
+            <h2 class="section-title">
+                <span class="point">상상유니브</span> +
+                <span class="line">프로그램</span>
+            </h2>
+            <div class="stpe-list-container program-step-slider">
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programClass/list')">
+                            <div class="step">01</div>
+                            <p class="sub-text">
+                                우리 지역에서 배우는<br />
+                                유니크한 취미생활
+                            </p>
+                            <strong class="subject">클래스</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programActivity/list')">
+                            <div class="step">02</div>
+                            <p class="sub-text">
+                                특별한 하루를 만드는<br />
+                                1일 프로젝트
+                           </p>
+                            <strong class="subject">액티비티</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programFriend/gate')">
+                            <div class="step">03</div>
+                            <p class="sub-text">
+                                상상유니브 프로그램을<br />
+                                기획·운영하는<br />
+                                대학생 서포터즈
+                            </p>
+                            <strong class="subject">상상프렌즈</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <!--<div class="comming">
+                        COMING SOON<br />
+                        <strong>14기 모집 완료 / 활동 준비중</strong>
+                    </div> -->
+                </div>
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programJiphyeonjeon/gate')">
+                            <div class="step">04</div>
+                            <p class="sub-text">
+                                문화와 예술을 재해석 하는<br />
+                                젊은 아티스트<br />
+                                발굴 프로젝트
+                            </p>
+                            <strong class="subject">집현전</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <!--<div class="comming">
+                        COMING SOON<br />
+                        <strong>22년 7월 모집 시작</strong>
+                    </div>-->
+                </div>
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programMarketingSchool/gate')">
+                            <div class="step">05</div>
+                            <p class="sub-text">
+                                사회적 가치를 생각하는<br />
+                                마케팅 실전 경험
+                            </p>
+                            <strong class="subject">마케팅스쿨</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <!--<div class="comming">
+                        COMING SOON<br />
+                        <strong>22년 6월 모집 시작</strong>
+                    </div> -->
+                </div>
+                <!--
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:void(0);" onclick="contentsChange('/programCareerDining/gate')">
+                            <div class="step">06</div>
+                            <p class="sub-text">
+                                현직자에게 듣는<br />
+                                취준생 카운슬링 프로그램
+                            </p>
+                            <strong class="subject">커리어다이닝</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                -->
+                <div class="list-item">
+                    <div class="item-box">
+                        <a href="javascript:alert('오픈준비중')">
+                            <div class="step">07</div>
+                            <p class="sub-text">
+                                청년들이 주도하는<br />
+                                지역 상생프로젝트
+                            </p>
+                            <strong class="subject">로컬프로젝트</strong>
+                            <div class="view">
+                                <span class="text">VIEW</span>
+                                <span class="icon"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="comming">
+                        COMING SOON<br />
+                        <strong>22년 상반기 모집 시작</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</section>
+
+	<section class="filter-view-section">
+		<div class="section-inner">
+            <div class="search-box">
+                <button type="button" class="btn-search" @click="fnSrchInit">검색</button>
+                <input type="text" v-model="srch.word" placeholder="원하는 프로그램을 한번에 찾아보세요." @keyup.enter="fnSrchInit" />
+            </div>
+
+			<div class="filter-view-contents infinite-scroll-el">
+                <div class="controller-area">
+                    <a href="javascript:openLayerPopup('filterMenuContainer')" class="btn-mobile-filter"><i class="icon"></i> Filter</a>
+                    <div class="sort-area">
+                        <div class="switch-container">
+                            <div class="switch-icon">
+                                <input type="checkbox" id="switch02" class="switch-input" :value="true" v-model="srch.only" @change="fnSrchInit" />
+                                <label for="switch02" class="switch-label">
+                                    <span class="btn-on-off">on/off 버튼</span>
+                                </label>
+                            </div>
+                            <div class="switch-text">온라인만 보기</div>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="filter-view-wrapper">
+                    <aside class="filter-menu-container" id="filterMenuContainer">
+
+                        <div class="back-header">
+                            <div class="btn-back-area">
+                                <button type="button" onclick="closeLayerPopup('filterMenuContainer')" class="btn-back">팝업닫기</button>
+                            </div>
+                            <button type="button" class="btn-filter" @click="fnSrchFilterReset">필터 초기화</button>
+                        </div>
+
+                        <div class="filter-menu-inner">
+                            <div class="filter-menu-list accordion-list">
+                                <div class="filter-menu-header accordion-header solo">
+                                    <div class="type">프로그램</div>
+                                    <span class="icon-arrow"></span>
+                                </div>
+                                <div class="filter-menu-body accordion-body">
+                                    <div class="selector-wrapper">
+                                        <div class="selector-cover checkbox square" v-for="(item, index) in cate" v-if="8 > index || cateMore">
+                                            <input type="checkbox" :id="item.cateId" :value="item.cateId" v-model="srch.cate" @change="fnSrchInit" />
+                                            <label :for="item.cateId">{{ item.cateName }}</label>
+                                        </div>
+                                    </div>
+                                    <template v-if="cate.length > 8">
+                                    <button type="button" class="btn-toggle" v-if="!cateMore" @click="cateMore = true">더보기 +</button>
+                                    <button type="button" class="btn-toggle" v-if="cateMore" @click="cateMore = false">작게보기 -</button>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <div class="filter-menu-list accordion-list">
+                                <div class="filter-menu-header accordion-header solo">
+                                    <div class="type">관심분야</div>
+                                    <span class="icon-arrow"></span>
+                                </div>
+                                <div class="filter-menu-body accordion-body">
+                                    <div class="selector-wrapper">
+                                        <div class="selector-cover checkbox square" v-for="(item, index) in subs" v-if="8 > index || subsMore">
+                                            <input type="checkbox" :id="item.subjectId" :value="item.subjectId" v-model="srch.subs" @change="fnSrchInit" />
+                                            <label :for="item.subjectId">{{ item.subjectName }}</label>
+                                        </div>
+                                    </div>
+                                    <template v-if="subs.length > 8">
+                                    <button type="button" class="btn-toggle" v-if="!subsMore" @click="subsMore = true">더보기 +</button>
+                                    <button type="button" class="btn-toggle" v-if="subsMore" @click="subsMore = false">작게보기 -</button>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <div class="filter-menu-list accordion-list">
+                                <div class="filter-menu-header accordion-header solo">
+                                    <div class="type">지역</div>
+                                    <span class="icon-arrow"></span>
+                                </div>
+                                <div class="filter-menu-body accordion-body">
+                                    <div class="selector-wrapper">
+                                        <div class="selector-cover checkbox square" v-for="(item, index) in orgs" v-if="8 > index || orgsMore">
+                                            <input type="checkbox" :id="item.orgId" :value="item.orgId" v-model="srch.orgs" @change="fnSrchInit" />
+                                            <label :for="item.orgId">{{ item.orgAtelierName }}</label>
+                                        </div>
+                                    </div>
+                                    <template v-if="orgs.length > 8">
+                                    <button type="button" class="btn-toggle" v-if="!orgsMore" @click="orgsMore = true">더보기 +</button>
+                                    <button type="button" class="btn-toggle" v-if="orgsMore" @click="orgsMore = false">작게보기 -</button>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <div class="filter-reset">
+                                <a href="javascript:void(0);" @click="fnSrchFilterReset">필터 초기화</a>
+                            </div>
+                        </div>
+						<div class="btn-search">
+							<button type="button" class="btn large primary" onclick="closeLayerPopup('filterMenuContainer')">검색</button>
+						</div>
+                    </aside>
+
+					<div class="filter-list-container">
+						<!-- 검색결과 없을경우 -->
+						<div class="empty-text-content" v-if="list.length === 0">검색결과가 없습니다.</div>
+						<!-- 검색결과 없을경우 -->
+
+						<div class="photo-list-container w-340 column-3">
+                            <div class="photo-list-item" v-for="(item, index) in list">
+                                <div class="thumbnail-area">
+                                    <a href="javascript:void(0);" @click="contentsChange('/program/view?programId=' + item.programId)">
+                                        <div class="tag" v-if="item.online">
+                                            <span>Online</span>
+                                        </div>
+                                        <div class="thumbnail">
+                                            <img :src="API_FILE_URL + item.thumbnailFileSrc" :alt="item.title" />
+                                        </div>
+                                        <span class="icon-round-badge ing" v-if="isEnableReceipt(item)">모집</span>
+                                        <span class="icon-round-badge end" v-if="isEndProgram(item)">종료</span>
+                                    </a>
+                                </div>
+                                <div class="description">
+                                    <div class="type">
+                                        <div class="text">{{ item.programCateName1 }}({{ item.orgName }})</div>
+                                        <button type="button" class="icon-bookmark" :class="{ on: !!item.favorite }" :data-program-id="item.programId" @click="fnFavorites">즐겨찾기</button>
+                                    </div>
+                                    <a href="javascript:void(0)" class="subject" @click="contentsChange('/program/view?programId=' + item.programId)">
+                                        <span>{{ item.title }}</span>
+                                    </a>
+                                </div>
+                            </div>
+						</div>
+
+                        <!-- TODO ... 목록 중간에 들어가야 하는데.. 규칙 확인 필요 -->
+                        <div class="join-banner">
+                            <!--<a href="javascript:void(0);" onclick="contentsChange('/science/gate')">-->
+                            <a href="javascript:alert('새로운 기능으로 준비 중 입니다.');">
+                                <div class="text-area">
+                                    <div class="sub-text">
+                                        상상에 그쳤던 강의, 행사, 세미나를 현실로 만들어드립니다.
+                                    </div>
+                                    <strong class="subject">경험하고 싶은 모든 것들을 실현해 보는 열린 실험실에 들어오세요.</strong>
+                                </div>
+                                <div class="btn-join">입장하기</div>
+                            </a>
+                        </div>
+
+                        <div class="last-content-box">
+                            <p class="text">
+                                마지막입니다.<br />
+                                상상유니브의 다른 콘텐츠들을 구경해볼까요?
+                            </p>
+                            <a href="javascript:void(0);" onclick="contentsChange('/museum/gate')" class="btn large primary btn-arrow" title="상상뮤지엄 보러가기">상상뮤지엄 구경하기<i class="icon">바로가기아이콘</i></a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script type="text/javascript" src="/resources/devjs/program/allList.js"></script>
+
+<script>
+// infinite 스크롤 함수
+var infiniteFlag = true;
+$(function() {
+	function infiniteScrollFn() {
+		var $el = $('.infinite-scroll-el');
+		if (!$el.length) return;
+		var _sct = $(window).scrollTop();
+		var _windowHeight = $(window).height();
+		var _offsetTop = $el.offset().top;
+		var _elHeight = $el.outerHeight();
+		if (_sct + _windowHeight >= _offsetTop + _elHeight && infiniteFlag) {
+		  _ss_programAllList.fnSrch();
+		}
+	}
+
+	$(window).on('scroll', function() {
+		infiniteScrollFn();
+	});
+});
+</script>
+		</main>
+		<!------------------------------------------------------------>
+
+		<!----------------------- footer // ----------------------->
+			
+
+
+
+<footer id="footer" style="">
+  <div class="footer-menu-wrapper">
+    <div class="section-inner">
+      <div class="footer-menu-list">
+        <div class="footer-menu-item">
+          <strong class="name">KT&G</strong>
+          <ul>
+            <li class="list-item"><a href="https://www.ktng.com/" target="_blank" title="새창">KT&G</a></li>
+            <li class="list-item">
+              <a href="http://www.ktngwelfare.org/main" target="_blank" title="새창">KT&G 복지재단</a>
+            </li>
+            <li class="list-item">
+              <a href="https://scholarship.ktngtogether.com" target="_blank" title="새창">KT&G 장학재단</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">KT&G의 상상</strong>
+          <ul>
+            <li class="list-item">
+              <a href="https://www.sangsangmadang.com/" target="_blank" title="새창">상상마당</a>
+            </li>
+            <li class="list-item">
+              <a href="https://www.sangsangplanet.com/" target="_blank" title="새창">상상플래닛</a>
+            </li>
+            <li class="list-item">
+              <a href="https://sangsangstartupcamp.com/" target="_blank" title="새창">상상스타트업캠프</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">상상유니브</strong>
+          <ul>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/introduce/univ');">소개합니다</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/museum/gate');">상상뮤지엄</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/event/list');">이벤트</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">도전</strong>
+          <ul>
+            <li class="list-item">
+              <!--<a href="javascript:contentsChange('/science/gate');">상상 실험실</a>-->
+              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">상상 실험실</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">동아리를 위한 Winiv</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu-item">
+          <strong class="name">공지/문의</strong>
+          <ul>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/notice/list');">공지사항</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/faq/list');">자주하는 질문</a>
+            </li>
+            <li class="list-item">
+              <a href="javascript:contentsChange('/inquiry/write');">문의</a>
+            </li>
+
+
+
+          </ul>
+        </div>
+      </div>
+      <ul class="footer-sns">
+        <li class="list-item youtube">
+          <a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창">유투브</a>
+        </li>
+        <li class="list-item instagram">
+          <a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창">인스타그램</a>
+        </li>
+        <li class="list-item facebook">
+          <a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창">카카오채널</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-primary">
+    <div class="section-inner">
+      <div class="footer-info-area">
+        <div class="copyright">
+          COPYRIGHT© KT&G 상상유니브. ALL RIGHTS RESERVED.
+        </div>
+        <address>
+            법인명 : (주)대학내일 ㅣ 사업자등록번호: 101-86-28789<br />
+            통신판매업신고 : 2019-서울마포-0655 ㅣ주소: 서울특별시 마포구 독막로 331ㅣ 대표자명: 김영훈
+
+
+        </address>
+      </div>
+      <div class="footer-mark-area">
+        <ul class="terms-list">
+          <li><a href="/univ/policy/terms">이용약관</a></li>
+          <li><a href="/univ/policy/policy">개인정보처리방침</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<button type="button" class="float-btn-top">최상단으로 가기</button>
+
+<!-- 채널톡 -->
+<!-- Channel Plugin Scripts -->
+<script>
+  (function() {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+    }
+    var ch = function() {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function(args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+  ChannelIO('boot', {
+    "pluginKey": "0429c4ad-39c5-482d-b059-5ebee8e040ac"
+  });
+</script>
+<!-- End Channel Plugin -->
+		<!------------------------------------------------------------>
+
+		<!----------------------- banner ---------------------------->
+		
+
+
+
+
+<div id="commonBanner">
+    <div class="fixed-bottom-banner" id="lineBanner" style="display:none;">
+        <div class="banner-wrapper">
+            <div class="section-inner">
+                <div class="fixed-banner-slider" id="lineBannerItems"></div>
+            </div>
+        </div>
+    </div>
+
+    <template v-for="(obj, idx) in floatBanners">
+        <div v-if="obj.display == true" class="layer-popup banner-image-popup open" id="imageBanner">
+            <div class="popup-container">
+                <div class="popup-content">
+                    <div class="image">
+                        <a :href="obj.linkUrl1"><img :src="fileBasePath + obj.fileSrc" alt=""></a>
+                    </div>
+                </div>
+                <div class="popup-footer">
+                    <div class="today-hidden">
+                        <input type="checkbox" :id="'todayHide' + idx" name="" class="icon-check" @click="hideOneDayFloatBanner(obj.bannerId)">
+                        <label :for="'todayHide' + idx">오늘 하루 보지않기</label>
+                    </div>
+                    <button type="button" class="btn-close popup-close" @click="closeFloatBanner(obj.bannerId)">닫기</button>
+                </div>
+            </div>
+        </div>
+    </template>
+<div>
+
+<script>
+    let commonBanner = new Vue({
+        el: '#commonBanner',
+        data: {
+            //orgId: '',
+            orgId: '',
+            lineBanners: [],
+            floatBanners: [],
+            cookiePrefix: 'BNR-',
+            cookieValue: 'Y',
+            fileBasePath: API_FILE_URL,
+        },
+        create() {
+        },
+        mounted() {
+            this.init();
+
+        },
+        methods: {
+            init: function() {
+                var path ='/univ/program/allList';
+                if(path == '/' || path.indexOf('/univ/main/main') > -1 || path.indexOf('/univ/local/view') > -1){
+                    this.orgId = this.orgId.toUpperCase();
+                    this.getBanners();
+                }
+            },
+
+            getBanners: function(){
+                apiCall('GET', '/banner/list', {orgId: this.orgId, userOrg: false, type: 2})
+                .then((res) => {
+                    var banners = res.data;
+
+                    if(banners.length > 0){
+                        for(var i=0; i<banners.length; i++){
+                            var obj = banners[i];
+                            obj.display = true;
+                            var cookieValue = getCookie(this.cookiePrefix + obj.bannerId);
+                            if(cookieValue != this.cookieValue){
+                                if(obj.type == 2){
+                                    // 하단 띠 배너
+                                    this.lineBanners.push(obj);
+
+                                }else if(obj.type == 1){
+                                    // 이미지 팝업 배너
+                                    this.floatBanners.push(obj);
+                                }
+                            }
+                        }
+
+                        this.makeLineBannerContents();
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                    openSystemPopup(MESSAGE.E900);
+                });
+            },
+
+            // 하단 띠배너 아이템 생성.
+            makeLineBannerContents: function(){
+                var items = '';
+                for(var i=0; i<this.lineBanners.length; i++){
+                    var obj = this.lineBanners[i];
+                    items += '<div class="slider-item">';
+                    if(obj.linkUrl1 != ''){
+                        items +=  '    <span class="banner-text"><a href="' + obj.linkUrl1 + '">' + obj.title + '</a></span>';
+                    }else{
+                        items +=  '    <span class="banner-text">' + obj.title + '</span>';
+                    }
+                    items +=  '</div>';
+                }
+                if(items != ''){
+                    window.sliderMaker();
+                    $('.fixed-banner-slider').slick('slickAdd', items);
+                    $("[id=lineBanner]").show();
+                    window.fixedBottomBannerController();
+                }else{
+                    $("[id=lineBanner]").hide();
+                }
+                window.fixedBottomBannerController();
+            },
+
+            // 이미지 팝업 배너 아이템 생성.
+            makeFloatBannerContents: function(){
+
+            },
+
+            // 오늘 하루 안보기
+            hideOneDayFloatBanner: function(bannerId){
+                this.closeFloatBanner(bannerId);
+                setCookie(this.cookiePrefix + bannerId, this.cookieValue, 1);
+            },
+
+            // 배너 닫기
+            closeFloatBanner: function(bannerId) {
+                var obj = this.floatBanners.filter(obj => obj.bannerId == bannerId)[0];
+                obj.display = false;
+            },
+
+        }
+    })
+</script>
+		<!----------------------- banner ---------------------------->
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
