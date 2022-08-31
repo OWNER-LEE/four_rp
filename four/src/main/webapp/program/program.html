@@ -149,8 +149,7 @@ header {
 }
 
 .all-menu-container {
-/* 	display: none; */
-	height: 0;							/* 메뉴 숨김 */
+	height: 0px;							/* 메뉴 숨김 */
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -171,12 +170,14 @@ header {
 	padding: 0;
 }
 
-.btn-all-menu:hover ~ .all-menu-inner {
-	height: 829px;
+.all-menu-container:hover .all-menu-inner {
+	height: 840px;
+  	width: 240px; 
 }
 
-.btn-all-menu:hover ~ .all-menu-container {
-	height: 829px;
+.btn-all-menu:hover ~ .all-menu-container > ul {
+  	height: 840px;
+  	width: 240px; 
 }
 
 .all-menu-container .all-menu-link {
@@ -184,6 +185,16 @@ header {
 	padding: 1.81818rem 1.81818rem 1.09091rem;
 	font-size: 0.72727rem;
 	font-weight: 700;
+}
+
+.all-menu-link:hover .sub-menu-wrap {
+	width: 240px;
+	height: 100%;
+}
+
+.all-menu-link:hover ~ .submenu > li {
+	height: 100%;
+	width: 240px;
 }
 
 .all-menu-container .all-menu-item+.all-menu-item {
@@ -1101,7 +1112,15 @@ address {
 
 
 <script type="text/javascript">
+window.onload = function() {
+	
+	amc.addEventListener("mouseover", allmenu)
+}
 
+function allmenu() {
+	var amc = document.getElementsByClassName("all-menu-container")
+	amc.style.height = '892px';
+}
 
 //Javascript 영역
 </script>
