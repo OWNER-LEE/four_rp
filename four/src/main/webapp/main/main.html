@@ -3,8 +3,330 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Spoqa Han Sans Neo", arial, sans-serif, Arial, dotum, "돋움";
+}
+
+
+.main {
+	margin: 0 auto;
+	display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.header-left{
+	display: flex;
+	align-items: center;
+	height: 100%;
+	
+}
+
+.header-left > ul {
+	height: 100%;
+}
+.header-left li, .allmenu > img {
+	display: block;
+}
+.header-back {
+	position:absolute;
+	width: 100%;
+	height: 100px;
+	display:flex;
+	margin: 0 auto;
+	vertical-align: middle;
+	z-index: 2;
+    justify-content: center;
+}
+.header {
+	border: 1px solid #ccc;
+
+	position:absolute;
+	width: 1600px;
+	height: 100%;
+	display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: -webkit-fill-available;
+}
+.header li, .local-left li {
+	list-style: none;
+}
+.header ul {
+	margin: 0;
+	padding: 0;
+}
+.header li > a {
+	/* 글자 색상 */
+	color: black;
+	
+	/* 글자 꾸밈선 제거 (underline 제거) */
+	text-decoration: none;
+}
+.right-menu li, .header-left > ul > li{
+	float: left;
+}
+
+.right-menu .menu-nav + .menu-nav {
+	margin-left: 30px;
+}
+.logo {
+	margin-left: 20px;
+}
+
+.allmenu {
+	/* 서브 메뉴(absolute요소)의 위치 기준점으로 설정 */
+	position: relative;
+	
+}
+
+.allmenu li {
+	margin: 35px;
+}
+/* 서브메뉴 모양, 숨기기 */
+.allmenu > ul {
+	position: absolute;
+	width: 150px;
+	background: white;
+	margin: 0;
+	display: none;
+}
+.allmenu-sub > ul{
+	position: absolute;
+	margin-left: 110px;
+	width: 150px;
+	height: 1500px;
+	top:0;
+	background: gray;
+ 	display: none;
+}
+
+/* 메뉴 나타내기*/
+.allmenu:hover > ul {
+	display: block; 
+} 
+.allmenu > ul > li:hover > div > ul{
+	display: block;
+}
+
+
+
+
+.main-img {
+	border: 1px solid #ccc;
+/* 	background: #6cf; */
+ 	z-index: -1;
+	
+	width: 1900px;
+	height: 1000px;
+	margin: -100px;
+	/* 임시 */
+	text-align: center;
+	
+}
+.main-text {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 160px;
+	color: white;
+}
+
+.main-text > div:nth-child(1) {
+	width: 343px;
+	font-size: 20px;
+	
+	font-weight: bold; 
+	border-bottom: 1px solid #fff;
+	padding-bottom: 5px;
+}
+.main-text > div:nth-child(2) {
+	font-size: 50px;
+	font-weight: bold; 
+	margin-top: -45px;
+	
+}
+.main-text > div:nth-child(3) {
+	font-size: 20px;
+	font-weight: bold; 
+	margin-top: -20px;
+}
+
+.container {
+	width:100%;
+}
+.container-top {
+ 	display:flex;
+	z-index: 1;
+ 
+}
+.container-local {
+ 	display:flex;
+ 	z-index: 3;
+	background: gray;
+	width: 100%;
+}
+
+.local-left li+li {
+	margin-top: 10px;
+}
+
+.local-right {
+	width: 1000px;
+}
+
+
+</style>
 </head>
 <body>
-22222
+<div class="main">
+
+	<!-- 맨위 메뉴 -->
+	
+	<header class="header-back">
+		<div class="header">
+			<!-- 왼쪽메뉴 -->
+			<div class="header-left">
+				<ul>
+					<li class="allmenu"><img alt="전체메뉴" src="./allmenu-btn-w.png" height="100%" width=40px>
+						<ul>
+							<li><a href="">플레이로운</a></li>
+							<li><a href="">프로그램</a>
+								<div class="allmenu-sub">
+									<ul>
+										<li><a href="">클래스</a></li>
+										<li><a href="">액티비티</a></li>
+										<li><a href="">상상프렌즈</a></li>
+										<li><a href="">집현전</a></li>
+										<li><a href="">마케팅스쿨</a></li>
+										<li><a href="">로컬프로젝트</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">공간</a>
+								<div class="allmenu-sub">
+									<ul>
+										<li><a href="">아틀리에</a></li>
+										<li><a href="">스튜디오</a></li>
+										<li><a href="">상상옷장</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">로컬</a>
+								<div class="allmenu-sub">
+									<ul>
+										<li><a href="">서울</a></li>
+										<li><a href="">부산</a></li>
+										<li><a href="">대구</a></li>
+										<li><a href="">인천</a></li>
+										<li><a href="">경기</a></li>
+										<li><a href="">전남</a></li>
+										<li><a href="">충남</a></li>
+										<li><a href="">경남</a></li>
+										<li><a href="">강원</a></li>
+										<li><a href="">충북</a></li>
+										<li><a href="">전북</a></li>
+										<li><a href="">경북</a></li>
+										<li><a href="">제주</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">이벤트</a></li>
+							<li><a href="">상상유니브</a>
+								<div class="allmenu-sub">
+									<ul>
+										<li><a href="">상상유니브 소개</a></li>
+										<li><a href="">뮤지엄</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">알려드립니다</a>
+								<div class="allmenu-sub">
+									<ul>
+										<li><a href="">공지사항</a></li>
+										<li><a href="">자주하는 질문</a></li>
+										<li><a href="">문의하기</a></li>
+									</ul>
+								</div>
+							</li>
+							<li><a href="">로그인</a></li>
+							<li><a href="">회원가입</a></li>
+							<li><a href="">이용약관</a></li>
+							<li><a href="">개인정보처리방침</a></li>
+						</ul>
+					</li>
+					<li class="logo"><a href=""><img alt="로고" src="./logo-header-w.png" height="50px"></a></li>
+				</ul>
+			</div><!-- end 왼쪽 메뉴 -->
+			<!-- 오른쪽 메뉴 -->
+			<div class="header-right">
+				<nav class="right-menu">
+					<ul>
+						<li class="menu-nav"><a href="">상상유니브</a></li>
+						<li class="menu-nav"><a href="../play/play.html">플레이로운</a></li>
+						<li class="menu-nav"><a href="../program/program.html">프로그램</a></li>
+						<li class="menu-nav"><a href="../space/space.html">공간</a></li>
+						<li class="menu-nav"><a href="../local/local.html">로컬</a></li>
+						<li class="menu-nav"><a href="">로그인</a></li>
+					</ul>
+				</nav>
+			</div><!-- end 오른쪽 메뉴 -->
+		</div>
+	</header><!-- end header -->
+	<!-- container -->
+	<div class="container">
+		<div class="container-top">
+			<div class="main-text">
+				<div>상상유니브에서 당신을 디자인하세요!</div>
+				<div><h2>Design yourself</h2></div>
+				<div>혼자 꿈꾸지 말아요.<br>
+				젊은 우리가 함께 상상합니다.</div>
+			</div>
+			<div class="main-img">
+				<iframe width="2000" height="1300" 
+				src="https://www.youtube.com/embed/v_4wmeRPXA4?autoplay=1&mute=1&loop=1&controls=0&playlist=v_4wmeRPXA4" title="대학생" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+<!-- 			<div class="main-img"> -->
+<!-- 				<iframe width="2000" height="1300"  -->
+<!-- 				src="https://www.youtube.com/embed/-Ev5Z2jSh6c?autoplay=1&mute=1&loop=1&controls=0&playlist=v_4wmeRPXA4" title="하늘벛꽃" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	 -->
+<!-- 			</div> -->
+		</div><!-- container-top end -->
+		<div class="container-local">
+			<div class="local-left">
+				<ul>
+					<li><a href="">서울</a></li>
+					<li><a href="">부산</a></li>
+					<li><a href="">대구</a></li>
+					<li><a href="">인천</a></li>
+					<li><a href="">경기</a></li>
+					<li><a href="">전남</a></li>
+					<li><a href="">충남</a></li>
+					<li><a href="">경남</a></li>
+					<li><a href="">강원</a></li>
+					<li><a href="">충북</a></li>
+					<li><a href="">전북</a></li>
+					<li><a href="">경북</a></li>
+					<li><a href="">제주</a></li>
+				</ul>
+			</div>
+			<div class="local-right">
+				<div class="local-img">
+					<table><tr><td>왼쪽 이미지<td></tr></table>
+				</div>
+				<div>
+					<div><h2>전국의 상상이 함께하는 상상유니브</h2></div>
+					<div>서울의 상상</div>
+					<div>버라이어티한 열정이 살아 숨쉬는</div>
+				</div>
+				<div>
+					<table><tr><td>오른쪽 이미지<td></tr></table>
+				</div>
+			</div>
+		</div>
+	</div><!-- end class container -->
+</div><!-- end class=main -->
 </body>
 </html>
