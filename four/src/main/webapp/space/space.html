@@ -6,397 +6,133 @@
 
 <style type="text/css">
 
-/* 수정 오후 11시 21분 */
-
 /* header */
-
-.header-inner {
-    width: 100%;
-    padding: 0 30px;
-	display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.header-aside {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    height: 100%;
-}
-
-/* 전체 메뉴 */
-.btn-all-menu {
+.menu1-img {
+	margin-top: 20px;
+	margin-left: 30px;
+	position: fixed;
 	display: inline-block;
-    width: 40px;
-    height: 100%;
+	width: 50px;
+	height: 40px;
 }
 
-
-.btn-all-menu :hover{
-	display:inlin-block;
+/* 다시 */
+.menu2-main {
+	display: none;
 }
 
-
-/* 숨긴 메뉴 */
-.all-menu-inner{
-    display: none;
-    position: relative;
-    top: 100%;
-    left: 0;
-    width: 240px;
-    background-color: #f5f5f7;
-    border-top: 1px solid #f5f5f7;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.all-menu-inner :hover{
-    -webkit-transition: width 0.25s;
-    transition: width 0.25s;
+.menu1:hover .menu2-main {
+	margin-left: 30px;
     display: block;
-    position: relative;
-    top: 100%;
-    left: 0;
-    width: 240px;
-    background-color: #f5f5f7;
-    border-top: 1px solid #f5f5f7;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.all-menu-inner .all-menu-link {
-    display: block;
-    padding: 30px 30px 30px;
-    font-size: 20px;
-}
-
-.all-menu-inner .all-menu-item + .all-menu-item {
-    border-top: 1px solid #dedede;
-}
-
-/* 헤더 로고 */
-.header-logo {
+    width: 100px;
+    /* 수정해야 함 */
     position: relative;
 }
 
-.header-logo a {
-    display: block;
+.menu2 {
+	margin-top: 70px;
+    border-bottom: 1px solid #ccc;
 }
 
-#header.fix .logo-white, #header.scroll .logo-white, #header:hover .logo-white {
-    display: none;
+.menu2:hover {
+    background-color: #fafafa;
+	color: #ff237a;
 }
 
-#header.fix .logo-color, #header.scroll .logo-color, #header:hover .logo-color {
-    display: inline-block;
-}
-
-.header-logo img {
-    width: 200px;
-}
-
-/* 헤더 우측 메뉴 */
-.header-menu {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.header-nav ul {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    list-style: none;
-}
-
-#header.fix .header-nav .nav-item a, #header.scroll .header-nav .nav-item a, #header:hover .header-nav .nav-item a {
-    color: #000;
-}
-
-.header-nav .nav-item a {
-    transition: 0.3s;
-    display: block;
+.menu2 a {
     font-weight: 700;
-    font-size: 15px;
-    text-decoration : none;
 }
 
-.header-nav .nav-item:hover a {
-    color: #ff237a !important;
+.menu3 {
+	display: none;
 }
 
-.header-nav .nav-item + .nav-item {
-    margin-left: 3.81818rem;
+/* 다시 */
+.manu2:hover .menu3 {
+	margin-left: 60px;
+    display: block;
+    width: 100px;
+    position: relative;
 }
 
-/* 상상 유니브 */
-.step-list-section {
-    padding: 90px 0;
-    background-color: #f5f5f7;
+.menu3:hover {
+    background-color: #fafafa;
+	color: #ff237a;
 }
 
-.step-list-section .section-title {
+.menu3 a {
     font-weight: 700;
-    font-size: 45px;
-}
-
-.step-list-section .section-title .point {
-    color: #6e6e73;
-}
-
-.step-list-section .section-title .line {
-    border-bottom: 1px solid #000;
 }
 
 /*  */
-.slick-slide {
-    display: inline-block;
-    float: left;
-    height: 100%;
-    min-height: 1px;
+
+.header-logo-img {
+	margin-left: 120px;
+	position: fixed;
+	display: inline-block;
+	width: 220px;
+	height: 60px;
 }
 
-.slick-slider .slick-track, .slick-slider .slick-list :hover {
-	transform: translate3d(0, -3px, 0);
-	background: white;
-	border-radius: 40px;
+.header-menu {
+	margin-top: 20px;
+	margin-left: 1150px;
+	position: fixed;
+	display: inline-block;
+	width: 750px;
+	height: 40px;
 }
 
-.slick-list {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    margin: 0;
+
+.header-menu-text a {
+	font-size: 20px;
+    font-weight: 700;
 }
 
-.slick-track {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.header-menu-text a:hover {
+	color: #ff237a !important;
 }
 
-.stpe-list-container .item-box {
-    transition: 0.2s;
-    min-height: 9.77273rem;
-    border-radius: 40px;
+.header-menu-text a + a {
+	margin-left: 50px;
 }
 
-/* 검색창 */
-.filter-view-section .search-box {
-    width: 500px;
-    height: 60px;
-    padding: 0 30px;
-	display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    margin: 0 auto 50px;
-    border: 1px solid #b5b5b5;
-    border-radius: 18px;
+.header-menu-login {
+    border: 1px solid #000;
+    border-radius: 50px;
+    padding: 5px 15px;
+}
+
+.header-menu-login:hover {
+	border-color: #ff237a !important;
+}
+
+/* //header */
+
+/* main */
+
+.main-box {
+	background-color: #f5f5f7;
+    width: 100%;
+    padding-top: 100px;
+    padding-left: 
+}
+
+.main-box-title {
+	font-weight: 700;
+	font-size: 45px;
+    color: #6e6e73;
+}
+
+.mainbox > .main-list:hover {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
     background-color: #fff;
-    align-items: center;
+    -webkit-box-shadow: 4px 4px 30px 0px #0000001a;
+    box-shadow: 4px 4px 30px 0px #0000001a;
 }
 
-.filter-view-section .search-box .btn-search {
-    width: 30px;
-    height: 26px;
-}
-
-.filter-view-section .search-box .btn-search {
-    display: block;
-    width: 27px;
-    height: 26px;
-    text-indent: -9999px;
-    background: url("https://www.sangsanguniv.com/resources/images/icon/icon-search-pk-e104828ea256760906e992f1ada3639e.png") no-repeat 0 0;
-    background-size: cover;
-    align-items: center;
-}
-
-.filter-view-section .search-box input {
-    height: 25px;
-    margin-left: 20px;
-    font-size: 17px;
-	display: block;
-    width: 100%;
-    border: 0;
-    color: #000;
-    align-items: center;
-    
-}
-
-/* 왼쪽 메뉴 */
-.filter-view-wrapper {
-    display: flex;
-    border-top: 2px solid #000;
-}
-
-.filter-menu-container {
-    width: 23.5%;
-    min-height: 100%;
-    padding-bottom: 40px;
-    border-right: 1px solid #d6d6d6;
-    box-sizing: border-box;
-}
-
-.filter-menu-list {
-    border-bottom: 1px solid #d6d6d6;
-}
-
-.accordion-list .accordion-header {
-    cursor: pointer;
-}
-
-.filter-menu-header {
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
-    padding: 30px 30px;
-    overflow: hidden;
-}
-
-.filter-menu-header .button {
-    font-size: 20px;
-}
-
-.filter-menu-header .icon-arrow {
-    display: block;
-    width: 0.72727rem;
-    height: 0.45455rem;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: 0.72727rem 0.5rem;
-    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-arrow-down-16x10-77bddf9fed77b5052cf6054b603420c8.png");
-}
-.filter-menu-list.active .filter-menu-header .icon-arrow  :hover {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
-/* 더보기 */
-.filter-menu-body .btn-toggle {
-    margin-top: 25px;
-    font-weight: 700;
-    font-size: 10px;
-    color: #a0afc1;
-}
-
-/* 필터 초기화 */
-.filter-menu-container .filter-reset {
-    margin-top: 30px;
-    margin-right: 30px;
-    text-align: right;
-}
-
-.filter-menu-container .filter-reset a {
-    display: inline-block;
-    border-bottom: 1px solid #ff237a;
-    font-size: 10px;
-    color: #ff237a;
-}
-
-/* 공간 */
-.photo-list-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.photo-list-item .description .type {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 0.59091rem;
-    color: #999;
-}
-
-
-.thumbnail :hover {
-	transform: translate3d(0, -3px, 0);
-	background: white;
-	border-radius: 40px;
-}
-
-
-/* footer */
-#footer {
-    background-color: #efefef;
-    
-}
-
-.footer-menu-list {
-    display: flex;
-    
-}
-
-.footer-menu-item .list-item a {
-    display: block;
-    font-size: 15px;
-    color: #888;
-}
-
-.footer-menu-item .list-item + .list-item {
-    margin-top: 10px;
-}
-
-.footer-sns {
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-        list-style: none;
-    
-}
-
-.footer-sns li {
-    width: 30px;
-    height: 30px;
-}
-
-.footer-sns li.youtube a {
-    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-youtube-round-bk-f59186fc9a1c1124b053d0d7a751e335.png");
-}
-
-.footer-sns a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-indent: -9999px;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: cover;
-}
-
-.footer-sns li + li {
-    margin-left: 30px;
-}
-
-.footer-sns li.instagram a {
-    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png");
-}
-
-.footer-sns li.facebook a {
-    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-facebook-round-bk-6c0bb43daa3795aa5b453b7b04d194fb.png");
-}
-
-
-
-
-/* 최상단으로 가기 버튼 */
-.float-btn-top {
+.top {
     position: fixed;
     bottom: 10px;
     right: 5px;
@@ -407,624 +143,574 @@
     background-size: cover;
 }
 
+
+/* 전체적 */
+html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td, dl, dt, dd, a, img, input, button, select, textarea {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+body, p, a, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, pre {
+    -webkit-text-size-adjust: none;
+    letter-spacing: -0.03em;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #000;
+    font-family: "Spoqa Han Sans Neo", arial, sans-serif, Arial, dotum, "돋움";
+    outline: none;
+}
+
+div {
+    display: block;
+}
+
 button {
     cursor: pointer;
     border: 0;
     /* background-color: transparent; */
 }
 
+a {
+	text-decoration : none;
+	color: #000;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ddd;
+}
+
 </style>
 
 </head>
 <body>
-<!-- container -->
-	<div id="container">
 
-	<div id="globalHeader">
-		<header id="header" class="fix" style="top: 0px;">
-		<div class="header-inner pc">
-			<div class="header-aside header-all-menu-pc">
+<header id="header">
+	
+	<div class="header-all-menu">
+	
+		<ul class="menu1">
+		
+			<button class="menu1-btn" type="button">
+				<img class="menu1-img" src="https://www.sangsanguniv.com/resources/images/icon/icon-allmenu-btn-bk-6b09023839cf00f8f36f9612702ce321.png" alt="전체메뉴">
+			</button>
 			
-				<!-- 전체 메뉴 -->
-				<!-- <button type=button class="btn-all-menu">전체메뉴</button> -->
-				
-				<!-- 헤더 로고 -->
-				<h1 class="header-logo">
-					<a href="https://www.sangsanguniv.com/univ/main/main">
-						<img src="https://www.sangsanguniv.com/resources/images/logo/logo-header-w.png" alt="KT&amp;G 상상유니브" class="logo-white">
-						<img src="https://www.sangsanguniv.com/resources/images/logo/logo-header-color.png" alt="KT&amp;G 상상유니브" class="logo-color">
-					</a>
-				</h1>
-				
-			<!-- 전체 메뉴 클릭 시 나오는 메뉴 -->
-			<div class="all-menu-container">
-			<ul>
-			<button type=button class="btn-all-menu">전체메뉴</button>
-				<ul class="all-menu-inner">
-					<li class="all-menu-item">
-						<a href="/four/play/play.html" class="all-menu-link">플레이로운</a>
-					</li>
-					<li class="all-menu-item">
-						<a href="/four/program/program.html');" class="all-menu-link">프로그램</a>
-						<div class="sub-menu-wrap">
-							<ul class="sub-menu">
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/programClass/list" class="sub-menu-link">클래스</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/programActivity/list" class="sub-menu-link">액티비티</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/programFriend/gate" class="sub-menu-link">상상프렌즈</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="hhttps://www.sangsanguniv.com/univ/programJiphyeonjeon/gate" class="sub-menu-link">집현전</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/programMarketingSchool/gate" class="sub-menu-link">마케팅스쿨</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="javascript:void(0);" onclick="alert('오픈준비중');" class="sub-menu-link">로컬프로젝트</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					
-					<li class="all-menu-item">
-						<a href="/four/space/space.html');" class="all-menu-link">공간</a>
-						<div class="sub-menu-wrap">
-							<ul class="sub-menu">
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce" class="sub-menu-link">아틀리에</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce" class="sub-menu-link">스튜디오</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce" class="sub-menu-link">상상옷장</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					
-					<li class="all-menu-item">
-						<a href="/four/local/local.html');" class="all-menu-link">로컬</a>
-						<div class="sub-menu-wrap">
-							<ul class="sub-menu">
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=SEOUL_S" class="sub-menu-link">서울</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=BUSAN" class="sub-menu-link">부산</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=DAEGU" class="sub-menu-link">대구</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=INCHEON" class="sub-menu-link">인천</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGGI" class="sub-menu-link">경기</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONNAM" class="sub-menu-link">전남</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGNAM" class="sub-menu-link">충남</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGNAM" class="sub-menu-link">경남</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GANGWON" class="sub-menu-link">강원</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGBUK" class="sub-menu-link">충북</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONBUK" class="sub-menu-link">전북</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGBUK" class="sub-menu-link">경북</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEJU" class="sub-menu-link">제주</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/event/list" class="all-menu-link">이벤트</a>
-					</li>
-					
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/introduce/univ" class="all-menu-link">상상유니브</a>
-						<div class="sub-menu-wrap">
-							<ul class="sub-menu">
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/introduce/univ" class="sub-menu-link">상상유니브 소개</a>
-								</li>
-								<li class="sub-menu-item">
-									<a href="https://www.sangsanguniv.com/univ/museum/gate" class="sub-menu-link">뮤지엄</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/notice/list" class="all-menu-link">알려드립니다</a>
-					<div class="sub-menu-wrap">
-						<ul class="sub-menu">
-							<li class="sub-menu-item">
-								<a href="https://www.sangsanguniv.com/univ/notice/list" class="sub-menu-link">공지사항</a>
-							</li>
-							<li class="sub-menu-item">
-								<a href="https://www.sangsanguniv.com/univ/faq/list" class="sub-menu-link">자주하는 질문</a>
-							</li>
-							<li class="sub-menu-item">
-								<a href="https://www.sangsanguniv.com/univ/inquiry/write" class="sub-menu-link">문의하기</a>
-							</li>
-						</ul>
-					</div>
-					</li>
-									
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/login/login" class="all-menu-link">로그인</a>
-					</li>
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/signup/gate" class="all-menu-link">회원가입</a>
-					</li>
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/login/login/policy/terms" class="all-menu-link">이용약관</a>
-					</li>
-					<li class="all-menu-item">
-						<a href="https://www.sangsanguniv.com/univ/login/login/policy/policy" class="all-menu-link">개인정보처리방침</a>
-					</li>
-				</ul>
-			</ul>
-			</div>
-			</div>
+		<ul class="menu2-main">
+		
+			<li class="menu2">
+				<a href="/four/play/play.html">플레이로운</a>
+			</li>
 			
-			<!-- 화면에 우측에 바로 나오는 메뉴 -->
-			<div class="header-menu">
-				<nav class="header-nav">
+			<li class="menu2">
+				<a href="/four/program/program.html">프로그램</a>
+				
+				<div class="menu3">
 					<ul>
-						<li class="nav-item">
-							<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/programClass/list">클래스</a>
 						</li>
-						<li class="nav-item">
-							<a href="/four/play/play.html">플레이로운</a>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/programActivity/list">액티비티</a>
 						</li>
-						<li class="nav-item">
-							<a href="/four/program/program.html">프로그램</a>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/programFriend/gate">상상프렌즈</a>
 						</li>
-						<li class="nav-item">
-							<a href="/four/space/space.html">공간</a>
+						<li>
+							<a href="hhttps://www.sangsanguniv.com/univ/programJiphyeonjeon/gate">집현전</a>
 						</li>
-						<li class="nav-item">
-							<a href="/four/local/local.html">로컬</a>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/programMarketingSchool/gate">마케팅스쿨</a>
 						</li>
-						<li class="nav-item login">
-							<a href="https://www.sangsanguniv.com/univ/login/login" title="로그인">로그인</a>
+						<li>
+							<a href="javascript:void(0);" onclick="alert('오픈준비중');">로컬프로젝트</a>
 						</li>
 					</ul>
-				</nav>
+				</div>
+				
+			</li>
+			
+			<li class="menu2">
+				<a href="/four/space/space.html">공간</a>
+				
+				<div>
+					<ul class="menu3">
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">아틀리에</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">스튜디오</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">상상옷장</a>
+						</li>
+					</ul>
+				</div>
+				
+			</li>
+			
+			<li class="menu2">
+				<a href="/four/local/local.html">로컬</a>
+				
+				<div>
+					<ul class="menu3">
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=SEOUL_S">서울</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=BUSAN">부산</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=DAEGU">대구</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=INCHEON">인천</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGGI">경기</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONNAM">전남</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGNAM">충남</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGNAM">경남</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GANGWON">강원</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=CHUNGBUK">충북</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEONBUK">전북</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=GYEONGBUK">경북</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEJU">제주</a>
+						</li>
+					</ul>		
+				</div>
+				
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/event/list">이벤트</a>
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
+				
+				<div>
+					<ul class="menu3">
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브 소개</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/museum/gate">뮤지엄</a>
+						</li>
+					</ul>
+				</div>
+				
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/notice/list">알려드립니다</a>
+				
+				<div class="menu3">
+					<ul>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/faq/list">자주하는 질문</a>
+						</li>
+						<li>
+							<a href="https://www.sangsanguniv.com/univ/inquiry/write">문의하기</a>
+						</li>
+					</ul>
+				</div>
+				
+			</li>
+							
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/login/login">로그인</a>
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/signup/gate">회원가입</a>
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/login/login/policy/terms">이용약관</a>
+			</li>
+			
+			<li class="menu2">
+				<a href="https://www.sangsanguniv.com/univ/login/login/policy/policy">개인정보처리방침</a>
+			</li>
+			
+		</ul><!-- //menu2-main -->
+		
+		</ul><!-- //menu1 -->
+	
+	</div><!-- //header-all-menu -->
+	
+	<div>
+	
+		<h1 class="header-logo">
+			<a href="https://www.sangsanguniv.com/univ/main/main">
+				<!-- <img src="https://www.sangsanguniv.com/resources/images/logo/logo-header-w.png" alt="KT&amp;G 상상유니브" class="logo-white"> -->
+				<img class="header-logo-img" src="https://www.sangsanguniv.com/resources/images/logo/logo-header-color.png" alt="KT&amp;G 상상유니브" class="logo-color">
+			</a>
+		</h1>
+		
+	</div><!-- //header-logo -->
+		
+	<div>
+	
+		<nav>
+			<ul class="header-menu" style="list-style: none; text-decoration: none;">
+				<li class="header-menu-text">
+					<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
+					<a href="/four/play/play.html">플레이로운</a>
+					<a href="/four/program/program.html">프로그램</a>
+					<a href="/four/space/space.html">공간</a>
+					<a href="/four/local/local.html">로컬</a>
+					<a class="header-menu-login" href="https://www.sangsanguniv.com/univ/login/login">로그인</a>
+				</li>
+			</ul>
+		</nav>
+		
+	</div><!-- //header-menu -->
+	
+</header>
+	
+<main id="main" data-path="https://www.sangsanguniv.com/univ/space/list" style="padding-top: 80px;">
+	
+	<div class="main-box">
+	
+		<h2 class="main-box-title">
+		    <span>상상유니브</span> +
+		    <span>공간</span>
+		</h2>
+		
+		<div class="main-list">
+			<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">
+			<div>01</div>
+			<p>
+			    자유롭게 소통하며<br>
+			    꿈을 키워가는 창작 공방
+			</p>
+			<strong>아틀리에</strong>
+			<div style="display: none;">
+			    <span>VIEW</span>
+				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
 			</div>
-			
+		    </a>
+		 </div>
+		
+		<div class="main-list">
+			<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">
+			<div>02</div>
+			<p>‘크리에이터를 꿈꾸는 나’를 위한 <br>
+			    영상 제작소
+			</p>
+			<strong>스튜디오</strong>
+			<div style="display: none;">
+			    <span>VIEW</span>
+				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+			</div>
+		    </a>
 		</div>
-		</header>
-	</div>
-	</div>
+		
+		<div class="main-list">
+			<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">
+			<div>03</div>
+			<p>‘상상펀드’기금으로 구입한<br>
+		    	면접정장을 무료로 대여할 수 있는 서비스
+		    </p>
+			<strong>상상옷장</strong>
+			<div style="display: none;">
+				<span>VIEW</span>
+				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+			</div>
+		    </a>
+		</div>
+		
+	</div><!-- //main-box -->
+ 
+	<div class="search-box">
+	
+	    <button type="submit" class="btn-search">검색</button>
+	    <input type="text" id="keyword" name="keyword" placeholder="원하는 공간을 한번에 찾아보세요.">
+	    
+	</div><!-- //search-box -->
 
-	<!-- 공간 -->
-	<main id="content" data-path="https://www.sangsanguniv.com/univ/space/list" class="sub-contents space" style="padding-top: 80px;">
+	<div class="filter-box">
+	
+		<div class="filter1">
+		
+		    <div class="button">공간유형</div>
+		    <span class="icon-arrow"></span>
+		                                
+		    <div class="selector">
+			  	<div>
+			  		<input type="checkbox" name="atelier" id="atelier" value="1">
+			  		<label for="atelier">아틀리에</label>
+			  		<input type="checkbox" name="atelier" id="studio" value="2">
+			  		<label for="studio">스튜디오</label>
+			  	</div>
+		    </div>
+		    
+	    </div><!-- //filter1 -->
+	                            
+		<div class="filter2">
+		
+			<div class="button">지역</div>
+			<span class="icon-arrow"></span>
+		                                
+			<div class="selector">
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgSEOUL_S" value="SEOUL_S">
+					<label for="orgSEOUL_S">서울</label>
+					<input type="checkbox" name="orgId[]" id="orgBUSAN" value="BUSAN">
+					<label for="orgBUSAN">부산</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgDAEGU" value="DAEGU">
+					<label for="orgDAEGU">대구</label>
+					<input type="checkbox" name="orgId[]" id="orgINCHEON" value="INCHEON">
+					<label for="orgINCHEON">인천</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgGYEONGGI" value="GYEONGGI">
+					<label for="orgGYEONGGI">경기</label>
+					<input type="checkbox" name="orgId[]" id="orgJEONNAM" value="JEONNAM">
+					<label for="orgJEONNAM">전남</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgCHUNGNAM" value="CHUNGNAM">
+					<label for="orgCHUNGNAM">충남</label>
+					<input type="checkbox" name="orgId[]" id="orgGYEONGNAM" value="GYEONGNAM">
+					<label for="orgGYEONGNAM">경남</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgGANGWON" value="GANGWON">
+					<label for="orgGANGWON">강원</label>
+					<input type="checkbox" name="orgId[]" id="orgCHUNGBUK" value="CHUNGBUK">
+					<label for="orgCHUNGBUK">충북</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgJEONBUK" value="JEONBUK">
+					<label for="orgJEONBUK">전북</label>
+					<input type="checkbox" name="orgId[]" id="orgGYEONGBUK" value="GYEONGBUK">
+					<label for="orgGYEONGBUK">경북</label>
+				</div>
+				<div>
+					<input type="checkbox" name="orgId[]" id="orgJEJU" value="JEJU">
+					<label for="orgJEJU">제주</label>
+				</div>
+				                                    
+			 	<button type="button" class="more">더보기 +</button>
+			</div>
+		                      
+			<button type="button" class="filter-reset">필터 초기화</button>
 			
-	<div class="space-all-content">
-    <section class="step-list-section">
-        <div class="section-inner">
-            <h2 class="section-title">
-                <span class="point">상상유니브</span> +
-                <span class="line">공간</span>
-            </h2>
-            <div class="stpe-list-container space-step-slider slick-initialized slick-slider">
-                <div class="slick-list draggable">
-                <div class="slick-track" style="opacity: 1; width: 1473px; transform: translate3d(0px, 0px, 0px);">
-                <div class="list-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" style="width: 491px;">
-                    <div class="item-box">
-                        <a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce" tabindex="0">
-                            <div class="step">01</div>
-                            <p class="sub-text">
-                                자유롭게 소통하며<br>
-                                꿈을 키워가는 창작 공방
-                            </p>
-                            <strong class="subject">아틀리에</strong>
-                            <div class="view">
-                                <span class="text">VIEW</span>
-                                <span class="icon"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div><div class="list-item slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="0" style="width: 491px;">
-                    <div class="item-box">
-                        <a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce" tabindex="0">
-                            <div class="step">02</div>
-                            <p class="sub-text">
-                                ‘ 크리에이터를 꿈꾸는 나’를 위한 <br>
-                                영상 제작소
-                            </p>
-                            <strong class="subject">스튜디오</strong>
-                            <div class="view">
-                                <span class="text">VIEW</span>
-                                <span class="icon"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div><div class="list-item slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 491px;">
-                    <div class="item-box">
-                        <a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce" tabindex="0">
-                            <div class="step">03</div>
-                            <p class="sub-text">
-                                ‘상상펀드’기금으로 구입한<br>
-                                면접정장을 무료로 대여할 수 있는 서비스
-                            </p>
-                            <strong class="subject">상상옷장 </strong>
-                            <div class="view">
-                                <span class="text">VIEW</span>
-                                <span class="icon"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div></div></div>
-                 </div>
-        </div>
-    </section>
-    
-    <section class="filter-view-section infinite-scroll-el" id="searchForm">
-        <div class="section-inner">
-        	
-        	<!-- 검색창 -->
-            <div class="search-box">
-                <button type="submit" class="btn-search">검색</button>
-                <input type="text" id="keyword" name="keyword" placeholder="원하는 공간을 한번에 찾아보세요.">
-            </div>
-            
-            <div class="filter-view-contents">
-            
-                <div class="filter-view-wrapper">
-                    <aside class="filter-menu-container" id="filterMenuContainer">
-                        <div class="filter-menu-inner">
-                            <div class="filter-menu-list accordion-list">
-                                <div class="filter-menu-header accordion-header solo">
-                                
-                                    <div class="button">공간유형</div>
-                                    <span class="icon-arrow"></span>
-                                </div>
-                                
-                                <div class="filter-menu-body accordion-body">
-                                    <div class="selector-wrapper">
-                                    	<div class="selector-cover checkbox square">
-                                    		<input type="checkbox" name="atelier" id="atelier" value="1">
-                                    		<label for="atelier">아틀리에</label>
-                                    	</div>
-                                    	<div class="selector-cover checkbox square">
-                                    		<input type="checkbox" name="atelier" id="studio" value="2">
-                                    		<label for="studio">스튜디오</label>
-                                    	</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="filter-menu-list accordion-list">
-                                <div class="filter-menu-header accordion-header solo">
-                                    <div class="button">지역</div>
-                                    <span class="icon-arrow"></span>
-                                </div>
-                                
-                                <div class="filter-menu-body accordion-body">
-                                    <div class="selector-wrapper" id="orgList">
-                                    	<div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgSEOUL_S" value="SEOUL_S">
-		                                    <label for="orgSEOUL_S">서울</label>
-                                    	</div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgBUSAN" value="BUSAN">
-		                                    <label for="orgBUSAN">부산</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgDAEGU" value="DAEGU">
-		                                    <label for="orgDAEGU">대구</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgINCHEON" value="INCHEON">
-		                                    <label for="orgINCHEON">인천</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgGYEONGGI" value="GYEONGGI">
-		                                    <label for="orgGYEONGGI">경기</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgJEONNAM" value="JEONNAM">
-		                                    <label for="orgJEONNAM">전남</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgCHUNGNAM" value="CHUNGNAM">
-		                                    <label for="orgCHUNGNAM">충남</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square">
-		                                    <input type="checkbox" name="orgId[]" id="orgGYEONGNAM" value="GYEONGNAM">
-		                                    <label for="orgGYEONGNAM">경남</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square" style="display:none;">
-		                                    <input type="checkbox" name="orgId[]" id="orgGANGWON" value="GANGWON">
-		                                    <label for="orgGANGWON">강원</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square" style="display:none;">
-		                                    <input type="checkbox" name="orgId[]" id="orgCHUNGBUK" value="CHUNGBUK">
-		                                    <label for="orgCHUNGBUK">충북</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square" style="display:none;">
-		                                    <input type="checkbox" name="orgId[]" id="orgJEONBUK" value="JEONBUK">
-		                                    <label for="orgJEONBUK">전북</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square" style="display:none;">
-		                                    <input type="checkbox" name="orgId[]" id="orgGYEONGBUK" value="GYEONGBUK">
-		                                    <label for="orgGYEONGBUK">경북</label>
-	                                    </div>
-	                                    <div class="selector-cover checkbox square" style="display:none;">
-		                                    <input type="checkbox" name="orgId[]" id="orgJEJU" value="JEJU">
-		                                    <label for="orgJEJU">제주</label>
-	                                    </div>
-	                                    </div>
-	                                    
-                                    <button type="button" class="btn-toggle" onclick="getMoreBtn(this)">더보기 +</button>
-                                    <!-- <button type="button" class="btn-toggle">작게보기 -</button> -->
-                                </div>
-                            </div>
-                            <div class="filter-reset">
-                                <a href="searchFilterInit();">필터 초기화</a>
-                            </div>
-                        </div>
-                    </aside>
+		</div><!-- //filter2 -->
+		
+	</div><!-- //filter-box -->
                     
-                    <div class="filter-list-container">
-					    <div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q235248631aacdc93645d7165dd/blob" alt="한양대에리카 클래스룸">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">아틀리에(경기)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044" class="subject">
-					                <span>한양대에리카 클래스룸</span>
-					            </a>
-					        </div>
-					    </div>
+	<div class="filter-list">
+	
+	   	<div>
+	          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
+	                 <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q235248631aacdc93645d7165dd/blob" alt="한양대에리카 클래스룸">
+	          </a>
+	             <div class="text">아틀리에(경기)</div>
+	          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
+	              <span>한양대에리카 클래스룸</span>
+	          </a>
+	   	</div>
+	
+	    <div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
+	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q182547daddf5d7c201e07db863/blob" alt="한양대에리카 유니브존">
+	           </a>
+	              <div class="text">아틀리에(경기)</div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
+	               <span>한양대에리카 유니브존</span>
+	           </a>
+	    </div>
+	
+	    <div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
+	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k383301fe013445a9b60db4763a/blob" alt="안동대 상상 아틀리에 라운지">
+	           </a>
+	              <div class="text">아틀리에(경북)</div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
+	               <span>안동대 상상 아틀리에 라운지</span>
+	           </a>
+	    </div>
+	
+		<div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
+	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k34359247e209c7ae81100897e4/blob" alt="안동대 상상 아틀리에 1번가">
+	           </a>
+	              <div class="text">아틀리에(경북)</div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
+	              	<span>안동대 상상 아틀리에 1번가</span>
+	           </a>
+	    </div>
+	
+		<div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
+	           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k305595af1c83dbd40feb6dd2f6/blob" alt="안동대 상상 아틀리에 4번가">
+	           </a>
+	              <div class="text">아틀리에(경북)</div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
+	               <span>안동대 상상 아틀리에 4번가</span>
+	           </a>
+	    </div>
+	
+		<div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
+	           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2d10j422631518906f1d123efb8464a/blob" alt="오디오/스트리밍룸">
+	           </a>
+	           <div class="text">스튜디오(대구)</div>
+	           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
+	               <span>오디오/스트리밍룸</span>
+	           </a>
+	    </div>
+		    
+	</div><!-- //filter-list -->
 
-					    <div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q182547daddf5d7c201e07db863/blob" alt="한양대에리카 유니브존">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">아틀리에(경기)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32" class="subject">
-					                <span>한양대에리카 유니브존</span>
-					            </a>
-					        </div>
-					    </div>
-
-					    <div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k383301fe013445a9b60db4763a/blob" alt="안동대 상상 아틀리에 라운지">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">아틀리에(경북)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287" class="subject">
-					                <span>안동대 상상 아틀리에 라운지</span>
-					            </a>
-					        </div>
-					    </div>
-	
-						<div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k34359247e209c7ae81100897e4/blob" alt="안동대 상상 아틀리에 1번가">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">아틀리에(경북)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4" class="subject">
-					                <span>안동대 상상 아틀리에 1번가</span>
-					            </a>
-					        </div>
-					    </div>
-	
-						<div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k305595af1c83dbd40feb6dd2f6/blob" alt="안동대 상상 아틀리에 4번가">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">아틀리에(경북)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c" class="subject">
-					                <span>안동대 상상 아틀리에 4번가</span>
-					            </a>
-					        </div>
-					    </div>
-	
-						<div class="photo-list-item">
-					        <div class="thumbnail-area">
-					            <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
-					                <div class="thumbnail">
-					                    <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2d10j422631518906f1d123efb8464a/blob" alt="오디오/스트리밍룸">
-					                </div>
-					            </a>
-					        </div>
-					        <div class="description">
-					            <div class="type">
-					                <div class="text">스튜디오(대구)</div>
-					            </div>
-					            <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154" class="subject">
-					                <span>오디오/스트리밍룸</span>
-					            </a>
-					        </div>
-					    </div>
-						
-					</div>
-                </div>
-			</div>
-        </div>
-    </section> 
-      
-	</div>
-	</main>
+</main>
     
-    
-    <footer id="footer" style="">
-		<div class="footer-menu-wrapper">
-	    	<div class="section-inner">
-		    	<div class="footer-menu-list">
-		      
-			        <div class="footer-menu-item">
-			          <strong class="name">KT&amp;G</strong>
-			          <ul>
-			            <li class="list-item">
-			            	<a href="https://www.ktng.com/" target="_blank" title="새창">KT&amp;G</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="http://www.ktngwelfare.org/main" target="_blank" title="새창">KT&amp;G 복지재단</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://scholarship.ktngtogether.com" target="_blank" title="새창">KT&amp;G 장학재단</a>
-			            </li>
-			          </ul>
-			        </div>
-			        
-			        <div class="footer-menu-item">
-			          <strong class="name">KT&amp;G의 상상</strong>
-			          <ul>
-			            <li class="list-item">
-			              <a href="https://www.sangsangmadang.com/" target="_blank" title="새창">상상마당</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://www.sangsangplanet.com/" target="_blank" title="새창">상상플래닛</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://sangsangstartupcamp.com/" target="_blank" title="새창">상상스타트업캠프</a>
-			            </li>
-			          </ul>
-			        </div>
-			        
-			        <div class="footer-menu-item">
-			          <strong class="name">상상유니브</strong>
-			          <ul>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/introduce/univ'">소개합니다</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/museum/gate">상상뮤지엄</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/event/list">이벤트</a>
-			            </li>
-			          </ul>
-			        </div>
-			        
-			        <div class="footer-menu-item">
-			          <strong class="name">도전</strong>
-			          <ul>
-			            <li class="list-item">
-			              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">상상 실험실</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="javascript:alert('새로운 기능으로 준비 중 입니다. ')">동아리를 위한 Winiv</a>
-			            </li>
-			          </ul>
-			        </div>
-			        
-			        <div class="footer-menu-item">
-			          <strong class="name">공지/문의</strong>
-			          <ul>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/faq/list">자주하는 질문</a>
-			            </li>
-			            <li class="list-item">
-			              <a href="https://www.sangsanguniv.com/univ/inquiry/write">문의</a>
-			            </li>
-			          </ul>
-					</div>
-		        
-		    	</div>
-	      
-				<ul class="footer-sns">
-			     	<li class="list-item youtube">
-			          <a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창">유투브</a>
-			        </li>
-			        <li class="list-item instagram">
-			          <a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창">인스타그램</a>
-			        </li>
-			        <li class="list-item facebook">
-			          <a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창">카카오채널</a>
-			        </li>
-			    </ul>
-			    
-			</div>
+<footer id="footer" style="">
+	
+	<div class="footer-sns" style ="float: right; display: flex;">
+	
+		<a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창"></a>
+		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-youtube-round-bk-f59186fc9a1c1124b053d0d7a751e335.png" alt="유튜브">
+		<a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창"></a>
+		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png" alt="인스타그램">
+		<a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창"></a>
+		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png" alt="카카오채널">
+	
+	</div><!-- //footer-sns -->
+	
+	<div class="footer-menu">
+			
+	    <div>
+			<strong>KT&amp;G</strong>
+	    	<ul class="list-item">
+	        	<li>
+	         	<a href="https://www.ktng.com/" target="_blank" title="새창">KT&amp;G</a>
+	         	</li>
+		        <li>
+		        <a href="http://www.ktngwelfare.org/main" target="_blank" title="새창">KT&amp;G 복지재단</a>
+		        </li>
+		        <li>
+		        <a href="https://scholarship.ktngtogether.com" target="_blank" title="새창">KT&amp;G 장학재단</a>
+		        </li>
+	       </ul>
 		</div>
+				        
+		<div>
+			<strong>KT&amp;G의 상상</strong>
+			<ul class="list-item">
+			    <li>
+			      <a href="https://www.sangsangmadang.com/" target="_blank" title="새창">상상마당</a>
+			    </li>
+			    <li>
+			      <a href="https://www.sangsangplanet.com/" target="_blank" title="새창">상상플래닛</a>
+			    </li>
+			    <li>
+			      <a href="https://sangsangstartupcamp.com/" target="_blank" title="새창">상상스타트업캠프</a>
+			    </li>
+			</ul>
+		</div>
+				        
+		<div>
+			<strong>상상유니브</strong>
+			<ul class="list-item">
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/introduce/univ'">소개합니다</a>
+			    </li>
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/museum/gate">상상뮤지엄</a>
+			    </li>
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/event/list">이벤트</a>
+			    </li>
+			</ul>
+		</div>
+		        
+		<div>
+			<strong>도전</strong>
+			<ul class="list-item">
+			    <li>
+			      <a href="javascript:alert('새로운 기능으로 준비 중 입니다.')">상상 실험실</a>
+			    </li>
+			    <li>
+			      <a href="javascript:alert('새로운 기능으로 준비 중 입니다.')">동아리를 위한 Winiv</a>
+			    </li>
+			</ul>
+		</div>
+		        
+		<div>
+			<strong>공지/문의</strong>
+			<ul class="list-item">
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a>
+			    </li>
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/faq/list">자주하는 질문</a>
+			    </li>
+			    <li>
+			      <a href="https://www.sangsanguniv.com/univ/inquiry/write">문의</a>
+			    </li>
+			</ul>
+		</div>
+		
+	</div><!-- //footer-menu -->
+
+	<hr>
+
+	<div class="footer-text">
 	
-			<div class="footer-primary">
-			    <div class="section-inner">
-			    
-					<div class="footer-info-area">
-				        <div class="copyright">
-				          COPYRIGHT© KT&amp;G 상상유니브. ALL RIGHTS RESERVED.
-				        </div>
-				        <address>
-				            법인명 : (주)대학내일 ㅣ 사업자등록번호: 101-86-28789<br>
-				            통신판매업신고 : 2019-서울마포-0655 ㅣ주소: 서울특별시 마포구 독막로 331ㅣ 대표자명: 김영훈
-				        </address>
-				    </div>
-			      
-				     <div class="footer-mark-area">
-				        <ul class="terms-list">
-				          <li><a href="https://www.sangsanguniv.com//univ/policy/terms">이용약관</a></li>
-				          <li><a href="https://www.sangsanguniv.com//univ/policy/policy">개인정보처리방침</a></li>
-				        </ul>
-				     </div>
-			     
-			    </div>
-			</div>
-	</footer>
-	
+        <div style ="text-align: left;">
+          COPYRIGHT© KT&amp;G 상상유니브. ALL RIGHTS RESERVED
+        </div>
+        
+        <div style ="text-align: right;">
+	          <a href="https://www.sangsanguniv.com//univ/policy/terms">이용약관</a>
+	          <a href="https://www.sangsanguniv.com//univ/policy/policy">개인정보처리방침</a>
+	    </div>
+	    
+        <div style ="text-align: left;">  
+             법인명 : (주)대학내일 ㅣ 사업자등록번호: 101-86-28789<br>
+             통신판매업신고 : 2019-서울마포-0655 ㅣ주소: 서울특별시 마포구 독막로 331ㅣ 대표자명: 김영훈
+    	</div>
+    	
+	</div><!-- //footer-text -->
+			
 	<a href="#"><button type="button" class="float-btn-top">최상단으로 가기</button></a>
     
+</footer>
+
 </body>
 </html>
