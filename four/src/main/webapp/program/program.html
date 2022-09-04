@@ -148,8 +148,8 @@ header {
 	color: #ff257c;
 }
 
-.all-menu-container {
-	height: 0px;							/* 메뉴 숨김 */
+.all-menu-container {							/* GNB 전체 메뉴 숨김 */
+	height: 0px;							
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -159,7 +159,7 @@ header {
 	transition: width 0.25s;
 }
 
-.all-menu-container .all-menu-inner {
+.all-menu-container .all-menu-inner {			/* GNB 전체 메뉴 내용 숨김 */
 	height: 0px;
 	width: 240px;
 	overflow-y: auto;
@@ -170,12 +170,12 @@ header {
 	padding: 0;
 }
 
-.all-menu-container:hover .all-menu-inner {
+.all-menu-container:hover .all-menu-inner {		/* GNB 전체 메뉴 버튼 */
 	height: 840px;
   	width: 240px; 
 }
 
-.btn-all-menu:hover ~ .all-menu-container > ul {
+.btn-all-menu:hover ~ .all-menu-container > ul {	/* GNB 전체 메뉴 내용 */
   	height: 840px;
   	width: 240px; 
 }
@@ -187,30 +187,45 @@ header {
 	font-weight: 700;
 }
 
-.all-menu-link:hover .sub-menu-wrap {
-	width: 240px;
-	height: 100%;
+.all-menu-item:hover .sub-menu-wrap {		/* GNB 전체 - 서브메뉴 버튼 미완성 */
+ 	width: 240px;
+ 	height: 100%;
 }
 
-.all-menu-link:hover ~ .submenu > li {
-	height: 100%;
-	width: 240px;
+.all-menu-item:hover ~ .submenu > li {		/* GNB 전체 - 서브메뉴 내용 미완성 */
+ 	height: 100%;
+ 	width: 240px;
+}
+
+.all-menu-container .all-menu-item:hover .all-menu-link {
+	font-weight: 700; color: #ff237a; background-color: #fafafa; 
 }
 
 .all-menu-container .all-menu-item+.all-menu-item {
 	border-top: 1px solid #dedede;
 }
 
+.all-menu-container .all-menu-item.active .sub-menu-wrap {
+	opacity: 1;
+    visibility: visible;
+}
+
+.all-menu-container .all-menu-item:hover .all-menu-link {
+    font-weight: 700;
+    color: #ff237a;
+    background-color: #fafafa;
+}
+
 .all-menu-container .sub-menu-wrap {
 	transition: 0.25;
 	opacity: 0;
-	visibility: hidden;
+/* 	visibility: hidden; */
 	position: absolute;
 	top: 0;
 	left: 240px;
 	width: 240px;
 	height: 100%;
-	overflow: auto;
+/* 	overflow: auto; */
 }
 
 .all-menu-container .sub-menu {
@@ -280,7 +295,7 @@ header {
 }
 
 .stpe-list-container .list-item:hover .step { 
-	display: none; 
+ 	display: none;  
 }
 
 .stpe-list-container .view {
@@ -296,8 +311,8 @@ header {
 }
 
 .stpe-list-container .view .icon {
-	width: 36px;
-	height: 8px;
+	width: 40px;
+	height: 9px;
 	margin-left: 0.54545rem;
 	background:
 		url(/four/program/resources/images//icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png)
@@ -331,8 +346,6 @@ header {
 	margin: 0;
 	padding: 0;
 }
-
-test34
 
 .slick-track {
 	position: relative;
@@ -1111,21 +1124,6 @@ address {
 
 /* CSS영역 */
 </style>
-
-
-<script type="text/javascript">
-window.onload = function() {
-	
-	amc.addEventListener("mouseover", allmenu)
-}
-
-function allmenu() {
-	var amc = document.getElementsByClassName("all-menu-container")
-	amc.style.height = '892px';
-}
-
-//Javascript 영역
-</script>
 
 </head>
 <body>
