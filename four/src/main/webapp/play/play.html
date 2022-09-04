@@ -471,6 +471,112 @@ ul.menu5 {
 	color: gray;
 }
 
+<!-- -->
+
+.topthinkbox {
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mainthinkbox {
+	font-family: 'Noto Sans KR', sans-serif;
+	text-align: center;
+}
+
+.titlethinkbox1, .titlethinkbox2 {
+	color: black;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+[alt="leftslide"], [alt="rightslide"] {
+	cursor: pointer;
+	margin-bottom: 140px;
+}
+
+#slide01:checked ~ .topthinkbox > .mainthinkbox > .titlethinkbox2 {
+	display: none;
+}
+
+#slide02:checked ~ .topthinkbox > .mainthinkbox > .titlethinkbox1 {
+	display: none;
+}
+
+
+.bottomthinkbox1 {
+	height: 100%
+}
+
+<!-- -->
+
+.section input[id*="slide"] {
+	display: none;
+}
+
+.section .slidewrap {
+	max-width: 1600px;
+	margin:0 auto;
+	overflow: hidden;
+}
+
+.section .slidelist {
+	white-space: nowrap;
+	font-size: 0px;
+}
+
+.section .slidelist > li {
+	display: inline-block;
+	vertical-align: middle;
+	width: 100%;
+	transition: all .0s;
+}
+
+.section .slidelist > li > a {
+	display: block;
+	position: relative;
+}
+
+.section .slidelist > li > a img {
+	width: 98%;
+}
+
+.section .slidelist label {
+	position: absolute;
+	z-index: 10;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 50px;
+	cursor: pointer;
+} 
+
+.section .slidelist .left {
+	left: 1px;
+	background: url("/four/play/image/leftslide.PNG") center center / 30% no-repeat;
+}
+
+.section .slidelist .right {
+	right: 1px;
+	background: url("/four/play/image/rightslide.PNG") center center / 30% no-repeat;
+}
+
+.section [id="slide03"]:checked ~ .slidewrap .slidelist > li {transform: translateX(0%);}
+.section [id="slide04"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-100%);}
+.section [id="slide05"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-200%);}
+
+.section [id="slide06"]:checked ~ .slidewrap .slidelist > li {transform: translateX(0%);}
+.section [id="slide07"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-100%);}
+.section [id="slide08"]:checked ~ .slidewrap .slidelist > li {transform: translateX(-200%);}
+
+#slide01:checked ~ .bottomthinkbox1 {
+	display: none;
+}
+
+#slide02:checked ~ .bottomthinkbox2 {
+	display: none;
+}
+
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
@@ -746,8 +852,104 @@ ul.menu5 {
 		<div class="mainsection3">
 		</div>
 	</div>
+	<!--  -->
 	<div class="thinkbox">
+		<input type="radio" name="slide" id="slide01" style="display: none;">
+		<input type="radio" name="slide" id="slide02" style="display: none;" checked>
+		<div class="topthinkbox">
+			<div class="leftthinkbox">
+				<a>
+					<label for="slide01">
+						<img alt="leftslide" src="/four/play/image/leftslide.PNG">
+					</label>
+				</a>
+			</div>
+			<div class="mainthinkbox">
+				<div class="titlethinkbox1">
+				8월의 상상박스
+				</div>
+				<div class="titlethinkbox2">
+				9월의 상상박스
+				</div>
+				<br>
+				<div style="color: gray;">
+				마음대로 놀고 상상박스까지!<br>
+				상상박스는 단순한 리워드가 아닙니다.<br>
+				사회적 기업, 청년창업 기업의<br>
+				제품을 통해 사회적 가치실현을<br>
+				응원하는 상상유니브의 바람입니다
+				</div>			
+			</div>
+			<div class="rightthinkbox">
+				<a>
+					<label for="slide02">
+						<img alt="rightslide" src="/four/play/image/rightslide.PNG">
+					</label>
+				</a>
+			</div>
+		</div>
+		<div class="bottomthinkbox1">
+			<div class="section">
+				<input type="radio" name="cntslide" id="slide03" checked>
+				<input type="radio" name="cntslide" id="slide04">
+				<input type="radio" name="cntslide" id="slide05">
+				<div class="slidewrap">
+					<ul class="slidelist">
+						<li>
+							<a>
+								<img src="/four/play/image/currentthinkbox21.png">
+								<label for="slide04" class="right"></label>
+							</a>
+						</li>
+						<li>
+							<a>
+								<label for="slide03" class="left"></label>
+								<img src="/four/play/image/currentthinkbox22.png">
+								<label for="slide05" class="right"></label>
+							</a>
+						</li>
+						<li>
+							<a>
+								<label for="slide04" class="left"></label>
+								<img src="/four/play/image/currentthinkbox23.png">
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="bottomthinkbox2">
+			<div class="section">
+				<input type="radio" name="cntslide" id="slide06" checked>
+				<input type="radio" name="cntslide" id="slide07">
+				<input type="radio" name="cntslide" id="slide08">
+				<div class="slidewrap">
+					<ul class="slidelist">
+						<li>
+							<a>
+								<img src="/four/play/image/currentthinkbox11.png">
+								<label for="slide07" class="right"></label>
+							</a>
+						</li>
+						<li>
+							<a>
+								<label for="slide06" class="left"></label>
+								<img src="/four/play/image/currentthinkbox12.png">
+								<label for="slide08" class="right"></label>
+							</a>
+						</li>
+						<li>
+							<a>
+								<label for="slide07" class="left"></label>
+								<img src="/four/play/image/currentthinkbox13.png">
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
+	<!--  -->
 	<div class="precautions">
 		<div class="precautions1">
 			유의사항
@@ -826,6 +1028,5 @@ ul.menu5 {
 		</div>
 	</div>
 </footer>
-테스트 이후 데이터
 </body>
 </html>
