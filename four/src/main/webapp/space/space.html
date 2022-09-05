@@ -7,8 +7,8 @@
 <style type="text/css">
 
 /* header */
-.menu1-img {
-	margin-top: 20px;
+.menu1 {
+	margin-top: 10px;
 	margin-left: 30px;
 	position: fixed;
 	display: inline-block;
@@ -16,22 +16,30 @@
 	height: 40px;
 }
 
-/* 다시 */
+.menu1-img {
+	position: fixed;
+	display: inline-block;
+	width: 50px;
+	height: 40px;
+}
+
 .menu2-main {
 	display: none;
 }
 
 .menu1:hover .menu2-main {
-	margin-left: 30px;
     display: block;
     width: 200px;
-    /* 수정해야 함 */
-    position: relative;
+    background-color: #fff;
 }
 
 .menu2 {
-	margin-top: 80px;
+	margin-top: 50px;
     border-bottom: 1px solid #ccc;
+}
+
+.menu2:hover {
+	background-color: #ccc;
 }
 
 .menu2 a {
@@ -50,6 +58,7 @@
 
 /* 다시 */
 .menu2 a:hover .menu3 {
+    background-color: #fafafa;
 	margin-left: 200px;
     display: block;
     width: 150px;
@@ -65,9 +74,8 @@
 	color: #ff237a;
 }
 
-/* header */
-
 .header-logo-img {
+	margin-top: 10px;
 	margin-left: 120px;
 	position: fixed;
 	display: inline-block;
@@ -76,7 +84,7 @@
 }
 
 .header-menu {
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-left: 1150px;
 	position: fixed;
 	display: inline-block;
@@ -115,6 +123,7 @@
 .main-box {
 	background-color: #f5f5f7;
     width: 100%;
+    height: 400px;
     padding-top: 100px;
     /* 다시 */
     padding-left: 20px;
@@ -122,18 +131,79 @@
 
 .main-box-title {
 	font-weight: 700;
-	font-size: 45px;
+	font-size: 50px;
     color: #6e6e73;
+    padding-bottom: 30px;
 }
 
-.mainbox > .main-list:hover {
-    -webkit-transform: translateY(-8px);
+.title2 {
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+
+.main-all-list {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+
+.main-list:hover .sub-list {
     transform: translateY(-8px);
     background-color: #fff;
-    -webkit-box-shadow: 4px 4px 30px 0px #0000001a;
     box-shadow: 4px 4px 30px 0px #0000001a;
 }
 
+.main-list:hover .sub-list .num {
+	display: none;
+}
+
+.sub-list  {
+    transition: 0.4s;
+    border-radius: 40px;
+    width: 300px;
+    height: 150px;
+    text-align: left;
+    padding: 50px;
+}
+
+.view {
+	display: none;
+}
+
+.main-list:hover .view {
+	display: inline-block;
+	color: #ff237a !important;
+}
+
+.search-box {
+	width: 500px;
+	height: 70px;
+	display: block;
+	border: 1px solid #b5b5b5;
+	/* margin-left: 700px;
+	margin-right: 100px; */
+	margin: 50px auto;
+	border-radius: 10px;
+}
+
+.search-btn {
+	width: 40px;
+	height: 40px;
+	background: url("https://www.sangsanguniv.com/resources/images/icon/icon-search-pk-e104828ea256760906e992f1ada3639e.png");
+	background-size: cover;
+	margin-top: 15px;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.search-input {
+	border: none;
+	width: 400px;
+	height: 30px;
+}
+
+/* 최상단으로 가기 */
 .top {
     position: fixed;
     bottom: 10px;
@@ -163,7 +233,7 @@
 .footer-text {
 	padding: 40px 20px;
 	border-top: 3px solid #dedede;
-    color: #b2b2b2;
+    color: #b2b2b2;;
 }
 
 .footer-copyright {
@@ -171,7 +241,7 @@
 }
 
 .footer-text a {
-    color: #b2b2b2;
+    color:  #989898;
     display: inline-block;
     
 }
@@ -227,7 +297,7 @@ a {
 </head>
 <body>
 
-<header id="header" style="border-color: #f5f5f7; background-color: #fff;">
+<header>
 
 <div class="header">
 	
@@ -236,7 +306,7 @@ a {
 		<ul class="menu1">
 		
 			<button class="menu1-btn" type="button">
-				<img class="menu1-img" src="https://www.sangsanguniv.com/resources/images/icon/icon-allmenu-btn-bk-6b09023839cf00f8f36f9612702ce321.png" alt="전체메뉴">
+			<img class="menu1-img" src="https://www.sangsanguniv.com/resources/images/icon/icon-allmenu-btn-bk-6b09023839cf00f8f36f9612702ce321.png" alt="전체메뉴">
 			</button>
 			
 		<ul class="menu2-main">
@@ -430,58 +500,77 @@ a {
 	
 		<h2 class="main-box-title">
 		    <span>상상유니브</span> +
-		    <span>공간</span>
+		    <span class="title2">공간</span>
 		</h2>
 		
-		<div class="main-list">
-			<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">
-			<div>01</div>
-			<p>
-			    자유롭게 소통하며<br>
-			    꿈을 키워가는 창작 공방
-			</p>
-			<strong>아틀리에</strong>
-			<div style="display: none;">
-			    <span>VIEW</span>
-				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
-			</div>
-		    </a>
-		 </div>
+		<div class="main-all-list">
 		
-		<div class="main-list">
-			<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">
-			<div>02</div>
-			<p>‘크리에이터를 꿈꾸는 나’를 위한 <br>
-			    영상 제작소
-			</p>
-			<strong>스튜디오</strong>
-			<div style="display: none;">
-			    <span>VIEW</span>
-				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+			<div class="main-list">
+				<div class="sub-list">
+				
+					<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">
+					<div class="num">01</div>
+					<p>
+					    자유롭게 소통하며<br>
+					    꿈을 키워가는 창작 공방
+					</p>
+					<br>
+					<strong>아틀리에<br><br></strong>
+					<div class="view">
+					    <span>VIEW</span>
+						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+					</div>
+				    </a>
+				    
+			    </div>
+			 </div>
+			
+			<div class="main-list">
+				<div class="sub-list">
+				
+					<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">
+					<div class="num">02</div>
+					<p>‘크리에이터를 꿈꾸는 나’를 위한 <br>
+					    영상 제작소
+					</p>
+					<br>
+					<strong>스튜디오<br><br></strong>
+					<div class="view">
+					    <span>VIEW</span>
+						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+					</div>
+				    </a>
+				    
+			   </div>
 			</div>
-		    </a>
-		</div>
-		
-		<div class="main-list">
-			<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">
-			<div>03</div>
-			<p>‘상상펀드’기금으로 구입한<br>
-		    	면접정장을 무료로 대여할 수 있는 서비스
-		    </p>
-			<strong>상상옷장</strong>
-			<div style="display: none;">
-				<span>VIEW</span>
-				<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+			
+			<div class="main-list">
+				<div class="sub-list">
+			
+					<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">
+					<div class="num">03</div>
+					<p>‘상상펀드’기금으로 구입한<br>
+				    	면접정장을 무료로 대여할 수 있는 서비스
+				    </p>
+				    <br>
+					<strong>상상옷장<br><br></strong>
+					<div class="view">
+						<span>VIEW</span>
+						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
+					</div>
+				    </a>
+				    
+			    </div>
 			</div>
-		    </a>
-		</div>
+			
+		</div><!-- //main-list -->
 		
 	</div><!-- //main-box -->
  
 	<div class="search-box">
 	
-	    <button type="submit" class="btn-search">검색</button>
-	    <input type="text" id="keyword" name="keyword" placeholder="원하는 공간을 한번에 찾아보세요.">
+	    <button class="search-btn" type="submit"></button>
+	    <input class="search-input" type="text" id="keyword" name="keyword" placeholder="원하는 공간을 한번에 찾아보세요.">
 	    
 	</div><!-- //search-box -->
 
@@ -627,13 +716,13 @@ a {
     
 <footer id="footer" style="">
 	
-	<div class="footer-sns" style ="float: right; display: flex;">
+	<div class="footer-sns" style ="float: right; display: inline-block;">
 	
-		<a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창"></a>
+		<a href="https://www.youtube.com/user/sangsanguniv0" target="_blank" title="새창">유튜브</a>
 		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-youtube-round-bk-f59186fc9a1c1124b053d0d7a751e335.png" alt="유튜브">
-		<a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창"></a>
+		<a href="https://www.instagram.com/sangsanguniv" target="_blank" title="새창">인스타그램</a>
 		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png" alt="인스타그램">
-		<a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창"></a>
+		<a href="https://pf.kakao.com/_HcxjKC" target="_blank" title="새창">카카오채널</a>
 		<img src="https://www.sangsanguniv.com/resources/images/icon/icon-instagram-round-bk-231080d8e14ada6a908196feaae630f4.png" alt="카카오채널">
 	
 	</div><!-- //footer-sns -->
