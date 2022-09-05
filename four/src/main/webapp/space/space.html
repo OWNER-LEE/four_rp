@@ -24,47 +24,48 @@
 .menu1:hover .menu2-main {
 	margin-left: 30px;
     display: block;
-    width: 100px;
+    width: 200px;
     /* 수정해야 함 */
     position: relative;
 }
 
 .menu2 {
-	margin-top: 70px;
+	margin-top: 80px;
     border-bottom: 1px solid #ccc;
-}
-
-.menu2:hover {
-    background-color: #fafafa;
-	color: #ff237a;
 }
 
 .menu2 a {
     font-weight: 700;
 }
 
+.menu2 a:hover {
+    background-color: #fafafa;
+	color: #ff237a;
+}
+
 .menu3 {
-	display: none;
+	margin-left: 80px;
+	display: block;
 }
 
 /* 다시 */
-.manu2:hover .menu3 {
-	margin-left: 60px;
+.menu2 a:hover .menu3 {
+	margin-left: 200px;
     display: block;
-    width: 100px;
+    width: 150px;
     position: relative;
-}
-
-.menu3:hover {
-    background-color: #fafafa;
-	color: #ff237a;
 }
 
 .menu3 a {
     font-weight: 700;
 }
 
-/*  */
+.menu3 a:hover {
+    background-color: #fafafa;
+	color: #ff237a;
+}
+
+/* header */
 
 .header-logo-img {
 	margin-left: 120px;
@@ -115,7 +116,8 @@
 	background-color: #f5f5f7;
     width: 100%;
     padding-top: 100px;
-    padding-left: 
+    /* 다시 */
+    padding-left: 20px;
 }
 
 .main-box-title {
@@ -143,6 +145,36 @@
     background-size: cover;
 }
 
+/* footer */
+
+#footer {
+    background-color: #efefef;
+}
+
+.footer-sns {
+	padding: 100px 20px;
+}
+.footer-menu {
+	padding: 100px 20px;
+	display: flex;
+    justify-content: space-between;
+}
+
+.footer-text {
+	padding: 40px 20px;
+	border-top: 3px solid #dedede;
+    color: #b2b2b2;
+}
+
+.footer-copyright {
+	color: #999;
+}
+
+.footer-text a {
+    color: #b2b2b2;
+    display: inline-block;
+    
+}
 
 /* 전체적 */
 html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, table, tr, td, dl, dt, dd, a, img, input, button, select, textarea {
@@ -195,7 +227,9 @@ a {
 </head>
 <body>
 
-<header id="header">
+<header id="header" style="border-color: #f5f5f7; background-color: #fff;">
+
+<div class="header">
 	
 	<div class="header-all-menu">
 	
@@ -214,8 +248,7 @@ a {
 			<li class="menu2">
 				<a href="/four/program/program.html">프로그램</a>
 				
-				<div class="menu3">
-					<ul>
+					<ul class="menu3">
 						<li>
 							<a href="https://www.sangsanguniv.com/univ/programClass/list">클래스</a>
 						</li>
@@ -235,14 +268,12 @@ a {
 							<a href="javascript:void(0);" onclick="alert('오픈준비중');">로컬프로젝트</a>
 						</li>
 					</ul>
-				</div>
 				
 			</li>
 			
 			<li class="menu2">
 				<a href="/four/space/space.html">공간</a>
 				
-				<div>
 					<ul class="menu3">
 						<li>
 							<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">아틀리에</a>
@@ -254,14 +285,12 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">상상옷장</a>
 						</li>
 					</ul>
-				</div>
 				
 			</li>
 			
 			<li class="menu2">
 				<a href="/four/local/local.html">로컬</a>
 				
-				<div>
 					<ul class="menu3">
 						<li>
 							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=SEOUL_S">서울</a>
@@ -303,7 +332,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEJU">제주</a>
 						</li>
 					</ul>		
-				</div>
 				
 			</li>
 			
@@ -314,7 +342,6 @@ a {
 			<li class="menu2">
 				<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브</a>
 				
-				<div>
 					<ul class="menu3">
 						<li>
 							<a href="https://www.sangsanguniv.com/univ/introduce/univ">상상유니브 소개</a>
@@ -323,15 +350,13 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/museum/gate">뮤지엄</a>
 						</li>
 					</ul>
-				</div>
 				
 			</li>
 			
 			<li class="menu2">
 				<a href="https://www.sangsanguniv.com/univ/notice/list">알려드립니다</a>
 				
-				<div class="menu3">
-					<ul>
+					<ul class="menu3">
 						<li>
 							<a href="https://www.sangsanguniv.com/univ/notice/list">공지사항</a>
 						</li>
@@ -342,7 +367,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/inquiry/write">문의하기</a>
 						</li>
 					</ul>
-				</div>
 				
 			</li>
 							
@@ -395,7 +419,9 @@ a {
 		</nav>
 		
 	</div><!-- //header-menu -->
-	
+
+</div> <!-- //header -->
+
 </header>
 	
 <main id="main" data-path="https://www.sangsanguniv.com/univ/space/list" style="padding-top: 80px;">
@@ -614,7 +640,7 @@ a {
 	
 	<div class="footer-menu">
 			
-	    <div>
+	    <div class="fotter-menu1">
 			<strong>KT&amp;G</strong>
 	    	<ul class="list-item">
 	        	<li>
@@ -629,7 +655,7 @@ a {
 	       </ul>
 		</div>
 				        
-		<div>
+		<div class="fotter-menu2">
 			<strong>KT&amp;G의 상상</strong>
 			<ul class="list-item">
 			    <li>
@@ -644,7 +670,7 @@ a {
 			</ul>
 		</div>
 				        
-		<div>
+		<div class="fotter-menu3">
 			<strong>상상유니브</strong>
 			<ul class="list-item">
 			    <li>
@@ -659,7 +685,7 @@ a {
 			</ul>
 		</div>
 		        
-		<div>
+		<div class="fotter-menu4">
 			<strong>도전</strong>
 			<ul class="list-item">
 			    <li>
@@ -687,12 +713,10 @@ a {
 		</div>
 		
 	</div><!-- //footer-menu -->
-
-	<hr>
-
+	
 	<div class="footer-text">
 	
-        <div style ="text-align: left;">
+        <div class="footer-copyright" style ="text-align: left;">
           COPYRIGHT© KT&amp;G 상상유니브. ALL RIGHTS RESERVED
         </div>
         
