@@ -4,6 +4,109 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	// 아코디언 핸들러
+	accordionHandler();
+	// 전체메뉴
+	allMenuController();
+})
+
+// 전체메뉴 닫기 함수
+window.allMenuCloseHandler = allMenuCloseHandler;
+
+function accordionHandler() {
+  var accordionHeader = $('.accordion-header');
+  if (!accordionHeader.length) return;
+  $(document)
+    .off('click')
+    .on('click', '.accordion-header', function () {
+      var $this = $(this);
+      accordionFn($this);
+    });
+}
+
+function accordionFn(el, speed) {
+  speed = speed ? speed : 200;
+  if (el.hasClass('solo')) {
+    el.parents('.accordion-list').toggleClass('active').find('.accordion-body').stop().slideToggle(speed);
+  } else {
+    el.parents('.accordion-list').toggleClass('active').find('.accordion-body').stop().slideToggle(speed).parent('.accordion-list').siblings('.accordion-list').removeClass('active').find('.accordion-body').slideUp(speed);
+  }
+}
+
+function allMenuController() {
+  var $allMenuContainer = $('.all-menu-container');
+  if (!$allMenuContainer.length) return;
+  var $dim = $('.all-menu-dim');
+  var $headerAllMenuBtn = $('.btn-all-menu');
+  var $allMenuInner = $('.all-menu-inner');
+  var $menuItem = $('.all-menu-item');
+
+  $allMenuContainer.on({
+    mouseenter: function () {
+      $allMenuContainer.show();
+      $dim.show();
+    },
+    mouseleave: function () {
+      $allMenuContainer.removeClass('open');
+      $allMenuContainer.hide();
+      $dim.hide();
+      $menuItem.removeClass('active');
+    },
+  });
+
+  $menuItem.on({
+    mouseenter: function () {
+      var $this = $(this);
+      if ($this.find('.sub-menu-wrap').length) {
+        $allMenuContainer.addClass('open');
+      } else {
+        $allMenuContainer.removeClass('open');
+      }
+      $this.addClass('active').siblings('.all-menu-item').removeClass('active');
+    },
+  });
+
+  $headerAllMenuBtn.on({
+    mouseenter: function () {
+      $dim.show();
+      $allMenuContainer.show();
+      getMenuHeight();
+    },
+    mouseleave: function () {
+      $allMenuContainer.hide();
+      $allMenuContainer.removeClass('open');
+      $menuItem.removeClass('active');
+      $dim.hide();
+    },
+  });
+
+  $(window).on('resize', function () {
+    getMenuHeight();
+  });
+
+  function getMenuHeight() {
+    var _winHeight = $(window).height();
+    var _allMenuInnerHeight = _winHeight - (getHeaderHeight() + getFixedTopBannerHeight());
+    $allMenuInner.css('height', _allMenuInnerHeight);
+  }
+}
+
+// 전체메뉴 닫기 핸들러
+function allMenuCloseHandler() {
+  var $allMenuContainer = $('.all-menu-container');
+  var $mobileAllMenuContainer = $('.mobile-all-menu-container');
+  var $dim = $('.all-menu-dim');
+  $allMenuContainer.hide();
+  $mobileAllMenuContainer.hide();
+  $dim.hide();
+  $('body').removeClass('scroll-disable');
+}
+</script>
+
 <style type="text/css">
 
 html {
@@ -249,6 +352,7 @@ header {
 }
 
 .all-menu-dim {
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -601,7 +705,7 @@ header {
 }
 
 .filter-menu-header:hover ~ .filter-menu-body {
-    display: block;
+/*     display: block;  */
 }
 
 .filter-menu-body .selector-wrapper {
@@ -1269,7 +1373,7 @@ address {
 				</div>
 			</div>
 		</header>
-		<div class="all-menu-dim" style="display: none;"></div>
+		<div class="all-menu-dim"></div>
 	</div>
 
 <!-- 콘텐츠 -->
