@@ -146,6 +146,7 @@
     justify-content: space-between;
     margin-left: 30px;
     margin-right: 50px;
+    cursor: pointer;
 }
 
 .main-list:hover .sub-list {
@@ -161,10 +162,26 @@
 .sub-list  {
     transition: 0.4s;
     border-radius: 40px;
-    width: 300px;
+    width: 500px;
     height: 150px;
     text-align: left;
     padding: 50px;
+}
+
+.num {
+	font-size: 22px;
+    font-weight: 700;
+	color: rgba(153, 153, 153, 0.2);
+}
+
+.sub-text {
+	font-size: 17px;
+    font-weight: 500;
+	color: #6e6e73;
+}
+
+.sub-name {
+	font-size: 25px;
 }
 
 .view {
@@ -202,6 +219,80 @@
 	width: 400px;
 	height: 30px;
 }
+
+.sub-box {
+	margin-left: 30px;
+	margin-right: 30px;
+	display: flex;
+	border-top: 2px solid #000; 
+}
+
+.filter-box {
+	margin-left: 30px;
+	width: 400px;
+    border-right: 1px solid #d6d6d6;
+    cursor: pointer;
+}
+
+.filter1 {
+	border-bottom: 1px solid #d6d6d6;
+    align-items: center;
+    padding: 30px 30px;
+}
+
+.filter2 {
+	border-bottom: 1px solid #d6d6d6;
+    align-items: center;
+    padding: 30px 30px;
+}
+
+.selector, .more {
+	display: none;
+}
+
+.filter-reset {
+    display: inline-block;
+	color: #ff237a !important;
+    border-bottom: 1px solid #ff237a;
+    background-color: transparent;
+	margin-top: 30px;
+	margin-left: 320px;
+}
+
+.list1 {
+	display: inline-block;
+}
+
+.list2 {
+	display: inline-block;
+}
+
+.list3 {
+	display: inline-block;
+}
+
+.list4 {
+	display: inline-block;
+}
+
+.list5 {
+	display: inline-block;
+}
+
+.list6 {
+	display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* 최상단으로 가기 */
 .top {
@@ -270,7 +361,7 @@ div {
 button {
     cursor: pointer;
     border: 0;
-    /* background-color: transparent; */
+   /*  background-color: transparent; */
 }
 
 a {
@@ -509,13 +600,13 @@ a {
 				<div class="sub-list">
 				
 					<a href="https://www.sangsanguniv.com/univ/spaceAtelier/introduce">
-					<div class="num">01</div>
-					<p>
+					<div class="num">01<br><br></div>
+					<p class="sub-text">
 					    자유롭게 소통하며<br>
 					    꿈을 키워가는 창작 공방
 					</p>
 					<br>
-					<strong>아틀리에<br><br></strong>
+					<strong class="sub-name">아틀리에<br><br></strong>
 					<div class="view">
 					    <span>VIEW</span>
 						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
@@ -529,12 +620,13 @@ a {
 				<div class="sub-list">
 				
 					<a href="https://www.sangsanguniv.com/univ/spaceStudio/introduce">
-					<div class="num">02</div>
-					<p>‘크리에이터를 꿈꾸는 나’를 위한 <br>
+					<div class="num">02<br><br></div>
+					<p class="sub-text">
+						‘크리에이터를 꿈꾸는 나’를 위한 <br>
 					    영상 제작소
 					</p>
 					<br>
-					<strong>스튜디오<br><br></strong>
+					<strong class="sub-name">스튜디오<br><br></strong>
 					<div class="view">
 					    <span>VIEW</span>
 						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
@@ -548,12 +640,13 @@ a {
 				<div class="sub-list">
 			
 					<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">
-					<div class="num">03</div>
-					<p>‘상상펀드’기금으로 구입한<br>
+					<div class="num">03<br><br></div>
+					<p class="sub-text">
+						‘상상펀드’기금으로 구입한<br>
 				    	면접정장을 무료로 대여할 수 있는 서비스
 				    </p>
 				    <br>
-					<strong>상상옷장<br><br></strong>
+					<strong class="sub-name">상상옷장<br><br></strong>
 					<div class="view">
 						<span>VIEW</span>
 						<img src="https://www.sangsanguniv.com/resources/images/icon/icon-arrow-bk-34x7-0bafd7c171208796f7896668081d8de4.png" alt="화살표">
@@ -574,144 +667,150 @@ a {
 	    
 	</div><!-- //search-box -->
 
-	<div class="filter-box">
+	<div class="sub-box">
 	
-		<div class="filter1">
+		<aside class="filter-main">
 		
-		    <div class="button">공간유형</div>
-		    <span class="icon-arrow"></span>
-		                                
-		    <div class="selector">
-			  	<div>
-			  		<input type="checkbox" name="atelier" id="atelier" value="1">
-			  		<label for="atelier">아틀리에</label>
-			  		<input type="checkbox" name="atelier" id="studio" value="2">
-			  		<label for="studio">스튜디오</label>
-			  	</div>
-		    </div>
-		    
-	    </div><!-- //filter1 -->
-	                            
-		<div class="filter2">
+		<div class="filter-box">
 		
-			<div class="button">지역</div>
-			<span class="icon-arrow"></span>
-		                                
-			<div class="selector">
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgSEOUL_S" value="SEOUL_S">
-					<label for="orgSEOUL_S">서울</label>
-					<input type="checkbox" name="orgId[]" id="orgBUSAN" value="BUSAN">
-					<label for="orgBUSAN">부산</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgDAEGU" value="DAEGU">
-					<label for="orgDAEGU">대구</label>
-					<input type="checkbox" name="orgId[]" id="orgINCHEON" value="INCHEON">
-					<label for="orgINCHEON">인천</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgGYEONGGI" value="GYEONGGI">
-					<label for="orgGYEONGGI">경기</label>
-					<input type="checkbox" name="orgId[]" id="orgJEONNAM" value="JEONNAM">
-					<label for="orgJEONNAM">전남</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgCHUNGNAM" value="CHUNGNAM">
-					<label for="orgCHUNGNAM">충남</label>
-					<input type="checkbox" name="orgId[]" id="orgGYEONGNAM" value="GYEONGNAM">
-					<label for="orgGYEONGNAM">경남</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgGANGWON" value="GANGWON">
-					<label for="orgGANGWON">강원</label>
-					<input type="checkbox" name="orgId[]" id="orgCHUNGBUK" value="CHUNGBUK">
-					<label for="orgCHUNGBUK">충북</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgJEONBUK" value="JEONBUK">
-					<label for="orgJEONBUK">전북</label>
-					<input type="checkbox" name="orgId[]" id="orgGYEONGBUK" value="GYEONGBUK">
-					<label for="orgGYEONGBUK">경북</label>
-				</div>
-				<div>
-					<input type="checkbox" name="orgId[]" id="orgJEJU" value="JEJU">
-					<label for="orgJEJU">제주</label>
-				</div>
-				                                    
-			 	<button type="button" class="more">더보기 +</button>
-			</div>
-		                      
-			<button type="button" class="filter-reset">필터 초기화</button>
+			<div class="filter1">
 			
-		</div><!-- //filter2 -->
+			    <div class="button">공간유형</div>
+			    <span class="icon-arrow"></span>
+			                                
+			    <div class="selector">
+				  	<div>
+				  		<input type="checkbox" name="atelier" id="atelier" value="1">
+				  		<label for="atelier">아틀리에</label>
+				  		<input type="checkbox" name="atelier" id="studio" value="2">
+				  		<label for="studio">스튜디오</label>
+				  	</div>
+			    </div>
+			    
+		    </div><!-- //filter1 -->
+		                            
+			<div class="filter2">
+			
+				<div class="button">지역</div>
+				<span class="icon-arrow"></span>
+			                                
+				<div class="selector">
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgSEOUL_S" value="SEOUL_S">
+						<label for="orgSEOUL_S">서울</label>
+						<input type="checkbox" name="orgId[]" id="orgBUSAN" value="BUSAN">
+						<label for="orgBUSAN">부산</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgDAEGU" value="DAEGU">
+						<label for="orgDAEGU">대구</label>
+						<input type="checkbox" name="orgId[]" id="orgINCHEON" value="INCHEON">
+						<label for="orgINCHEON">인천</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgGYEONGGI" value="GYEONGGI">
+						<label for="orgGYEONGGI">경기</label>
+						<input type="checkbox" name="orgId[]" id="orgJEONNAM" value="JEONNAM">
+						<label for="orgJEONNAM">전남</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgCHUNGNAM" value="CHUNGNAM">
+						<label for="orgCHUNGNAM">충남</label>
+						<input type="checkbox" name="orgId[]" id="orgGYEONGNAM" value="GYEONGNAM">
+						<label for="orgGYEONGNAM">경남</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgGANGWON" value="GANGWON">
+						<label for="orgGANGWON">강원</label>
+						<input type="checkbox" name="orgId[]" id="orgCHUNGBUK" value="CHUNGBUK">
+						<label for="orgCHUNGBUK">충북</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgJEONBUK" value="JEONBUK">
+						<label for="orgJEONBUK">전북</label>
+						<input type="checkbox" name="orgId[]" id="orgGYEONGBUK" value="GYEONGBUK">
+						<label for="orgGYEONGBUK">경북</label>
+					</div>
+					<div>
+						<input type="checkbox" name="orgId[]" id="orgJEJU" value="JEJU">
+						<label for="orgJEJU">제주</label>
+					</div>
+					                                    
+				 	<button type="button" class="more">더보기 +</button>
+				</div>
+			                      
+				
+			</div><!-- //filter2 -->
+			
+		</div><!-- //filter-box -->
 		
-	</div><!-- //filter-box -->
-                    
-	<div class="filter-list">
-	
-	   	<div>
-	          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
-	                 <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q235248631aacdc93645d7165dd/blob" alt="한양대에리카 클래스룸">
-	          </a>
-	             <div class="text">아틀리에(경기)</div>
-	          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
-	              <span>한양대에리카 클래스룸</span>
-	          </a>
-	   	</div>
-	
-	    <div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
-	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q182547daddf5d7c201e07db863/blob" alt="한양대에리카 유니브존">
-	           </a>
-	              <div class="text">아틀리에(경기)</div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
-	               <span>한양대에리카 유니브존</span>
-	           </a>
-	    </div>
-	
-	    <div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
-	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k383301fe013445a9b60db4763a/blob" alt="안동대 상상 아틀리에 라운지">
-	           </a>
-	              <div class="text">아틀리에(경북)</div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
-	               <span>안동대 상상 아틀리에 라운지</span>
-	           </a>
-	    </div>
-	
-		<div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
-	                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k34359247e209c7ae81100897e4/blob" alt="안동대 상상 아틀리에 1번가">
-	           </a>
-	              <div class="text">아틀리에(경북)</div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
-	              	<span>안동대 상상 아틀리에 1번가</span>
-	           </a>
-	    </div>
-	
-		<div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
-	           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k305595af1c83dbd40feb6dd2f6/blob" alt="안동대 상상 아틀리에 4번가">
-	           </a>
-	              <div class="text">아틀리에(경북)</div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
-	               <span>안동대 상상 아틀리에 4번가</span>
-	           </a>
-	    </div>
-	
-		<div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
-	           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2d10j422631518906f1d123efb8464a/blob" alt="오디오/스트리밍룸">
-	           </a>
-	           <div class="text">스튜디오(대구)</div>
-	           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
-	               <span>오디오/스트리밍룸</span>
-	           </a>
-	    </div>
-		    
-	</div><!-- //filter-list -->
-
+			<button type="button" class="filter-reset">필터 초기화</button>
+	    
+	    </aside>               
+		<nav class="filter-list">
+		
+		   	<div class="list1">
+		          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
+		                 <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q235248631aacdc93645d7165dd/blob" alt="한양대에리카 클래스룸">
+		          </a>
+		             <div class="text">아틀리에(경기)</div>
+		          <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q235255b044">
+		              <span>한양대에리카 클래스룸</span>
+		          </a>
+		   	</div>
+		
+		    <div class="list2">
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
+		                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2h01q182547daddf5d7c201e07db863/blob" alt="한양대에리카 유니브존">
+		           </a>
+		              <div class="text">아틀리에(경기)</div>
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2h01q182559dc32">
+		               <span>한양대에리카 유니브존</span>
+		           </a>
+		    </div>
+		
+		    <div class="list3">
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
+		                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k383301fe013445a9b60db4763a/blob" alt="안동대 상상 아틀리에 라운지">
+		           </a>
+		              <div class="text">아틀리에(경북)</div>
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k383306f287">
+		               <span>안동대 상상 아틀리에 라운지</span>
+		           </a>
+		    </div>
+		
+			<div class="list4">
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
+		                  <img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k34359247e209c7ae81100897e4/blob" alt="안동대 상상 아틀리에 1번가">
+		           </a>
+		              <div class="text">아틀리에(경북)</div>
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k343598c5f4">
+		              	<span>안동대 상상 아틀리에 1번가</span>
+		           </a>
+		    </div>
+		
+			<div class="list5">
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
+		           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2g21k305595af1c83dbd40feb6dd2f6/blob" alt="안동대 상상 아틀리에 4번가">
+		           </a>
+		              <div class="text">아틀리에(경북)</div>
+		           <a href="https://www.sangsanguniv.com/univ/spaceAtelier/reservation?spaceId=a2g21k305603910c">
+		               <span>안동대 상상 아틀리에 4번가</span>
+		           </a>
+		    </div>
+		
+			<div class="list6">
+		           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
+		           	<img src="https://sjs888056-sjs888056.ktcdn.co.kr/a2d10j422631518906f1d123efb8464a/blob" alt="오디오/스트리밍룸">
+		           </a>
+		           <div class="text">스튜디오(대구)</div>
+		           <a href="https://www.sangsanguniv.com/univ/spaceStudio/reservation?spaceId=a2d10j4226360154">
+		               <span>오디오/스트리밍룸</span>
+		           </a>
+		    </div>
+			    
+		</nav><!-- //filter-list -->
+	</div><!-- //sub-box -->
 </main>
     
 <footer id="footer" style="">
