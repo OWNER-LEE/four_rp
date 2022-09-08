@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상상유니브</title>
+<link rel="shortcut icon" href="/four/program/resources/images/favicon.ico">
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -13,9 +14,6 @@ $(document).ready(function () {
 	// 전체메뉴
 	allMenuController();
 })
-
-// 전체메뉴 닫기 함수
-window.allMenuCloseHandler = allMenuCloseHandler;
 
 function accordionHandler() {
   var accordionHeader = $('.accordion-header');
@@ -95,16 +93,6 @@ function allMenuController() {
   }
 }
 
-// 전체메뉴 닫기 핸들러
-function allMenuCloseHandler() {
-  var $allMenuContainer = $('.all-menu-container');
-  var $mobileAllMenuContainer = $('.mobile-all-menu-container');
-  var $dim = $('.all-menu-dim');
-  $allMenuContainer.hide();
-  $mobileAllMenuContainer.hide();
-  $dim.hide();
-  $('body').removeClass('scroll-disable');
-}
 </script>
 
 <style type="text/css">
