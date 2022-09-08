@@ -333,6 +333,7 @@ header {
 .all-menu-container .sub-menu-link {
 	display: inline-block;
 	font-size: 0.68182rem;
+	font-weight: 700;
 }
 
 .all-menu-container .sub-menu-item+.sub-menu-item {
@@ -739,6 +740,10 @@ header {
     background-size: 18px 18px;
 }
 
+.selector-cover.checkbox.square input:checked + label, .selector-cover.radio.square input:checked + label {
+	background-image: url("/four/program/resources/images/icon-checkbox-square-bk-on-79e6441283c7346e2277c163fe374bde.png");
+ }
+
 .selector-cover input + label {
     background-repeat: no-repeat;
     background-position: 0 0;
@@ -808,7 +813,7 @@ header {
 }
 
 .photo-list-container {
-    display: flex;
+    display: -webkit-box;
     flex-wrap: wrap;
 }
 
