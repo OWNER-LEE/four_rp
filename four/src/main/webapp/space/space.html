@@ -4,6 +4,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script>   
+$(document).ready(function(){
+
+
+	$('.menu1-btn').mouseenter(function(){
+		$('.menu2-main').show()
+
+		$('.menu3').hide()
+	});
+	
+	$('.menu2-main').mouseenter(function(){
+		
+		$('.menu2').mouseenter(function(){
+			$(this).children('.menu3').show()
+	
+		})
+		$('.menu2').mouseleave(function(){
+			$(this).children('.menu3').hide()
+		});
+		
+	}).mouseleave(function(){
+		$('.menu2-main').hide()
+	});
+});
+
+</script>
+
 <style type="text/css">
 
 /* header */
@@ -33,55 +62,71 @@
 }
 
 .menu2-main {
-	display: none;
-}
-
-.menu1:hover .menu2-main {
-    display: block;
-    width: 200px;
+    display: none;
+	position: fixed;
+	top: 90px;
+	left: 0px;
+	width: 250px;
+	height: 1000px;
+	overflow-y: scroll; 
     background-color: #fff;
 }
 
 .menu2 {
-	margin-top: 30px;
-    border-bottom: 1px solid #ccc;
+	display: block;
+	width: 250px;
+	height: 60px;
+	padding-top: 40px;
+    border-top: 1px solid #dedede;
+    text-align: center;
 }
 
 .menu2:hover {
-	background-color: #ccc;
+	background-color: #fAfAfA;
+	color: #ff237a;
+}
+
+.menu2:hover > a {
+	color: #ff237a;
+    font-weight: 700;
 }
 
 .menu2 a {
-    font-weight: 700;
-}
-
-.menu2 a:hover {
-    background-color: #fafafa;
-	color: #ff237a;
+	font-size: 17px;
 }
 
 .menu3 {
-	margin-left: 80px;
 	display: block;
+	position: fixed;
+	top: 90px;
+	left: 250px;
+	width: 200px;
+	height: 1000px;
+	background-color: #ddd;
+	padding-top: 40px;
+	padding-right: 20px;
+	padding-left: 40px;
 }
 
-/* 다시 */
-.menu2 a:hover .menu3 {
-    background-color: #fafafa;
-	margin-left: 200px;
-    display: block;
-    width: 150px;
-    position: relative;
+.menu3 li a {
+	display: block;
+	padding: 15px;
+	font-size: 17px;
+	text-align: left;
 }
 
-.menu3 a {
-    font-weight: 700;
-}
-
-.menu3 a:hover {
-    background-color: #fafafa;
+.menu3 li a:hover {
 	color: #ff237a;
+    font-weight: 700;
+	text-decoration: underline;
 }
+
+
+
+
+
+
+
 
 .header-logo-img {
 	margin-top: 10px;
@@ -221,15 +266,16 @@
 	background-size: cover;
 	margin-top: 15px;
 	margin-right: 15px;
-	margin-left: 15px;
+	margin-left: 35px;
 }
 
 .search-input {
 	display: inline-block;
 	border: none;
-	width: 400px;
+	width: 300px;
 	height: 30px;
 	font-size: 20px;
+	padding-left: 10px;
 }
 
 .sub-box {
@@ -467,7 +513,7 @@ a {
 
 /* 스크롤바 */
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
     height: 6px;
 }
 ::-webkit-scrollbar-thumb {
@@ -526,7 +572,6 @@ a {
 							<a href="javascript:void(0);" onclick="alert('오픈준비중');">로컬프로젝트</a>
 						</li>
 					</ul>
-				
 			</li>
 			
 			<li class="menu2">
@@ -543,7 +588,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/spaceRoom/introduce">상상옷장</a>
 						</li>
 					</ul>
-				
 			</li>
 			
 			<li class="menu2">
@@ -590,7 +634,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/local/view?orgId=JEJU">제주</a>
 						</li>
 					</ul>		
-				
 			</li>
 			
 			<li class="menu2">
@@ -608,7 +651,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/museum/gate">뮤지엄</a>
 						</li>
 					</ul>
-				
 			</li>
 			
 			<li class="menu2">
@@ -625,7 +667,6 @@ a {
 							<a href="https://www.sangsanguniv.com/univ/inquiry/write">문의하기</a>
 						</li>
 					</ul>
-				
 			</li>
 							
 			<li class="menu2">
@@ -653,7 +694,7 @@ a {
 	<div>
 	
 		<h1 class="header-logo">
-			<a href="/four/main/main.html">
+			<a href="https://www.sangsanguniv.com/univ/main/main">
 				<!-- <img src="https://www.sangsanguniv.com/resources/images/logo/logo-header-w.png" alt="KT&amp;G 상상유니브" class="logo-white"> -->
 				<img class="header-logo-img" src="https://www.sangsanguniv.com/resources/images/logo/logo-header-color.png" alt="KT&amp;G 상상유니브" class="logo-color">
 			</a>
@@ -761,7 +802,6 @@ a {
 	
 	    <button class="search-btn" type="submit"></button>
 	    <input class="search-input" type="text" id="keyword" name="keyword" placeholder="원하는 공간을 한 번에 찾아보세요.">
-	    
 	</div><!-- //search-box -->
 
 	<div class="sub-box">
