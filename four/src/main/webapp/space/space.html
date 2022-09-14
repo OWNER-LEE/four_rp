@@ -8,8 +8,8 @@
 
 <script>   
 $(document).ready(function(){
-
-
+	
+	//메뉴
 	$('.menu1-btn').mouseenter(function(){
 		$('.menu2-main').show()
 
@@ -29,6 +29,17 @@ $(document).ready(function(){
 	}).mouseleave(function(){
 		$('.menu2-main').hide()
 	});
+	
+	//필터
+	$('.icon-arrow').click(function() {
+		
+		if($(this).next('.selector').is(":visible")){
+			$(this).next('.selector').slideUp()
+		} else {
+			$(this).next('.selector').slideDown()
+		}
+	});
+	
 });
 
 </script>
@@ -120,13 +131,6 @@ $(document).ready(function(){
     font-weight: 700;
 	text-decoration: underline;
 }
-
-
-
-
-
-
-
 
 .header-logo-img {
 	margin-top: 10px;
@@ -308,16 +312,21 @@ $(document).ready(function(){
 }
 
 .icon-arrow {
-    display: inline-block;
+    display: flex;
     float: right;
-    width: 15px;
-    height: 10px;
+    width: 25px;
+    height: 15px;
    	background-size: cover;
-    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-arrow-down-16x10-77bddf9fed77b5052cf6054b603420c8.png")
+    background-image: url("https://www.sangsanguniv.com/resources/images/icon/icon-arrow-down-16x10-77bddf9fed77b5052cf6054b603420c8.png");
 }
 
 .selector, .more {
 	display: none;
+}
+
+.sel {
+	display: inline-block;
+	font-size: 18px;
 }
 
 .filter-reset {
@@ -431,7 +440,6 @@ $(document).ready(function(){
 	background-image: url(https://www.sangsanguniv.com/resources/images/icon/icon-facebook-round-bk-6c0bb43daa3795aa5b453b7b04d194fb.png);
 }
 
-
 .footer-menu {
 	padding: 100px 50px;
 	display: flex;
@@ -503,7 +511,7 @@ div {
 button {
     cursor: pointer;
     border: 0;
-   /*  background-color: transparent; */
+    background-color: transparent;
 }
 
 a {
@@ -813,14 +821,16 @@ a {
 			<div class="filter1">
 			
 			    <div class="main-selector">공간유형</div>
-			    <span class="icon-arrow"></span>
+			    <button class="icon-arrow"></button>
 			                                
 			    <div class="selector">
 				  	<div>
 				  		<input type="checkbox" name="atelier" id="atelier" value="1">
-				  		<label for="atelier">아틀리에</label>
+				  		<label class="sel" for="atelier">아틀리에
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 				  		<input type="checkbox" name="atelier" id="studio" value="2">
-				  		<label for="studio">스튜디오</label>
+				  		<label class="sel" for="studio">스튜디오</label>
 				  	</div>
 			    </div>
 			    
@@ -829,50 +839,68 @@ a {
 			<div class="filter2">
 			
 				<div  class="main-selector">지역</div>
-				<span class="icon-arrow"></span>
+				<button class="icon-arrow"></button>
 			                    
 				<div class="selector">
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgSEOUL_S" value="SEOUL_S">
-						<label for="orgSEOUL_S">서울</label>
+						<label class="sel" for="orgSEOUL_S">서울
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgBUSAN" value="BUSAN">
-						<label for="orgBUSAN">부산</label>
+						<label class="sel" for="orgBUSAN">부산</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgDAEGU" value="DAEGU">
-						<label for="orgDAEGU">대구</label>
+						<label class="sel" for="orgDAEGU">대구
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgINCHEON" value="INCHEON">
-						<label for="orgINCHEON">인천</label>
+						<label class="sel" for="orgINCHEON">인천</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgGYEONGGI" value="GYEONGGI">
-						<label for="orgGYEONGGI">경기</label>
+						<label class="sel" for="orgGYEONGGI">경기
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgJEONNAM" value="JEONNAM">
-						<label for="orgJEONNAM">전남</label>
+						<label class="sel" for="orgJEONNAM">전남</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgCHUNGNAM" value="CHUNGNAM">
-						<label for="orgCHUNGNAM">충남</label>
+						<label class="sel" for="orgCHUNGNAM">충남
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgGYEONGNAM" value="GYEONGNAM">
-						<label for="orgGYEONGNAM">경남</label>
+						<label class="sel" for="orgGYEONGNAM">경남</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgGANGWON" value="GANGWON">
-						<label for="orgGANGWON">강원</label>
+						<label class="sel" for="orgGANGWON">강원
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgCHUNGBUK" value="CHUNGBUK">
-						<label for="orgCHUNGBUK">충북</label>
+						<label class="sel" for="orgCHUNGBUK">충북</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgJEONBUK" value="JEONBUK">
-						<label for="orgJEONBUK">전북</label>
+						<label class="sel" for="orgJEONBUK">전북
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="checkbox" name="orgId[]" id="orgGYEONGBUK" value="GYEONGBUK">
-						<label for="orgGYEONGBUK">경북</label>
+						<label class="sel" for="orgGYEONGBUK">경북</label>
 					</div>
 					<div>
 						<input type="checkbox" name="orgId[]" id="orgJEJU" value="JEJU">
-						<label for="orgJEJU">제주</label>
+						<label class="sel" for="orgJEJU">제주</label>
 					</div>
-					                                    
+					       
 				 	<button type="button" class="more">더보기 +</button>
 				</div>
 			                      
