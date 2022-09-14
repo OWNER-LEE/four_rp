@@ -1224,6 +1224,94 @@ address {
     display: block;
 }
 
+#ch-plugin {
+    display: block;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif" !important;
+}
+
+#ch-plugin * {
+    font-family: inherit;
+}
+
+.gzVfHp {
+    position: fixed !important;
+    z-index: 10000000 !important;
+    display: block !important;
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+    bottom: 24px !important;
+    right: 24px !important;
+}
+
+.keQiqC {
+    position: relative !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+    align-items: center !important;
+    -webkit-box-pack: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    cursor: pointer !important;
+}
+
+#ch-plugin img {
+    margin: unset;
+}
+
+.gboUGk {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.leNgMu {
+    position: absolute !important;
+    top: -6px !important;
+    right: -6px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    padding: 0px 7px !important;
+    font-size: 14px !important;
+    visibility: hidden !important;
+    border-radius: 12px !important;
+    box-shadow: rgb(0 0 0 / 5%) 0px 0px 2px 1px, rgb(0 0 0 / 8%) 0px 1px 2px, rgb(255 255 255 / 12%) 0px 0px 2px inset !important;
+    animation: 0.2s cubic-bezier(0.1, 0, 0.6, 1) 0.55s 1 normal backwards running fcEaNs !important;
+}
+
+.fGbtQE {
+    box-sizing: border-box;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0px 4px;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    visibility: hidden;
+    background-color: rgb(233, 78, 88);
+    border-radius: 10px;
+    flex-wrap: nowrap !important;
+}
+
+.ch-messenger-hidden {
+    display: none !important;
+}
+
+#ch-plugin-script-iframe {
+    border-radius: 30px !important;
+}
+
+.bALSkM {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
 /* CSS영역 */
 </style>
 
@@ -2111,6 +2199,22 @@ address {
     </div>
   </div>
 </footer>
+
+<div id="ch-plugin">
+	<div id="ch-plugin-core">
+		<style data-styled="active" data-styled-version="5.1.1"></style>
+		<div data-ch-testid="launcher" class="Launcherstyled__Wrapper-ch-front__sc-oef45p-0 gzVfHp">
+			<div id="ch-plugin-launcher" class="Launcherstyled__ImageWrapper-ch-front__sc-oef45p-3 keQiqC">
+				<img alt="KT&amp;G 상상유니브 상담 버튼" src="https://cf.channel.io/pub-file/80894/621b8bd4a77efe1b1360/sangsang_2.png" width="100" height="100" class="Launcherstyled__Image-ch-front__sc-oef45p-4 gboUGk">
+				<div data-ch-testid="badge" hidden="" class="Badgestyled__Badge-ch-front__sc-1ztqq4-0 fGbtQE Launcherstyled__Badge-ch-front__sc-oef45p-5 leNgMu">0
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="ch-plugin-script" style="display:none" class="ch-messenger-hidden">
+		<iframe id="ch-plugin-script-iframe" style="position:relative!important;height:100%;width:100%!important;border:none!important;"></iframe>
+	</div>
+</div>
 
 <!-- 최상단 버튼 -->
 	<a href="#globalHeader"><button type="button" class="float-btn-top">최상단으로 가기</button></a>
